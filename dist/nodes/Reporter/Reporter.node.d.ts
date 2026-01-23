@@ -1,0 +1,66 @@
+import { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription, ILoadOptionsFunctions, INodePropertyOptions } from 'n8n-workflow';
+export declare class Reporter implements INodeType {
+    description: INodeTypeDescription;
+    methods: {
+        loadOptions: {
+            getCustomFields_AppModelsAssessment(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            getCustomFields_AppModelsClient(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            getCustomFields_AppModelsFinding(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            getCustomFields_AppModelsUser(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadActivitys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadClients(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadCustomFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindings(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingLayouts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingEvents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadLanguages(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadOutputFiles(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadToolFindings(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadToolTargets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadRoles(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTargets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTasks(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTaskSets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadThemes(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadUsers(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadUserGroups(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadDocuments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentcomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadReactions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmenttemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentusers(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadNestedassessmentsections(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadOutputfiles(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentphases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentsections(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTasksets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadUsergroups(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindinglayouts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTestcases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentsectioncomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAutoassignments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingcomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindinglayoutfields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingretests(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingretestcancelledevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingretestinquirys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingstatuschanges(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingreviewevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingpublishedevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingcreatedevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingimportevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadFindingresolverevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadToolfindings(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadCustomfields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadReportpages(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTooltargets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadToolfindingtargetinfos(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+        };
+    };
+    execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]>;
+}
+//# sourceMappingURL=Reporter.node.d.ts.map

@@ -1,0 +1,61 @@
+{
+    "name": "@dongit/n8n-nodes-reporter",
+    "description": "n8n nodes for Security Reporter - Automate security assessments, findings, and vulnerability management",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "security",
+        "vulnerability",
+        "assessment",
+        "reporter",
+        "security-reporter"
+    ],
+    "license": "MIT",
+    "homepage": "https://securityreporter.app/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dongit-org/n8n-nodes-reporter.git"
+    },
+    "author": {
+        "name": "Security Reporter",
+        "email": "support@securityreporter.app"
+    },
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && gulp build:icons",
+        "dev": "tsc --watch",
+        "format": "prettier nodes credentials --write",
+        "lint": "eslint --ext .ts nodes credentials",
+        "lintfix": "eslint --ext .ts nodes credentials --fix",
+        "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials",
+        "filtered-audit": "node ../../../.dev/ci/npm-audit-filtered.mjs"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "credentials": [
+            "dist/credentials/ReporterApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/Reporter/Reporter.node.js",
+            "dist/nodes/Reporter/ReporterTrigger.node.js",
+            "dist/nodes/Reporter/ReporterPollingTrigger.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@typescript-eslint/parser": "^6.20.0",
+        "eslint": "^8.0.0",
+        "eslint-plugin-n8n-nodes-base": "^1.11.0",
+        "gulp": "^5.0.1",
+        "n8n-workflow": "1.17.0",
+        "prettier": "^2.7.1",
+        "typescript": "^5.0.0"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "1.17.0"
+    },
+    "dependencies": [],
+    "version": "2026.01.24"
+}
