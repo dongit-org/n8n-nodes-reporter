@@ -1,6 +1,6 @@
-import { IPollFunctions, INodeType, INodeTypeDescription, INodeExecutionData } from 'n8n-workflow';
+import {INodeExecutionData, INodeType, INodeTypeDescription, IPollFunctions} from 'n8n-workflow';
 export declare class ReporterPollingTrigger implements INodeType {
     description: INodeTypeDescription;
     poll(this: IPollFunctions): Promise<INodeExecutionData[][] | null>;
 }
-//# sourceMappingURL=ReporterPollingTrigger.node.d.ts.map
+// # sourceMappingURL=ReporterPollingTrigger.node.d.ts.map

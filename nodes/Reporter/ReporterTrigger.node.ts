@@ -1,126 +1,126 @@
 import {
+    IDataObject,
     IHookFunctions,
-    IWebhookFunctions,
     INodeType,
     INodeTypeDescription,
+    IWebhookFunctions,
     IWebhookResponseData,
-    IDataObject,
-} from "n8n-workflow";
+} from 'n8n-workflow';
 
 export class ReporterTrigger implements INodeType {
     description: INodeTypeDescription = {
-        displayName: "Reporter Trigger",
-        name: "reporterTrigger",
-        icon: "file:reporter.svg",
-        group: ["trigger"],
+        displayName: 'Reporter Trigger',
+        name: 'reporterTrigger',
+        icon: 'file:reporter.svg',
+        group: ['trigger'],
         version: 1,
         subtitle: '={{$parameter["event"]}}',
-        description: "Starts the workflow when Security Reporter events occur",
+        description: 'Starts the workflow when Security Reporter events occur',
         defaults: {
-            name: "Reporter Trigger",
+            name: 'Reporter Trigger',
         },
         inputs: [],
-        outputs: ["main"],
+        outputs: ['main'],
         credentials: [
             {
-                name: "reporterApi",
+                name: 'reporterApi',
                 required: true,
             },
         ],
         webhooks: [
             {
-                name: "default",
-                httpMethod: "POST",
-                responseMode: "onReceived",
-                path: "webhook",
+                name: 'default',
+                httpMethod: 'POST',
+                responseMode: 'onReceived',
+                path: 'webhook',
             },
         ],
         properties: [
             {
-                displayName: "Event",
-                name: "event",
-                type: "options",
+                displayName: 'Event',
+                name: 'event',
+                type: 'options',
                 options: [
                     {
-                        name: "Assessment created",
-                        value: "assessment:created",
-                        description: "Triggers when an assessment is created",
+                        name: 'Assessment created',
+                        value: 'assessment:created',
+                        description: 'Triggers when an assessment is created',
                     },
                     {
-                        name: "Assessment updated",
-                        value: "assessment:updated",
+                        name: 'Assessment updated',
+                        value: 'assessment:updated',
                         description:
-                            "Triggers when an assessment or one of its phases is updated",
+                            'Triggers when an assessment or one of its phases is updated',
                     },
                     {
-                        name: "Assessment completed",
-                        value: "assessment:completed",
+                        name: 'Assessment completed',
+                        value: 'assessment:completed',
                         description:
-                            "Triggers when an assessment&#039;s status is set to a completed state",
+                            'Triggers when an assessment&#039;s status is set to a completed state',
                     },
                     {
-                        name: "Finding created",
-                        value: "finding:created",
-                        description: "Triggers when a new finding is created",
+                        name: 'Finding created',
+                        value: 'finding:created',
+                        description: 'Triggers when a new finding is created',
                     },
                     {
-                        name: "Finding updated",
-                        value: "finding:updated",
-                        description: "Triggers when a finding is updated",
+                        name: 'Finding updated',
+                        value: 'finding:updated',
+                        description: 'Triggers when a finding is updated',
                     },
                     {
-                        name: "Finding published",
-                        value: "finding:published",
+                        name: 'Finding published',
+                        value: 'finding:published',
                         description:
-                            "Triggers when an existing or new finding is published",
+                            'Triggers when an existing or new finding is published',
                     },
                     {
-                        name: "Reporter update available",
-                        value: "reporter:update-available",
+                        name: 'Reporter update available',
+                        value: 'reporter:update-available',
                         description:
-                            "Triggers when a new version of Reporter is available",
+                            'Triggers when a new version of Reporter is available',
                     },
                     {
-                        name: "Output file processed",
-                        value: "output-file:processed",
+                        name: 'Output file processed',
+                        value: 'output-file:processed',
                         description:
-                            "Triggers when an output file has been processed",
+                            'Triggers when an output file has been processed',
                     },
                     {
-                        name: "Tool finding created",
-                        value: "tool-finding:created",
-                        description: "Triggers when a tool finding is created",
+                        name: 'Tool finding created',
+                        value: 'tool-finding:created',
+                        description: 'Triggers when a tool finding is created',
                     },
                     {
-                        name: "Tool target created",
-                        value: "tool-target:created",
-                        description: "Triggers when a tool target is created",
+                        name: 'Tool target created',
+                        value: 'tool-target:created',
+                        description: 'Triggers when a tool target is created',
                     },
                 ],
 
-                default: "finding:updated",
+                default: 'finding:updated',
 
                 required: true,
-                description: "The event to listen to",
+                description: 'The event to listen to',
             },
             {
-                displayName: "Includes",
-                name: "includes",
-                type: "string",
-                default: "",
+                displayName: 'Includes',
+                name: 'includes',
+                type: 'string',
+                default: '',
                 description:
-                    "Related resources to include. Separate multiple includes with commas (e.g., phases.researchers,sections.findings)",
+                    'Related resources to include. Separate multiple includes with commas (e.g., phases.researchers,sections.findings)',
             },
             {
-                displayName: "Conditions",
-                name: "conditions",
-                type: "string",
+                displayName: 'Conditions',
+                name: 'conditions',
+                type: 'string',
                 typeOptions: {
                     rows: 4,
                 },
-                default: "",
+                default: '',
                 description:
-                    "A JmesPath expression that must evaluate to true to trigger the webhook. If left empty, the webhook will always be triggered. For example, a valid condition for the webhook type assessment:updated could be: contains(model.tags, 'Tag 1') && model.client.short_id == 'R-EXMP'.",
+                    'A JmesPath expression that must evaluate to true to trigger the webhook. If left empty, the webhook will always be triggered. For example, a valid condition for the webhook type assessment:updated could be: contains(model.tags, \'Tag 1\') && model.client.short_id == \'R-EXMP\'.',
             },
         ],
     };
@@ -129,24 +129,24 @@ export class ReporterTrigger implements INodeType {
         default: {
             async checkExists(this: IHookFunctions): Promise<boolean> {
                 // Check if we have a stored webhook ID
-                const webhookData = await this.getWorkflowStaticData("node");
+                const webhookData = await this.getWorkflowStaticData('node');
                 return webhookData.webhookId !== undefined;
             },
 
             async create(this: IHookFunctions): Promise<boolean> {
-                const webhookUrl = this.getNodeWebhookUrl("default");
-                const event = this.getNodeParameter("event") as string;
-                const includes = this.getNodeParameter("includes") as string;
+                const webhookUrl = this.getNodeWebhookUrl('default');
+                const event = this.getNodeParameter('event') as string;
+                const includes = this.getNodeParameter('includes') as string;
                 const conditions = this.getNodeParameter(
-                    "conditions"
+                    'conditions'
                 ) as string;
-                const credentials = await this.getCredentials("reporterApi");
-                const baseUrl = (credentials.url as string).replace(/\/$/, ""); // Remove trailing slash
+                const credentials = await this.getCredentials('reporterApi');
+                const baseUrl = (credentials.url as string).replace(/\/$/, ''); // Remove trailing slash
 
                 // Generate a random secret for webhook verification
-                const secret =
-                    Math.random().toString(36).substring(2, 15) +
-                    Math.random().toString(36).substring(2, 15);
+                const secret
+                    = Math.random().toString(36).substring(2, 15)
+                        + Math.random().toString(36).substring(2, 15);
 
                 // Build includes and conditions objects keyed by event type
                 const includesObj: IDataObject = {};
@@ -177,12 +177,12 @@ export class ReporterTrigger implements INodeType {
                 }
 
                 const response = await this.helpers.httpRequest({
-                    method: "POST",
+                    method: 'POST',
                     url: `${baseUrl}/api/v1/webhooks`,
                     headers: {
-                        Authorization: `Bearer ${credentials.apiToken}`,
-                        Accept: "application/vnd.api+json",
-                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${credentials.apiToken}`,
+                        'Accept': 'application/vnd.api+json',
+                        'Content-Type': 'application/json',
                     },
                     body,
                     json: true,
@@ -193,13 +193,13 @@ export class ReporterTrigger implements INodeType {
 
                 if (!responseData || !responseData.id) {
                     throw new Error(
-                        "Invalid response from Reporter API: missing webhook ID"
+                        'Invalid response from Reporter API: missing webhook ID'
                     );
                 }
 
                 const webhookId = responseData.id as string;
 
-                const webhookData = await this.getWorkflowStaticData("node");
+                const webhookData = await this.getWorkflowStaticData('node');
                 webhookData.webhookId = webhookId;
                 webhookData.secret = secret;
 
@@ -207,24 +207,24 @@ export class ReporterTrigger implements INodeType {
             },
 
             async delete(this: IHookFunctions): Promise<boolean> {
-                const webhookData = await this.getWorkflowStaticData("node");
+                const webhookData = await this.getWorkflowStaticData('node');
                 const webhookId = webhookData.webhookId as string;
 
                 if (webhookId === undefined) {
                     return true;
                 }
 
-                const credentials = await this.getCredentials("reporterApi");
-                const baseUrl = (credentials.url as string).replace(/\/$/, ""); // Remove trailing slash
+                const credentials = await this.getCredentials('reporterApi');
+                const baseUrl = (credentials.url as string).replace(/\/$/, ''); // Remove trailing slash
 
                 try {
                     await this.helpers.httpRequest({
-                        method: "DELETE",
+                        method: 'DELETE',
                         url: `${baseUrl}/api/v1/webhooks/${webhookId}`,
                         headers: {
-                            Authorization: `Bearer ${credentials.apiToken}`,
-                            Accept: "application/vnd.api+json",
-                            "Content-Type": "application/vnd.api+json",
+                            'Authorization': `Bearer ${credentials.apiToken}`,
+                            'Accept': 'application/vnd.api+json',
+                            'Content-Type': 'application/vnd.api+json',
                         },
                     });
                 } catch {

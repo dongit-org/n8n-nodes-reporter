@@ -1,4 +1,4 @@
-import { IExecuteFunctions, INodeExecutionData, INodeType, INodeTypeDescription, ILoadOptionsFunctions, INodePropertyOptions } from 'n8n-workflow';
+import {IExecuteFunctions, ILoadOptionsFunctions, INodeExecutionData, INodePropertyOptions, INodeType, INodeTypeDescription} from 'n8n-workflow';
 export declare class Reporter implements INodeType {
     description: INodeTypeDescription;
     methods: {
@@ -63,4 +63,4 @@ export declare class Reporter implements INodeType {
     };
     execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]>;
 }
-//# sourceMappingURL=Reporter.node.d.ts.map
+// # sourceMappingURL=Reporter.node.d.ts.map
