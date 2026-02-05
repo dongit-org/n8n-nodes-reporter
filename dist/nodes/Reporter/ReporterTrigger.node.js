@@ -114,7 +114,7 @@ class ReporterTrigger {
             default: {
                 async checkExists() {
                     // Check if we have a stored webhook ID
-                    const webhookData = await this.getWorkflowStaticData('node');
+                    const webhookData = this.getWorkflowStaticData('node');
                     return webhookData.webhookId !== undefined;
                 },
                 async create() {
@@ -124,6 +124,10 @@ class ReporterTrigger {
                     const conditions = this.getNodeParameter('conditions');
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, ''); // Remove trailing slash
+                    // Get workflow metadata for unique webhook naming
+                    const workflow = this.getWorkflow();
+                    const workflowName = workflow.name || 'Unnamed';
+                    const workflowId = workflow.id || 'unknown';
                     // Generate a random secret for webhook verification
                     const secret = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
                     // Build includes and conditions objects keyed by event type
@@ -136,7 +140,7 @@ class ReporterTrigger {
                         conditionsObj[event] = conditions.trim();
                     }
                     const body = {
-                        name: `n8n - ${event}`,
+                        name: `n8n - ${workflowName} (${workflowId}) - ${event}`,
                         url: webhookUrl,
                         secret: secret,
                         auth_method: 0, // NONE = 0
@@ -167,13 +171,13 @@ class ReporterTrigger {
                         throw new Error('Invalid response from Reporter API: missing webhook ID');
                     }
                     const webhookId = responseData.id;
-                    const webhookData = await this.getWorkflowStaticData('node');
+                    const webhookData = this.getWorkflowStaticData('node');
                     webhookData.webhookId = webhookId;
                     webhookData.secret = secret;
                     return true;
                 },
                 async delete() {
-                    const webhookData = await this.getWorkflowStaticData('node');
+                    const webhookData = this.getWorkflowStaticData('node');
                     const webhookId = webhookData.webhookId;
                     if (webhookId === undefined) {
                         return true;
@@ -203,6 +207,9 @@ class ReporterTrigger {
     }
     async webhook() {
         const bodyData = this.getBodyData();
+        // Set the 'Reporter' header to pass SSRF validation in Security Reporter
+        const res = this.getResponseObject();
+        res.setHeader('Reporter', 'n8n');
         return {
             workflowData: [this.helpers.returnJsonArray([bodyData])],
         };
