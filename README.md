@@ -1,4 +1,4 @@
-# n8n-nodes-reporter
+# @dongit/n8n-nodes-reporter
 
 This is an n8n community node that lets you use [Security Reporter](https://securityreporter.app/) in your n8n workflows.
 
@@ -14,7 +14,7 @@ For production use, install via n8n's Community Nodes:
 
 1. Go to **Settings > Community Nodes** in your n8n instance
 2. Select **Install**
-3. Enter `n8n-nodes-reporter` in **Enter npm package name**
+3. Enter `@dongit/n8n-nodes-reporter` in **Enter npm package name**
 4. Agree to the risks and click **Install**
 
 After installation, the Reporter nodes will be available in your workflow editor.
@@ -28,7 +28,7 @@ For development or self-hosted instances:
 cd ~/.n8n
 
 # Install the package
-npm install n8n-nodes-reporter
+npm install @dongit/n8n-nodes-reporter
 ```
 
 ### Docker
