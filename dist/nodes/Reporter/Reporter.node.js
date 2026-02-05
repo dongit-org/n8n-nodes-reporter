@@ -502,7 +502,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 94041ad1f72a49c48cfe0d03eb46517b',
+                    description: 'The ID of the client. Example: 584f833215694a68aac22a101b4993fb',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -696,7 +696,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 984defae95c54c5da3cbc4be9255575e',
+                    description: 'The ID of the assessment. Example: f36c4d0cb1f24aa49c8f6cec8db9243a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -735,7 +735,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 984defae95c54c5da3cbc4be9255575e',
+                    description: 'The ID of the assessment. Example: f36c4d0cb1f24aa49c8f6cec8db9243a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -881,7 +881,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 15',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 4',
                         },
                         {
                             displayName: 'On hold',
@@ -912,7 +912,7 @@ class Reporter {
                                 },
                             ],
                             default: 'CWE',
-                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["vel"]',
+                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["sapiente"]',
                         },
                         {
                             displayName: 'Scoring system',
@@ -1257,7 +1257,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d6a3bc28641242de8cc4237df40332fa',
+                    description: 'The ID of the assessment. Example: 969a4a37bec04f8f923ae5200423864a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1299,7 +1299,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 7dc05d01f84644f7a64ed015e9371b1b',
+                    description: 'The ID of the assessment. Example: 302e998a62094386b790200932522188',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1368,7 +1368,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 953d5c09cea04bed9b7d7b14debfe1d1',
+                    description: 'The ID of the assessment. Example: ed894830e01e4e4ca3b4dcfa81b46e13',
                 },
                 {
                     displayName: 'Body',
@@ -1437,7 +1437,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: 7c3a62bd8289410883e7828453ebdd3c',
+                    description: 'The ID of the assessment comment. Example: 5268d4d410114bf0884c63ca16dba958',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1508,7 +1508,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: 2d106ba0d820407dbc597a60335440f6',
+                    description: 'The ID of the assessment phase. Example: 06ab540f0fee457f8f0e4eaf548501e8',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1659,7 +1659,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: e3c62fe3a004463c9b742db65ed29df4',
+                    description: 'The ID of the assessment section. Example: a26eee42524e4763bc9269c54ff263b4',
                 },
                 {
                     displayName: 'Id',
@@ -1677,7 +1677,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: e3c62fe3a004463c9b742db65ed29df4',
+                    description: 'The ID of the assessment section. Example: a26eee42524e4763bc9269c54ff263b4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1748,7 +1748,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 6',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 9',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
@@ -1793,7 +1793,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 17',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 7',
                         },
                         {
                             displayName: 'Report heading',
@@ -1832,7 +1832,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 4',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 19',
                         },
                         {
                             displayName: 'Review status',
@@ -1915,7 +1915,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: c4a575993a084442ad6b6ba78a62f55c',
+                    description: 'The ID of the assessment section. Example: 27dc1cc3867747358bb0cb2b1409ce76',
                 },
                 {
                     displayName: 'Body',
@@ -1987,7 +1987,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: 33b72cc40d23444d9ac927e663a3cb7c',
+                    description: 'The ID of the assessment section comment. Example: 344f40615b694f948585cc40e7b9f514',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2063,7 +2063,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d7030bfb8c7f4916b5573c79c31e8316',
+                    description: 'The ID of the assessment. Example: c3c448825aa84fbdabf5ac3199ac512b',
                 },
                 {
                     displayName: 'Task set id',
@@ -2116,7 +2116,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: b8038458adb540b8a2d109bd73a0868b',
+                    description: 'The ID of the assessment. Example: eeab0d28ac7a4fd3ba8309399da97bf1',
                 },
                 {
                     displayName: 'Id',
@@ -2130,7 +2130,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: a7d19f35f13e490ea17636835414e732',
+                    description: 'The ID of the task set. Example: ca9c9883018a43b68b9b4096bc911bf3',
                 },
                 // Assessment Template - Operations
                 {
@@ -2291,7 +2291,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: ffa98922e41544e8b46255441c5cd8e4',
+                    description: 'The ID of the assessment template. Example: 9a4c1caeb1cf476793a005d4a48abe7c',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2363,7 +2363,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: a0ba6f7326f54f9195f72e0f4bdd3007',
+                    description: 'The ID of the assessment. Example: 742d118903f64b448eb43cce8451a4dd',
                 },
                 {
                     displayName: 'User id',
@@ -2575,7 +2575,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 8f4d69b0e8f84439aea575efc1d2c87b',
+                    description: 'The ID of the assessment. Example: 035f59dcf6bf4396b687ccf7869dac47',
                 },
                 {
                     displayName: 'Id',
@@ -2593,7 +2593,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 87744fe8f5604d1ea244e245580df1af',
+                    description: 'The ID of the user. Example: adcd9fcdb39e4cb5a7113127594e3fba',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2752,7 +2752,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [19]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [14]',
                         },
                         {
                             displayName: 'Expires on',
@@ -2781,7 +2781,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 8f4d69b0e8f84439aea575efc1d2c87b',
+                    description: 'The ID of the assessment. Example: 035f59dcf6bf4396b687ccf7869dac47',
                 },
                 {
                     displayName: 'Id',
@@ -2799,7 +2799,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 87744fe8f5604d1ea244e245580df1af',
+                    description: 'The ID of the user. Example: adcd9fcdb39e4cb5a7113127594e3fba',
                 },
                 // Client - Operations
                 {
@@ -3098,7 +3098,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 8cec27d0fcf047d7ae3d3bdaa8e4faba',
+                    description: 'The ID of the client. Example: e0526ca985914eb18097f7474fb51d80',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3137,7 +3137,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 8cec27d0fcf047d7ae3d3bdaa8e4faba',
+                    description: 'The ID of the client. Example: e0526ca985914eb18097f7474fb51d80',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3440,7 +3440,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: e02e5e4de11c4163aaa2bd0b08319d72',
+                    description: 'The ID of the document. Example: 9282ccf820a74167b899dd63231b6415',
                 },
                 {
                     displayName: 'Documentable type',
@@ -3806,7 +3806,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d182df003be145d4b8116da8cf59b16b',
+                    description: 'The ID of the assessment. Example: 7ddfc6cd410d488a90aa4dd6db3c9809',
                 },
                 {
                     displayName: 'Title',
@@ -3966,7 +3966,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 8',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 2',
                         },
                         {
                             displayName: 'Draft documents',
@@ -4229,7 +4229,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 4955902c6bce4501a37af2d33ce880b3',
+                    description: 'The ID of the finding. Example: 2d1323589f2a4a55a8ebade58727f22d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4268,7 +4268,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 4955902c6bce4501a37af2d33ce880b3',
+                    description: 'The ID of the finding. Example: 2d1323589f2a4a55a8ebade58727f22d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4345,7 +4345,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 19',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 15',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -4666,7 +4666,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: ce207ee54e564202a7bf09aff9a04dab',
+                    description: 'The ID of the assessment. Example: 2a1c15cc90dd43a482e8137513044d0f',
                 },
                 {
                     displayName: 'Finding template id',
@@ -5065,7 +5065,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 4d7e1bf8e1714fb8ae022610d40e564e',
+                    description: 'The ID of the finding. Example: 9d1d634d51324fcaa42eb468995c956e',
                 },
                 {
                     displayName: 'Body',
@@ -5134,7 +5134,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: 59434f8ce4d64758b95de6a888ec7809',
+                    description: 'The ID of the finding comment. Example: be7d29b50a784935a42b3ca1a49c4a3f',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5183,7 +5183,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 79d5d5fd1f9a41eea3dab65b4481122b',
+                    description: 'The ID of the finding. Example: 7ad52d64a2864a0594efead62c599ac1',
                 },
                 {
                     displayName: 'Status',
@@ -5370,7 +5370,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 8c44ca921bd54338ab2018fe7c83594a',
+                    description: 'The ID of the finding retest. Example: d3f7548c23ff4698a2af25cc6f025f2b',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5556,7 +5556,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 5aafea419f53495b84f6a984a10ba3ed',
+                    description: 'The ID of the finding. Example: 26e52c8202eb42ecb4370742c06a9e87',
                 },
                 {
                     displayName: 'Body',
@@ -5618,7 +5618,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 67917d080e5648a588889a815796fec8',
+                    description: 'The ID of the finding retest inquiry. Example: 2b47df4b7002463faa757e090885cf68',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5661,7 +5661,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: a79755fe544f4d39bdadb663da84000f',
+                    description: 'The ID of the finding retest inquiry. Example: ccc644a262d64b098aa460d8b7b89b19',
                 },
                 {
                     displayName: 'Body',
@@ -5723,7 +5723,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: 659f2ae163b842aea1549001f87ed074',
+                    description: 'The ID of the finding retest cancelled event. Example: 3b7e2eaea46d4ba0a3af32bdd5404ef0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6185,7 +6185,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 13',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 1',
                         },
                         {
                             displayName: 'Classifications',
@@ -6513,7 +6513,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 7',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 17',
                         },
                         {
                             displayName: 'Classifications',
@@ -6883,7 +6883,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 2822d6bd46944b56ad25a5690af0f560',
+                    description: 'The ID of the assessment. Example: ab3c80198818496dacb5c3dc8f3e4305',
                 },
                 {
                     displayName: 'Name',
@@ -7942,7 +7942,7 @@ class Reporter {
                         },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: et',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: sequi',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8253,7 +8253,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 968f47f9103e4b198daa905ed3f5f823',
+                    description: 'The ID of the tool finding. Example: b68da7c3e5cc46e3ab4751b0f4a7e5f7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8293,7 +8293,7 @@ class Reporter {
                         loadOptionsDependsOn: ['finding_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 968f47f9103e4b198daa905ed3f5f823',
+                    description: 'The ID of the tool finding. Example: b68da7c3e5cc46e3ab4751b0f4a7e5f7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8505,7 +8505,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the tool target. Example: cd657dc589d542a78a2b81b65a47f379',
+                    description: 'The ID of the tool target. Example: d55dca7301014af4b5b11dca32dbe9ee',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9016,7 +9016,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 0495e3139ddf455498c421aa1f514a32',
+                    description: 'The ID of the assessment. Example: 5a2ce0d58ea74dddab882373b72952e2',
                 },
                 {
                     displayName: 'Target type',
@@ -9177,7 +9177,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 2',
+                    description: 'The type of target. Must be a valid target type. Example: 17',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9238,7 +9238,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 5',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 15',
                         },
                         {
                             displayName: 'Name',
@@ -9272,7 +9272,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: enim',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: id',
                         },
                         {
                             displayName: 'Credentials',
@@ -9313,7 +9313,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: cd84a7331edd46b98de8855be9f4caaf',
+                    description: 'The ID of the target. Example: e8e43e75a64f4979b40e431bda0c0a5e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9352,7 +9352,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: cd84a7331edd46b98de8855be9f4caaf',
+                    description: 'The ID of the target. Example: e8e43e75a64f4979b40e431bda0c0a5e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9536,7 +9536,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 18',
+                            description: 'The type of target. Must be a valid target type. Example: 6',
                         },
                         {
                             displayName: 'Business impact',
@@ -9560,7 +9560,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 15',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 3',
                         },
                         {
                             displayName: 'Name',
@@ -9594,7 +9594,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: enim',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: consequatur',
                         },
                         {
                             displayName: 'Credentials',
@@ -9782,7 +9782,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 83821c0380e348629511c18afebd4c88',
+                    description: 'The ID of the task. Example: 1d524033013546debfae605a2ce2f38a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9821,7 +9821,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 83821c0380e348629511c18afebd4c88',
+                    description: 'The ID of the task. Example: 1d524033013546debfae605a2ce2f38a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9883,7 +9883,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 0',
+                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
                         },
                         {
                             displayName: 'Deadline change',
@@ -9959,7 +9959,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: c2664d6ea7454be6869934b869c2d0d3',
+                    description: 'The ID of the assessment. Example: f242483878b844b4bf05ffaa2deeedaf',
                 },
                 {
                     displayName: 'Data',
@@ -10029,7 +10029,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
+                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 0',
                 },
                 {
                     displayName: 'Weight',
@@ -10305,7 +10305,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 8',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 12',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10329,7 +10329,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 23',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 1',
                         },
                         {
                             displayName: 'Tasks',
@@ -10432,7 +10432,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 86f1334e36ce4aff96c9c41ec17e85b2',
+                    description: 'The ID of the task set. Example: de81b3bb451e499fbc1ac8474447d3f8',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10472,7 +10472,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 86f1334e36ce4aff96c9c41ec17e85b2',
+                    description: 'The ID of the task set. Example: de81b3bb451e499fbc1ac8474447d3f8',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10534,7 +10534,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 12',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 2',
                         },
                         {
                             displayName: 'Tasks',
@@ -10664,7 +10664,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 419b0567f41d4e5e888c36aad7fd17b6',
+                    description: 'The ID of the test case. Example: 0bfcf9605cac44ca9536013149b637b5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10704,7 +10704,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 419b0567f41d4e5e888c36aad7fd17b6',
+                    description: 'The ID of the test case. Example: 0bfcf9605cac44ca9536013149b637b5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11151,7 +11151,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: pqlwupmtrwcgxay',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: pxykkteeclnzjddasniratl',
                         },
                         {
                             displayName: 'Clients',
@@ -11233,7 +11233,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 3298eec904ab47c6859453b95bb3398f',
+                    description: 'The ID of the user. Example: 415b26b31ad24884baa51d0396260964',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11272,7 +11272,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 3298eec904ab47c6859453b95bb3398f',
+                    description: 'The ID of the user. Example: 415b26b31ad24884baa51d0396260964',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11339,7 +11339,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'The user account status. Must be a valid user status. Example: 1',
+                            description: 'The user account status. Must be a valid user status. Example: 3',
                         },
                         {
                             displayName: 'Phone',
@@ -11377,7 +11377,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: jbqyly',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: hyrkphqbspqytoxqljqsep',
                         },
                     ],
                 },
@@ -11596,7 +11596,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: e75979765ade428aab98d8db773fb711',
+                    description: 'The ID of the client. Example: c57c5fc810f5472281c692fcc116d36d',
                 },
                 {
                     displayName: 'Name',
@@ -11664,7 +11664,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user group. Example: 12505902d4c343bea540157e9a25b50a',
+                    description: 'The ID of the user group. Example: 0c0d59ffd01c4b80981c42838e77e0f0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11704,7 +11704,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user group. Example: 12505902d4c343bea540157e9a25b50a',
+                    description: 'The ID of the user group. Example: 0c0d59ffd01c4b80981c42838e77e0f0',
                 },
                 {
                     displayName: 'Additional Fields',
