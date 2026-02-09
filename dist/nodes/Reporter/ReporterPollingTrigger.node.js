@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReporterPollingTrigger = void 0;
+const n8n_workflow_1 = require("n8n-workflow");
 class ReporterPollingTrigger {
     constructor() {
         this.description = {
@@ -465,7 +466,7 @@ class ReporterPollingTrigger {
         };
         const config = resourceConfig[resource];
         if (!config) {
-            throw new Error(`Unknown resource: ${resource}`);
+            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Unknown resource: ${resource}`);
         }
         // Get the last execution time
         const now = new Date();

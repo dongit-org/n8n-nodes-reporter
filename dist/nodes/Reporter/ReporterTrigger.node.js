@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReporterTrigger = void 0;
+const n8n_workflow_1 = require("n8n-workflow");
 class ReporterTrigger {
     constructor() {
         this.description = {
@@ -168,7 +169,7 @@ class ReporterTrigger {
                     // Parse response - it's a flat object with id at root level
                     const responseData = response;
                     if (!responseData || !responseData.id) {
-                        throw new Error('Invalid response from Reporter API: missing webhook ID');
+                        throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Invalid response from Reporter API: missing webhook ID');
                     }
                     const webhookId = responseData.id;
                     const webhookData = this.getWorkflowStaticData('node');

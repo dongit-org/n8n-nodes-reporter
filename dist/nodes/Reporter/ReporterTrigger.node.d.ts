@@ -1,4 +1,4 @@
-import {IHookFunctions, INodeType, INodeTypeDescription, IWebhookFunctions, IWebhookResponseData} from 'n8n-workflow';
+import { IHookFunctions, IWebhookFunctions, INodeType, INodeTypeDescription, IWebhookResponseData } from 'n8n-workflow';
 export declare class ReporterTrigger implements INodeType {
     description: INodeTypeDescription;
     webhookMethods: {
@@ -10,4 +10,4 @@ export declare class ReporterTrigger implements INodeType {
     };
     webhook(this: IWebhookFunctions): Promise<IWebhookResponseData>;
 }
-// # sourceMappingURL=ReporterTrigger.node.d.ts.map
+//# sourceMappingURL=ReporterTrigger.node.d.ts.map

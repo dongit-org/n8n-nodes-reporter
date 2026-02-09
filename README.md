@@ -8,6 +8,11 @@ Security Reporter is a comprehensive security assessment and vulnerability manag
 
 ## Installation
 
+The Reporter integration is available as a community node package.
+If the reporter integration is not already installed,
+you can install it directly from the n8n interface or via npm.
+You can find more information [here](https://docs.n8n.io/integrations/community-nodes/installation/]
+
 ### Community Nodes (Recommended)
 
 For production use, install via n8n's Community Nodes:
