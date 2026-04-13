@@ -16,7 +16,7 @@ class ReporterPollingTrigger {
                 name: 'Reporter Polling Trigger',
             },
             inputs: [],
-            outputs: ['main'],
+            outputs: [n8n_workflow_1.NodeConnectionTypes.Main],
             credentials: [
                 {
                     name: 'reporterApi',
@@ -201,6 +201,16 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing task set is updated',
                         },
                         {
+                            name: 'New Test Case',
+                            value: 'testCase_created',
+                            description: 'Triggers when a new test case is created',
+                        },
+                        {
+                            name: 'Updated Test Case',
+                            value: 'testCase_updated',
+                            description: 'Triggers when an existing test case is updated',
+                        },
+                        {
                             name: 'New Theme',
                             value: 'theme_created',
                             description: 'Triggers when a new theme is created',
@@ -219,16 +229,6 @@ class ReporterPollingTrigger {
                             name: 'Updated User',
                             value: 'user_updated',
                             description: 'Triggers when an existing user is updated',
-                        },
-                        {
-                            name: 'New User Group',
-                            value: 'userGroup_created',
-                            description: 'Triggers when a new user group is created',
-                        },
-                        {
-                            name: 'Updated User Group',
-                            value: 'userGroup_updated',
-                            description: 'Triggers when an existing user group is updated',
                         },
                     ],
                     default: 'activity_created',
@@ -433,6 +433,16 @@ class ReporterPollingTrigger {
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
+            'testCase_created': {
+                apiPath: '/api/v1/test-cases',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'testCase_updated': {
+                apiPath: '/api/v1/test-cases',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
             'theme_created': {
                 apiPath: '/api/v1/themes',
                 filterField: 'created_at_after',
@@ -450,16 +460,6 @@ class ReporterPollingTrigger {
             },
             'user_updated': {
                 apiPath: '/api/v1/users',
-                filterField: 'updated_at_after',
-                sortField: '-updated_at',
-            },
-            'userGroup_created': {
-                apiPath: '/api/v1/user-groups',
-                filterField: 'created_at_after',
-                sortField: '-created_at',
-            },
-            'userGroup_updated': {
-                apiPath: '/api/v1/user-groups',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
@@ -484,15 +484,8 @@ class ReporterPollingTrigger {
                 }
             }
         }
-        // Add user-provided sort
-        const sortParam = this.getNodeParameter('sort', 0);
-        if (sortParam) {
-            // Prepend the resource-specific sort field (e.g., -created_at or -updated_at)
-            qs['sort'] = `${config.sortField},${sortParam}`;
-        }
-        else {
-            qs['sort'] = config.sortField;
-        }
+        // Sort by the resource-specific sort field (e.g., -created_at or -updated_at)
+        qs['sort'] = config.sortField;
         // Add user-provided includes
         const includeParam = this.getNodeParameter('include', 0);
         if (includeParam) {
@@ -504,16 +497,21 @@ class ReporterPollingTrigger {
             qs[`filter[${config.filterField}]`] = lastTimeChecked;
         }
         webhookData.lastTimeChecked = now.toISOString();
-        const response = await this.helpers.httpRequest({
-            method: 'GET',
-            url: `${baseUrl}${config.apiPath}`,
-            headers: {
-                'Authorization': `Bearer ${credentials.apiToken}`,
-                'Accept': 'application/vnd.api+json',
-            },
-            qs,
-            json: true,
-        });
+        let response;
+        try {
+            response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                method: 'GET',
+                url: `${baseUrl}${config.apiPath}`,
+                headers: {
+                    'Accept': 'application/vnd.api+json',
+                },
+                qs,
+                json: true,
+            });
+        }
+        catch (error) {
+            throw new n8n_workflow_1.NodeApiError(this.getNode(), error);
+        }
         const items = Array.isArray(response) ? response : (response.data || []);
         if (items.length === 0) {
             return null;

@@ -24,9 +24,9 @@ export declare class Reporter implements INodeType {
             loadTargets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTasks(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTaskSets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTestCases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadThemes(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadUsers(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
-            loadUserGroups(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadDocuments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentcomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadReactions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
@@ -37,7 +37,7 @@ export declare class Reporter implements INodeType {
             loadAssessmentphases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentsections(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTasksets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
-            loadUsergroups(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTeams(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindinglayouts(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTestcases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentsectioncomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;

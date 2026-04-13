@@ -16,7 +16,7 @@ class ReporterTrigger {
                 name: 'Reporter Trigger',
             },
             inputs: [],
-            outputs: ['main'],
+            outputs: [n8n_workflow_1.NodeConnectionTypes.Main],
             credentials: [
                 {
                     name: 'reporterApi',
@@ -155,11 +155,10 @@ class ReporterTrigger {
                     if (Object.keys(conditionsObj).length > 0) {
                         body.conditions = conditionsObj;
                     }
-                    const response = await this.helpers.httpRequest({
+                    const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                         method: 'POST',
                         url: `${baseUrl}/api/v1/webhooks`,
                         headers: {
-                            'Authorization': `Bearer ${credentials.apiToken}`,
                             'Accept': 'application/vnd.api+json',
                             'Content-Type': 'application/json',
                         },
@@ -186,19 +185,16 @@ class ReporterTrigger {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, ''); // Remove trailing slash
                     try {
-                        await this.helpers.httpRequest({
+                        await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'DELETE',
                             url: `${baseUrl}/api/v1/webhooks/${webhookId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/vnd.api+json',
                             },
                         });
                     }
-                    catch {
-                        // Ignore errors during deletion
-                        return false;
+                    catch (error) {
+                        throw new n8n_workflow_1.NodeApiError(this.getNode(), error);
                     }
                     delete webhookData.webhookId;
                     return true;

@@ -10,12 +10,13 @@ class Reporter {
             icon: 'file:reporter.svg',
             group: [],
             version: 1,
+            subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
             description: 'Interact with Reporter API',
             defaults: {
                 name: 'Reporter',
             },
-            inputs: ['main'],
-            outputs: ['main'],
+            inputs: [n8n_workflow_1.NodeConnectionTypes.Main],
+            outputs: [n8n_workflow_1.NodeConnectionTypes.Main],
             credentials: [
                 {
                     name: 'reporterApi',
@@ -82,12 +83,12 @@ class Reporter {
                             value: 'finding',
                         },
                         {
-                            name: 'Finding Layout',
-                            value: 'findingLayout',
-                        },
-                        {
                             name: 'Finding Event',
                             value: 'findingEvent',
+                        },
+                        {
+                            name: 'Finding Layout',
+                            value: 'findingLayout',
                         },
                         {
                             name: 'Finding Template',
@@ -100,14 +101,6 @@ class Reporter {
                         {
                             name: 'Output File',
                             value: 'outputFile',
-                        },
-                        {
-                            name: 'Tool Finding',
-                            value: 'toolFinding',
-                        },
-                        {
-                            name: 'Tool Target',
-                            value: 'toolTarget',
                         },
                         {
                             name: 'Reaction',
@@ -130,6 +123,14 @@ class Reporter {
                             value: 'taskSet',
                         },
                         {
+                            name: 'Team',
+                            value: 'team',
+                        },
+                        {
+                            name: 'Team User',
+                            value: 'teamUser',
+                        },
+                        {
                             name: 'Test Case',
                             value: 'testCase',
                         },
@@ -138,12 +139,16 @@ class Reporter {
                             value: 'theme',
                         },
                         {
-                            name: 'User',
-                            value: 'user',
+                            name: 'Tool Finding',
+                            value: 'toolFinding',
                         },
                         {
-                            name: 'User Group',
-                            value: 'userGroup',
+                            name: 'Tool Target',
+                            value: 'toolTarget',
+                        },
+                        {
+                            name: 'User',
+                            value: 'user',
                         },
                     ],
                     default: 'activity',
@@ -260,12 +265,8 @@ class Reporter {
                                                     value: 'type',
                                                 },
                                                 {
-                                                    name: 'Through api',
-                                                    value: 'through_api',
-                                                },
-                                                {
-                                                    name: 'Through scim',
-                                                    value: 'through_scim',
+                                                    name: 'Source',
+                                                    value: 'source',
                                                 },
                                                 {
                                                     name: 'Created at',
@@ -503,7 +504,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 88d96511fd464e1fb5a386c99ba982a6',
+                    description: 'The ID of the client. Example: 1cc42d007cd847cf8707639eea0fa447',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -614,6 +615,11 @@ class Reporter {
                                     value: 'audit_rating',
                                     description: 'Audit Rating',
                                 },
+                                {
+                                    name: 'Compliant/Not Compliant',
+                                    value: 'compliance',
+                                    description: 'Compliant/Not Compliant',
+                                },
                             ],
                             default: 'owasp',
                             description: 'The scoring system used by the assessment. If not set, the default scoring system will be used. The default scoring system can be changed in the settings. Must be a valid scoring system. Example: o...',
@@ -697,7 +703,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 0aef0af66a454ccab832d178cdc1dc47',
+                    description: 'The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -736,7 +742,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 0aef0af66a454ccab832d178cdc1dc47',
+                    description: 'The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -882,7 +888,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 2',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 1',
                         },
                         {
                             displayName: 'On hold',
@@ -913,7 +919,7 @@ class Reporter {
                                 },
                             ],
                             default: 'CWE',
-                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["enim"]',
+                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["et"]',
                         },
                         {
                             displayName: 'Scoring system',
@@ -949,6 +955,11 @@ class Reporter {
                                     name: 'Audit Rating',
                                     value: 'audit_rating',
                                     description: 'Audit Rating',
+                                },
+                                {
+                                    name: 'Compliant/Not Compliant',
+                                    value: 'compliance',
+                                    description: 'Compliant/Not Compliant',
                                 },
                             ],
                             default: 'owasp',
@@ -1006,21 +1017,21 @@ class Reporter {
                             name: 'show_targets',
                             type: 'boolean',
                             default: '',
-                            description: 'Show the assessment targets as a tab in the overview. Example: false',
+                            description: 'Show the assessment targets as a tab in the overview. Example: true',
                         },
                         {
                             displayName: 'Show results',
                             name: 'show_results',
                             type: 'boolean',
                             default: '',
-                            description: 'Show the assessment results as a tab in the overview. Example: false',
+                            description: 'Show the assessment results as a tab in the overview. Example: true',
                         },
                         {
                             displayName: 'Auto generate pdf',
                             name: 'auto_generate_pdf',
                             type: 'boolean',
                             default: '',
-                            description: 'Automatic PDF Generation. Once this assessment is completed automatically generate a new PDF on changing the assessment or any related data (like targets, sections or findings). Example: false',
+                            description: 'Automatic PDF Generation. Once this assessment is completed automatically generate a new PDF on changing the assessment or any related data (like targets, sections or findings). Example: true',
                         },
                         {
                             displayName: 'Auto generate management pdf',
@@ -1041,35 +1052,35 @@ class Reporter {
                             name: 'show_report_toc',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether a table of contents will be included when generating assessment reports. Example: false',
+                            description: 'Whether a table of contents will be included when generating assessment reports. Example: true',
                         },
                         {
                             displayName: 'Show management report toc',
                             name: 'show_management_report_toc',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether a table of contents will be included when generating management assessment reports. Example: false',
+                            description: 'Whether a table of contents will be included when generating management assessment reports. Example: true',
                         },
                         {
                             displayName: 'Enable retest requests',
                             name: 'enable_retest_requests',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether clients can request new retests. Example: false',
+                            description: 'Whether clients can request new retests. Example: true',
                         },
                         {
                             displayName: 'Allow retests without inquiries',
                             name: 'allow_retests_without_inquiries',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether researchers can create retests without an explicit request from a client. Example: false',
+                            description: 'Whether researchers can create retests without an explicit request from a client. Example: true',
                         },
                         {
                             displayName: 'Password protect pdf reports',
                             name: 'password_protect_pdf_reports',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether assessment report generation is password-protected. Example: false',
+                            description: 'Whether assessment report generation is password-protected. Example: true',
                         },
                         {
                             displayName: 'Researcher research hours',
@@ -1117,14 +1128,14 @@ class Reporter {
                             name: 'custom_short_id',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether to use a full custom short ID, instead of a short ID based on client\'s short ID and initial assessment start date. Example: false',
+                            description: 'Whether to use a full custom short ID, instead of a short ID based on client\'s short ID and initial assessment start date. Example: true',
                         },
                         {
                             displayName: 'Include short id in finding id',
                             name: 'include_short_id_in_finding_id',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether to prefix each finding ID with the short ID of the assessment. Example: false',
+                            description: 'Whether to prefix each finding ID with the short ID of the assessment. Example: true',
                         },
                         {
                             displayName: 'Finding number digits',
@@ -1140,21 +1151,31 @@ class Reporter {
                         {
                             displayName: 'Client user groups',
                             name: 'client_user_groups',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'Example:',
+                        },
+                        {
+                            displayName: 'Client teams',
+                            name: 'client_teams',
                             type: 'fixedCollection',
                             typeOptions: {
                                 multipleValues: true,
                             },
                             default: [],
                             placeholder: 'Add Item',
-                            description: 'The user groups assigned to this assessment. Example: ["cc6fa3815c654afbb34c54042edacc84"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "The user groups assigned to this assessment. Example: [\"cc6fa3815c654afbb34c54042edacc84\"]" }] }],
+                            description: 'The teams assigned to this assessment. Example: ["cc6fa3815c654afbb34c54042edacc84"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "The teams assigned to this assessment. Example: [\"cc6fa3815c654afbb34c54042edacc84\"]" }] }],
                         },
                         {
                             displayName: 'Restrict findings to resolvers',
                             name: 'restrict_findings_to_resolvers',
                             type: 'boolean',
                             default: '',
-                            description: 'If enabled, clients can only see a finding if they, or a group they belong to is explicitly assigned as a resolver for that finding. Clients are also unable to access PDF reports because they may c...',
+                            description: 'If enabled, clients can only see a finding if they, or a team they belong to is explicitly assigned as a resolver for that finding. Clients are also unable to access PDF reports because they may co...',
                         },
                         {
                             displayName: 'Researchers on report',
@@ -1258,7 +1279,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: a6b0d507fc4c431e81dc84ad74d566ba',
+                    description: 'The ID of the assessment. Example: e59ad975355549f596fe592d665a97a9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1300,7 +1321,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 0f44e1155a724495ada19b033ddcecd1',
+                    description: 'The ID of the assessment. Example: f40853812bdf429fb48ded995e76bc85',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1369,7 +1390,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 404a53a877a5496997c4eb80b2dd50e2',
+                    description: 'The ID of the assessment. Example: fc67bb3a8d204a85909e73adf4544533',
                 },
                 {
                     displayName: 'Body',
@@ -1406,7 +1427,7 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: false',
+                            description: 'Whether the comment can be read by clients. Example: true',
                         },
                         {
                             displayName: 'Draft documents',
@@ -1438,7 +1459,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: 1b3502e333954a7d8f07806353354b3c',
+                    description: 'The ID of the assessment comment. Example: 7a6d51df15f14fe98c80d5a54f4d6cce',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1468,7 +1489,7 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: false',
+                            description: 'Whether the comment can be read by clients. Example: true',
                         },
                     ],
                 },
@@ -1509,7 +1530,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: 1e8dc7bdff61487ab3bf19c3ac90d0fb',
+                    description: 'The ID of the assessment phase. Example: ea80dba878ab49648d93191986fb2969',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1603,7 +1624,7 @@ class Reporter {
                             name: 'visible_on_report',
                             type: 'boolean',
                             default: '',
-                            description: 'If true, the phase will appear in the started-on report component. Example: false',
+                            description: 'If true, the phase will appear in the started-on report component. Example: true',
                         },
                         {
                             displayName: 'Note',
@@ -1660,7 +1681,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 4705f0c4e87a4b02acb025504ba74d9e',
+                    description: 'The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec',
                 },
                 {
                     displayName: 'Id',
@@ -1678,7 +1699,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 4705f0c4e87a4b02acb025504ba74d9e',
+                    description: 'The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1749,14 +1770,14 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 14',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 2',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
                             name: 'is_visible_in_assessment_overview',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether this section will be shown in the assessment overview web page. Example: false',
+                            description: 'Whether this section will be shown in the assessment overview web page. Example: true',
                         },
                         {
                             displayName: 'Text editable with permission',
@@ -1794,7 +1815,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 20',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 1',
                         },
                         {
                             displayName: 'Report heading',
@@ -1833,7 +1854,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 11',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 10',
                         },
                         {
                             displayName: 'Review status',
@@ -1916,7 +1937,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: b8e0d0576f624ebbb04844b8fa2c7a54',
+                    description: 'The ID of the assessment section. Example: e06803e2267e42f58ff7b6a095315ddf',
                 },
                 {
                     displayName: 'Body',
@@ -1947,7 +1968,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'Whether the comment can be read by clients. Must be true. Example: false',
+                    description: 'Whether the comment can be read by clients. Must be true. Example: true',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1988,7 +2009,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: 1616a0846d554c2abba93ad08e26f19a',
+                    description: 'The ID of the assessment section comment. Example: f49a403c9539442680328aab1b6249ce',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2018,7 +2039,7 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: false',
+                            description: 'Whether the comment can be read by clients. Example: true',
                         },
                     ],
                 },
@@ -2064,7 +2085,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: ef09523e0bc441d5a7aef6c290f019a6',
+                    description: 'The ID of the assessment. Example: c9c6163ec4a94f3daf3ae12497b150fc',
                 },
                 {
                     displayName: 'Task set id',
@@ -2117,7 +2138,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 27a787f00c8c49a49b0eeca9b45fbd99',
+                    description: 'The ID of the assessment. Example: 3f703eb0eef74ff18b23d3022e7af973',
                 },
                 {
                     displayName: 'Id',
@@ -2131,7 +2152,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: 7f248abb0cd2436a9219f0cde9bbb4e1',
+                    description: 'The ID of the task set. Example: c31e6606672944019a98256f0c736c65',
                 },
                 // Assessment Template - Operations
                 {
@@ -2292,7 +2313,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 7836dd3369894061b91852eff426db0c',
+                    description: 'The ID of the assessment template. Example: d9133d3b5fd04bd782b8d9b4d503d69d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2344,7 +2365,7 @@ class Reporter {
                             name: 'Remove an assessment user',
                             value: 'removeAnAssessmentUser',
                             action: 'Remove an assessment user',
-                            description: 'Remove a user from an assessment. Object information. A user can not be removed this way if they are assigned to the assessment through a user group. This does **not** delete the user, it just revo...',
+                            description: 'Remove a user from an assessment. Object information. A user can not be removed this way if they are assigned to the assessment through a team. This does **not** delete the user, it just revokes th...',
                         },
                     ],
                     default: 'createAnAssessmentUser',
@@ -2364,7 +2385,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 34323e46558c4aa6bea5e09c02277a0c',
+                    description: 'The ID of the assessment. Example: b307a5fe3e8c4acbb3c15e3f94bb576d',
                 },
                 {
                     displayName: 'User id',
@@ -2458,7 +2479,14 @@ class Reporter {
                             name: 'receives_notifications',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether this client user receives assessment related notification. This field is only applicable if this user is a client. Example: false',
+                            description: 'Whether this client user receives assessment related notification. This field is only applicable if this user is a client. Example: true',
+                        },
+                        {
+                            displayName: 'Read only',
+                            name: 'read_only',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Only applicable to client users. If true, the user will have read-only access. Example: true',
                         },
                         {
                             displayName: 'Auto assignments',
@@ -2547,7 +2575,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [5]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [3]',
                         },
                         {
                             displayName: 'Expires on',
@@ -2557,7 +2585,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-02-06',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13',
                         },
                     ],
                 },
@@ -2576,7 +2604,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 4d2d79c795cc42549852705fceb1246f',
+                    description: 'The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a',
                 },
                 {
                     displayName: 'Id',
@@ -2594,7 +2622,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: b30d55ed364f4946a35fc1edcbbf3800',
+                    description: 'The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2664,7 +2692,14 @@ class Reporter {
                             name: 'receives_notifications',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether this client user receives assessment related notification. This field is only applicable if this user is a client. Example: false',
+                            description: 'Whether this client user receives assessment related notification. This field is only applicable if this user is a client. Example: true',
+                        },
+                        {
+                            displayName: 'Read only',
+                            name: 'read_only',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Only applicable to client users. If true, the user will have read-only access. Example: true',
                         },
                         {
                             displayName: 'Auto assignments',
@@ -2753,7 +2788,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [12]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [20]',
                         },
                         {
                             displayName: 'Expires on',
@@ -2763,7 +2798,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-02-06',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13',
                         },
                     ],
                 },
@@ -2782,7 +2817,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 4d2d79c795cc42549852705fceb1246f',
+                    description: 'The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a',
                 },
                 {
                     displayName: 'Id',
@@ -2800,7 +2835,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: b30d55ed364f4946a35fc1edcbbf3800',
+                    description: 'The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131',
                 },
                 // Client - Operations
                 {
@@ -2837,6 +2872,18 @@ class Reporter {
                             value: 'updateAClient',
                             action: 'Update a client',
                             description: 'Update an existing client. Object information. To add or replace a logo for a client, create a document for it in a separate request. This will overwrite the existing avatar. See Documents.',
+                        },
+                        {
+                            name: 'Update client managers',
+                            value: 'updateClientManagers',
+                            action: 'Update client managers',
+                            description: 'Update the list of client managers for a client. Client managers can manage this list but cannot remove themselves.',
+                        },
+                        {
+                            name: 'Remove account manager',
+                            value: 'removeAccountManager',
+                            action: 'Remove account manager',
+                            description: 'Remove an account manager from the client. Optionally, specify assessments to unassign the manager from.',
                         },
                     ],
                     default: 'listClients',
@@ -3027,7 +3074,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The account managers for the client. If you don\'t have permission to see all clients, you will automatically be assigned as manager so you can see the new client. Example: [ "9dd283daa3c241dca03621...',
+                            description: 'Example:',
                         },
                         {
                             displayName: 'Tags',
@@ -3099,7 +3146,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: f651eec019e14819862dc40a30ce1533',
+                    description: 'The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3138,7 +3185,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: f651eec019e14819862dc40a30ce1533',
+                    description: 'The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3192,7 +3239,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The account managers for the client. If you don\'t have permission to see all clients, you will automatically be added to the list, so you don\'t revoke your own access. Example: [ "9dd283daa3c241dca...',
+                            description: 'Example:',
                         },
                         {
                             displayName: 'Tags',
@@ -3249,6 +3296,150 @@ class Reporter {
                         },
                     ],
                 },
+                {
+                    displayName: 'Client id',
+                    name: 'client_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['updateClientManagers'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadClients',
+                    },
+                    default: undefined,
+                    description: 'The ID of the client. Example: 1712327bede34b3cb084016e2f9ecaa7',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['updateClientManagers'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Client managers',
+                            name: 'client_managers',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The client managers for the client. Client managers can manage the list of client managers. If you are a client manager (but not an account manager or admin), you cannot remove yourself from the li...',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Custom Fields',
+                    name: 'customFields',
+                    type: 'fixedCollection',
+                    typeOptions: {
+                        multipleValues: true,
+                    },
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['updateClientManagers'],
+                        },
+                    },
+                    default: {},
+                    description: 'Custom field values',
+                    options: [
+                        {
+                            name: 'customFieldValues',
+                            displayName: 'Custom Field',
+                            values: [
+                                {
+                                    displayName: 'Field',
+                                    name: 'fieldName',
+                                    type: 'options',
+                                    typeOptions: {
+                                        loadOptionsMethod: 'getCustomFields_AppModelsClient',
+                                    },
+                                    default: '',
+                                    description: 'The custom field to set',
+                                },
+                                {
+                                    displayName: 'Value',
+                                    name: 'value',
+                                    type: 'string',
+                                    default: '',
+                                    description: 'The value for the custom field',
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Client id',
+                    name: 'client_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['removeAccountManager'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadClients',
+                    },
+                    default: undefined,
+                    description: 'The ID of the client. Example: 6be49fb4c72741ad8a22e51a9ce80e09',
+                },
+                {
+                    displayName: 'User id',
+                    name: 'user_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['removeAccountManager'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadUsers',
+                    },
+                    default: undefined,
+                    description: 'The ID of the user. Example: 5dacbf0c35b847cab4f7f0e0496ef164',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['removeAccountManager'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Unassign from assessments',
+                            name: 'unassign_from_assessments',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Optional list of assessment IDs to unassign the manager from. Example: ["a0ab82dfbbe84043a44be1566dd369be"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Optional list of assessment IDs to unassign the manager from. Example: [\"a0ab82dfbbe84043a44be1566dd369be\"]" }] }],
+                        },
+                    ],
+                },
                 // Custom Field - Operations
                 {
                     displayName: 'Operation',
@@ -3265,7 +3456,7 @@ class Reporter {
                             name: 'List custom fields',
                             value: 'listCustomFields',
                             action: 'List custom fields',
-                            description: 'Retrieve a lost of all accessible custom fields Object information>.',
+                            description: 'Retrieve a list of all accessible custom fields Object information.',
                         },
                     ],
                     default: 'listCustomFields',
@@ -3441,7 +3632,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: 6c583756749b4b7488bd46deb8568654',
+                    description: 'The ID of the document. Example: 03a17f88f8e84f88b78056ce44ddc9f1',
                 },
                 {
                     displayName: 'Documentable type',
@@ -3633,7 +3824,7 @@ class Reporter {
                             name: 'Update a finding',
                             value: 'updateAFinding',
                             action: 'Update a finding',
-                            description: 'Create a new finding. Object information.',
+                            description: 'Update an existing finding. Object information.',
                         },
                         {
                             name: 'Create a finding from a template',
@@ -3807,7 +3998,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: bd8a30be9fab49848b66a1dfb466a4ba',
+                    description: 'The ID of the assessment. Example: e00344b3570f4a83a7a8953b4707fa3b',
                 },
                 {
                     displayName: 'Title',
@@ -3938,7 +4129,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An array with severity values depending on the scoring system, see [here]({{bundle.authData.reporter_url}}/api-documentation#scoring-systems) the possible `severity_metrics` values. Required if is_...',
+                            description: 'An object with severity values depending on the scoring system, see [here]({{bundle.authData.reporter_url}}/api-documentation#scoring-systems) the possible `severity_metrics` values. Required if is...',
                         },
                         {
                             displayName: 'Severity',
@@ -3967,7 +4158,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 12',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 3',
                         },
                         {
                             displayName: 'Draft documents',
@@ -4151,8 +4342,8 @@ class Reporter {
                             description: 'Example: null Properties: []',
                         },
                         {
-                            displayName: 'User groups',
-                            name: 'user_groups',
+                            displayName: 'Teams',
+                            name: 'teams',
                             type: 'string',
                             typeOptions: {
                                 rows: 4,
@@ -4230,7 +4421,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 374d82b1023f4f8e9787224fb1e61bc0',
+                    description: 'The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4269,7 +4460,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 374d82b1023f4f8e9787224fb1e61bc0',
+                    description: 'The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4346,7 +4537,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 2',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 4',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -4394,7 +4585,7 @@ class Reporter {
                             name: 'is_published',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the finding is published. Example: true',
+                            description: 'Whether the finding is published. Example: false',
                         },
                         {
                             displayName: 'Severity metrics',
@@ -4404,7 +4595,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An array with severity values depending on the scoring system, see [here]({{bundle.authData.reporter_url}}/api-documentation#scoring-systems) the possible `severity_metrics` values. Only if is_vuln...',
+                            description: 'An object with severity values depending on the scoring system, see [here]({{bundle.authData.reporter_url}}/api-documentation#scoring-systems) the possible `severity_metrics` values. Only if is_vul...',
                         },
                         {
                             displayName: 'Draft documents',
@@ -4588,8 +4779,8 @@ class Reporter {
                             description: 'Example: null Properties: []',
                         },
                         {
-                            displayName: 'User groups',
-                            name: 'user_groups',
+                            displayName: 'Teams',
+                            name: 'teams',
                             type: 'string',
                             typeOptions: {
                                 rows: 4,
@@ -4667,7 +4858,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 1901ee5546cc4d4b87cedde4ba1cc02c',
+                    description: 'The ID of the assessment. Example: 7bfa733ed9334b4b9d9c20c4e172fa52',
                 },
                 {
                     displayName: 'Finding template id',
@@ -4780,75 +4971,6 @@ class Reporter {
                                     type: 'string',
                                     default: '',
                                     description: 'The value for the custom field',
-                                },
-                            ],
-                        },
-                    ],
-                },
-                // Finding Layout - Operations
-                {
-                    displayName: 'Operation',
-                    name: 'operation',
-                    type: 'options',
-                    noDataExpression: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['findingLayout'],
-                        },
-                    },
-                    options: [
-                        {
-                            name: 'List finding layouts',
-                            value: 'listFindingLayouts',
-                            action: 'List finding layouts',
-                            description: 'Retrieve a list of all finding layouts. Object information.',
-                        },
-                    ],
-                    default: 'listFindingLayouts',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['findingLayout'],
-                            operation: ['listFindingLayouts'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Filter fields',
-                            name: 'filter_fields',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Filter',
-                            description: 'Filter parameters as key-value pairs',
-                            options: [
-                                {
-                                    name: 'filters',
-                                    displayName: 'Filter',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter field name',
-                                        },
-                                        {
-                                            displayName: 'Value',
-                                            name: 'value',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter value',
-                                        },
-                                    ],
                                 },
                             ],
                         },
@@ -5066,7 +5188,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 5339c73a42954889bee3b104d5ef955b',
+                    description: 'The ID of the finding. Example: ec73fbcbf49442879f25cf1bc457e4de',
                 },
                 {
                     displayName: 'Body',
@@ -5103,7 +5225,7 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: false',
+                            description: 'Whether the comment can be read by clients. Example: true',
                         },
                         {
                             displayName: 'Draft documents',
@@ -5135,7 +5257,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: 65acf9d5c6774b35b6276441a083bb94',
+                    description: 'The ID of the finding comment. Example: f2fa7fbc509b4294a066cd8f80345b05',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5165,7 +5287,7 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: false',
+                            description: 'Whether the comment can be read by clients. Example: true',
                         },
                     ],
                 },
@@ -5184,7 +5306,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: cfa944f7be1f451f8255e1b377368a8f',
+                    description: 'The ID of the finding. Example: 6f2d00dadd8948f6a0ada1f803f2bb96',
                 },
                 {
                     displayName: 'Status',
@@ -5371,7 +5493,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 7f45d23d861e459e854cf0677b59f266',
+                    description: 'The ID of the finding retest. Example: 41a91c36670d49d9b0faf6996d8a5acd',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5557,7 +5679,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: f496001dc9ae46698906d62916e9042c',
+                    description: 'The ID of the finding. Example: 9b6e0e25ebc64540b3d725dbc99d567e',
                 },
                 {
                     displayName: 'Body',
@@ -5619,7 +5741,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 6638f48d606e425fb8de640590c525b6',
+                    description: 'The ID of the finding retest inquiry. Example: 783e749c94dd4535951aba98164e4d6d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5662,7 +5784,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: e07cdb6c9369409a9e9c3089c2a1506c',
+                    description: 'The ID of the finding retest inquiry. Example: b1725ba5b78c4a22ba34023b500374b9',
                 },
                 {
                     displayName: 'Body',
@@ -5724,7 +5846,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: 940f9520f32d40b28b5a5c2bb8f0367a',
+                    description: 'The ID of the finding retest cancelled event. Example: 49b11f71a1874c77bccd32ac9fd3eaac',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5748,6 +5870,75 @@ class Reporter {
                             },
                             default: '',
                             description: 'The text of the retest cancelled event request. Example: I am cancelling this retest request because ...',
+                        },
+                    ],
+                },
+                // Finding Layout - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingLayout'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List finding layouts',
+                            value: 'listFindingLayouts',
+                            action: 'List finding layouts',
+                            description: 'Retrieve a list of all finding layouts. Object information.',
+                        },
+                    ],
+                    default: 'listFindingLayouts',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['findingLayout'],
+                            operation: ['listFindingLayouts'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                     ],
                 },
@@ -6186,7 +6377,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 17',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 16',
                         },
                         {
                             displayName: 'Classifications',
@@ -6514,7 +6705,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 14',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 19',
                         },
                         {
                             displayName: 'Classifications',
@@ -6884,7 +7075,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 3eaa5ceede7f4358a1bee345bd0e0d8c',
+                    description: 'The ID of the assessment. Example: c94d995f28164ba7af29432ebb926b17',
                 },
                 {
                     displayName: 'Name',
@@ -7943,7 +8134,7 @@ class Reporter {
                         },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: et',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: corporis',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8070,470 +8261,6 @@ class Reporter {
                             type: 'string',
                             default: '',
                             description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                // Tool Finding - Operations
-                {
-                    displayName: 'Operation',
-                    name: 'operation',
-                    type: 'options',
-                    noDataExpression: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                        },
-                    },
-                    options: [
-                        {
-                            name: 'List tool findings',
-                            value: 'listToolFindings',
-                            action: 'List tool findings',
-                            description: 'Retrieve a list of all tool findings. Object information.',
-                        },
-                        {
-                            name: 'Retrieve a tool finding',
-                            value: 'retrieveAToolFinding',
-                            action: 'Retrieve a tool finding',
-                            description: 'Retrieve all details of the given tool finding. Object information.',
-                        },
-                        {
-                            name: 'Update a tool finding',
-                            value: 'updateAToolFinding',
-                            action: 'Update a tool finding',
-                            description: 'Update an existing tool finding. Object information.',
-                        },
-                    ],
-                    default: 'listToolFindings',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                            operation: ['listToolFindings'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Filter fields',
-                            name: 'filter_fields',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Filter',
-                            description: 'Filter parameters as key-value pairs',
-                            options: [
-                                {
-                                    name: 'filters',
-                                    displayName: 'Filter',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter field name',
-                                        },
-                                        {
-                                            displayName: 'Value',
-                                            name: 'value',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter value',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Sort',
-                            name: 'sort',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Sort Field',
-                            description: 'Sort fields and directions',
-                            options: [
-                                {
-                                    name: 'sorts',
-                                    displayName: 'Sort',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Id',
-                                                    value: 'id',
-                                                },
-                                                {
-                                                    name: 'Title',
-                                                    value: 'title',
-                                                },
-                                                {
-                                                    name: 'Severity',
-                                                    value: 'severity',
-                                                },
-                                                {
-                                                    name: 'Import status',
-                                                    value: 'import_status',
-                                                },
-                                                {
-                                                    name: 'Status',
-                                                    value: 'status',
-                                                },
-                                                {
-                                                    name: 'Date',
-                                                    value: 'date',
-                                                },
-                                                {
-                                                    name: 'Created at',
-                                                    value: 'created_at',
-                                                },
-                                                {
-                                                    name: 'Updated at',
-                                                    value: 'updated_at',
-                                                },
-                                            ],
-                                            default: '',
-                                            description: 'Field name to sort by',
-                                        },
-                                        {
-                                            displayName: 'Direction',
-                                            name: 'direction',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Ascending',
-                                                    value: 'asc',
-                                                },
-                                                {
-                                                    name: 'Descending',
-                                                    value: 'desc',
-                                                },
-                                            ],
-                                            default: 'asc',
-                                            description: 'Sort direction',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Include',
-                            name: 'include',
-                            type: 'string',
-                            default: '',
-                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'options',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                            operation: ['retrieveAToolFinding'],
-                        },
-                    },
-                    typeOptions: {
-                        loadOptionsMethod: 'loadToolfindings',
-                        loadOptionsDependsOn: ['id'],
-                    },
-                    default: undefined,
-                    description: 'The ID of the tool finding. Example: 9acb6607ece44d42988462e122d72834',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                            operation: ['retrieveAToolFinding'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Include',
-                            name: 'include',
-                            type: 'string',
-                            default: '',
-                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'options',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                            operation: ['updateAToolFinding'],
-                        },
-                    },
-                    typeOptions: {
-                        loadOptionsMethod: 'loadToolfindings',
-                        loadOptionsDependsOn: ['finding_id'],
-                    },
-                    default: undefined,
-                    description: 'The ID of the tool finding. Example: 9acb6607ece44d42988462e122d72834',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['toolFinding'],
-                            operation: ['updateAToolFinding'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Import status',
-                            name: 'import_status',
-                            type: 'options',
-                            options: [
-                                {
-                                    name: 'Pending',
-                                    value: 0,
-                                    description: 'Pending',
-                                },
-                                {
-                                    name: 'Ignored',
-                                    value: 1,
-                                    description: 'Ignored',
-                                },
-                                {
-                                    name: 'Linked to finding',
-                                    value: 2,
-                                    description: 'Linked to finding',
-                                },
-                            ],
-                            default: 0,
-                            description: 'The import status of the tool finding. Must be a valid import status. Example: 2',
-                        },
-                        {
-                            displayName: 'Comment',
-                            name: 'comment',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'A comment of the tool finding. Must not be greater than 65535 characters. Example: This is a comment.',
-                        },
-                        {
-                            displayName: 'Finding id',
-                            name: 'finding_id',
-                            type: 'options',
-                            typeOptions: {
-                                loadOptionsMethod: 'loadFindings',
-                            },
-                            default: undefined,
-                            description: 'A finding ID only has to be provided when the import status is also set to linked to a finding. Example: 7662299759094c718a278e6fc74d9ecc',
-                        },
-                    ],
-                },
-                // Tool Target - Operations
-                {
-                    displayName: 'Operation',
-                    name: 'operation',
-                    type: 'options',
-                    noDataExpression: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['toolTarget'],
-                        },
-                    },
-                    options: [
-                        {
-                            name: 'List tool targets',
-                            value: 'listToolTargets',
-                            action: 'List tool targets',
-                            description: 'Retrieve a list of all tool targets. Object information.',
-                        },
-                        {
-                            name: 'Update a tool target',
-                            value: 'updateAToolTarget',
-                            action: 'Update a tool target',
-                            description: 'Update the given tool target. Object information.',
-                        },
-                    ],
-                    default: 'listToolTargets',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['toolTarget'],
-                            operation: ['listToolTargets'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Filter fields',
-                            name: 'filter_fields',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Filter',
-                            description: 'Filter parameters as key-value pairs',
-                            options: [
-                                {
-                                    name: 'filters',
-                                    displayName: 'Filter',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter field name',
-                                        },
-                                        {
-                                            displayName: 'Value',
-                                            name: 'value',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter value',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Sort',
-                            name: 'sort',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Sort Field',
-                            description: 'Sort fields and directions',
-                            options: [
-                                {
-                                    name: 'sorts',
-                                    displayName: 'Sort',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Id',
-                                                    value: 'id',
-                                                },
-                                                {
-                                                    name: 'Created at',
-                                                    value: 'created_at',
-                                                },
-                                                {
-                                                    name: 'Updated at',
-                                                    value: 'updated_at',
-                                                },
-                                            ],
-                                            default: '',
-                                            description: 'Field name to sort by',
-                                        },
-                                        {
-                                            displayName: 'Direction',
-                                            name: 'direction',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Ascending',
-                                                    value: 'asc',
-                                                },
-                                                {
-                                                    name: 'Descending',
-                                                    value: 'desc',
-                                                },
-                                            ],
-                                            default: 'asc',
-                                            description: 'Sort direction',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Include',
-                            name: 'include',
-                            type: 'string',
-                            default: '',
-                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'string',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['toolTarget'],
-                            operation: ['updateAToolTarget'],
-                        },
-                    },
-                    default: '',
-                    description: 'The ID of the tool target. Example: b532ddd1c44848d2b48b963fcc38625c',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['toolTarget'],
-                            operation: ['updateAToolTarget'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Target confirmed',
-                            name: 'target_confirmed',
-                            type: 'boolean',
-                            default: '',
-                            description: 'When a tool target is created, the target id is set if it is matched with a target with an identical or similar URL or IP address. To confirm it was matched correctly this field has to be set to tr...',
-                        },
-                        {
-                            displayName: 'In scope',
-                            name: 'in_scope',
-                            type: 'boolean',
-                            default: '',
-                            description: 'Whether the tool target is in scope. Example: false',
                         },
                     ],
                 },
@@ -9017,7 +8744,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: eb47c3f2a57f42a08c3b8ec074bae928',
+                    description: 'The ID of the assessment. Example: b318208aaf164daaa7ae021d7d7f761d',
                 },
                 {
                     displayName: 'Target type',
@@ -9178,7 +8905,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 20',
+                    description: 'The type of target. Must be a valid target type. Example: 9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9239,7 +8966,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 1',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 10',
                         },
                         {
                             displayName: 'Name',
@@ -9273,7 +9000,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: accusantium',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: numquam',
                         },
                         {
                             displayName: 'Credentials',
@@ -9314,7 +9041,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 7315b928daed454f9ad32b88726d449b',
+                    description: 'The ID of the target. Example: 5322f912fd00430d939819676fdbd46d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9353,7 +9080,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 7315b928daed454f9ad32b88726d449b',
+                    description: 'The ID of the target. Example: 5322f912fd00430d939819676fdbd46d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9537,7 +9264,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 7',
+                            description: 'The type of target. Must be a valid target type. Example: 3',
                         },
                         {
                             displayName: 'Business impact',
@@ -9561,7 +9288,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 7',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 2',
                         },
                         {
                             displayName: 'Name',
@@ -9595,7 +9322,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: qui',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: expedita',
                         },
                         {
                             displayName: 'Credentials',
@@ -9783,7 +9510,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 8e4d9abae2ad4dfc9817777a4841ed65',
+                    description: 'The ID of the task. Example: 44e3e9623f284af396d0140eb0691741',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9822,7 +9549,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 8e4d9abae2ad4dfc9817777a4841ed65',
+                    description: 'The ID of the task. Example: 44e3e9623f284af396d0140eb0691741',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9960,7 +9687,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 854b0dbd802c48f696b0edb6868175f5',
+                    description: 'The ID of the assessment. Example: f079062800a444b9ac7733051580cdb0',
                 },
                 {
                     displayName: 'Data',
@@ -10306,7 +10033,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 4',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10330,7 +10057,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 7',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 20',
                         },
                         {
                             displayName: 'Tasks',
@@ -10433,7 +10160,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 9ea29cad6e60456a8510c92c3f395f55',
+                    description: 'The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10473,7 +10200,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 9ea29cad6e60456a8510c92c3f395f55',
+                    description: 'The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10535,7 +10262,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 20',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 17',
                         },
                         {
                             displayName: 'Tasks',
@@ -10622,6 +10349,493 @@ class Reporter {
                         },
                     ],
                 },
+                // Team - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Create a team',
+                            value: 'createATeam',
+                            action: 'Create a team',
+                            description: 'Create a new team. Object information.',
+                        },
+                        {
+                            name: 'Update a team',
+                            value: 'updateATeam',
+                            action: 'Update a team',
+                            description: 'Update an existing team. Object information.',
+                        },
+                    ],
+                    default: 'createATeam',
+                },
+                {
+                    displayName: 'Client id',
+                    name: 'client_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['createATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadClients',
+                    },
+                    default: undefined,
+                    description: 'The ID of the client. Example: 7f10657679fe4d76a6c8df31feff587e',
+                },
+                {
+                    displayName: 'Name',
+                    name: 'name',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['createATeam'],
+                        },
+                    },
+                    default: '',
+                    description: 'The name of the team. Must not be greater than 191 characters. Example: Team 1',
+                },
+                {
+                    displayName: 'Type',
+                    name: 'type',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['createATeam'],
+                        },
+                    },
+                    default: '',
+                    description: 'The type of the team. Example: 0',
+                },
+                {
+                    displayName: 'Assessment access scope',
+                    name: 'assessment_access_scope',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['createATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        rows: 4,
+                    },
+                    default: '',
+                    description: 'The assessment access scope of the team. If set to specific, the team will only have access to selected assessments. If set to all, the team will have access to all assessments of the client. Only ...',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['createATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Color',
+                            name: 'color',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The color used to show the team. (On creation, a random color will be used if none is provided). Example: #0000FF',
+                        },
+                        {
+                            displayName: 'Assessments',
+                            name: 'assessments',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadAssessments',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'The assessments that the team has access to. Only applicable when assessment_access_scope is set to specific. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['updateATeam'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the team. Example: b05aaa16765040ffa3ce618402b1dccf',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['updateATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Name',
+                            name: 'name',
+                            type: 'string',
+                            default: '',
+                            description: 'The name of the team. Must not be greater than 191 characters. Example: Team 1',
+                        },
+                        {
+                            displayName: 'Color',
+                            name: 'color',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The color used to show the team. (On creation, a random color will be used if none is provided). Example: #0000FF',
+                        },
+                        {
+                            displayName: 'Assessment access scope',
+                            name: 'assessment_access_scope',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The assessment access scope of the team. If set to specific, the team will only have access to selected assessments. If set to all, the team will have access to all assessments of the client. Only ...',
+                        },
+                        {
+                            displayName: 'Assessments',
+                            name: 'assessments',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadAssessments',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'The assessments that the team has access to. Only applicable when assessment_access_scope is set to specific. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                        },
+                    ],
+                },
+                // Team User - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Add a user to a team',
+                            value: 'addAUserToATeam',
+                            action: 'Add a user to a team',
+                            description: 'Assign an existing user to a team. Object information.',
+                        },
+                        {
+                            name: 'Update a team user',
+                            value: 'updateATeamUser',
+                            action: 'Update a team user',
+                            description: 'Update team-specific values for a user assigned to the team. Object information. To update the user\'s data, such as name and email address, see the User endpoints.',
+                        },
+                        {
+                            name: 'Remove a user from a team',
+                            value: 'removeAUserFromATeam',
+                            action: 'Remove a user from a team',
+                            description: 'Remove a user from a team. Object information. This does **not** delete the user, it just removes them from the team.',
+                        },
+                    ],
+                    default: 'addAUserToATeam',
+                },
+                {
+                    displayName: 'Team id',
+                    name: 'team_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['addAUserToATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadTeams',
+                        loadOptionsDependsOn: ['user_id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the team. Example: 71fc3cda7cc0400bb5f4159ceb154d1f',
+                },
+                {
+                    displayName: 'User id',
+                    name: 'user_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['addAUserToATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadUsers',
+                    },
+                    default: undefined,
+                    description: 'The id of the user that should be added to the team. Example: 6144002a2cd84c61b6678593837d95dc',
+                },
+                {
+                    displayName: 'Type',
+                    name: 'type',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['addAUserToATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Client',
+                            value: 0,
+                            description: 'Client',
+                        },
+                        {
+                            name: 'Researcher',
+                            value: 1,
+                            description: 'Researcher',
+                        },
+                        {
+                            name: 'Manager',
+                            value: 2,
+                            description: 'Manager',
+                        },
+                        {
+                            name: 'Client lead',
+                            value: 3,
+                            description: 'Client lead',
+                        },
+                        {
+                            name: 'Lead researcher',
+                            value: 4,
+                            description: 'Lead researcher',
+                        },
+                        {
+                            name: 'Manager and lead researcher',
+                            value: 5,
+                            description: 'Manager and lead researcher',
+                        },
+                    ],
+                    default: 0,
+                    description: 'Whether this team user is a regular client or a client lead. Must be a valid assessment user type. Example: 0',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['addAUserToATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Receives notifications',
+                            name: 'receives_notifications',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Whether this user receives notifications for assessments this team is assigned to. Example: true',
+                        },
+                        {
+                            displayName: 'Expires on',
+                            name: 'expires_on',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13',
+                        },
+                        {
+                            displayName: 'Read only',
+                            name: 'read_only',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Whether this user has read-only access in assessments this team is assigned to. Example: false',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Team id',
+                    name: 'team_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['updateATeamUser'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadTeams',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the team. Example: e138262080c94b358a1d353d416a6dc2',
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['updateATeamUser'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['updateATeamUser'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Type',
+                            name: 'type',
+                            type: 'options',
+                            options: [
+                                {
+                                    name: 'Client',
+                                    value: 0,
+                                    description: 'Client',
+                                },
+                                {
+                                    name: 'Researcher',
+                                    value: 1,
+                                    description: 'Researcher',
+                                },
+                                {
+                                    name: 'Manager',
+                                    value: 2,
+                                    description: 'Manager',
+                                },
+                                {
+                                    name: 'Client lead',
+                                    value: 3,
+                                    description: 'Client lead',
+                                },
+                                {
+                                    name: 'Lead researcher',
+                                    value: 4,
+                                    description: 'Lead researcher',
+                                },
+                                {
+                                    name: 'Manager and lead researcher',
+                                    value: 5,
+                                    description: 'Manager and lead researcher',
+                                },
+                            ],
+                            default: 0,
+                            description: 'Whether this team user is a regular client or a client lead. Must be a valid assessment user type. Example: 0',
+                        },
+                        {
+                            displayName: 'Receives notifications',
+                            name: 'receives_notifications',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Whether this user receives notifications for assessments this team is assigned to. Example: true',
+                        },
+                        {
+                            displayName: 'Expires on',
+                            name: 'expires_on',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13',
+                        },
+                        {
+                            displayName: 'Read only',
+                            name: 'read_only',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Whether this user has read-only access in assessments this team is assigned to. Example: false',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Team id',
+                    name: 'team_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['removeAUserFromATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadTeams',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the team. Example: e138262080c94b358a1d353d416a6dc2',
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['teamUser'],
+                            operation: ['removeAUserFromATeam'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8',
+                },
                 // Test Case - Operations
                 {
                     displayName: 'Operation',
@@ -10635,6 +10849,12 @@ class Reporter {
                     },
                     options: [
                         {
+                            name: 'List test cases',
+                            value: 'listTestCases',
+                            action: 'List test cases',
+                            description: 'Retrieve a list of all accessible test cases. Object information.',
+                        },
+                        {
                             name: 'Retrieve a test case',
                             value: 'retrieveATestCase',
                             action: 'Retrieve a test case',
@@ -10647,7 +10867,135 @@ class Reporter {
                             description: 'Update an existing test case. Object information.',
                         },
                     ],
-                    default: 'retrieveATestCase',
+                    default: 'listTestCases',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['testCase'],
+                            operation: ['listTestCases'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Result',
+                                                    value: 'result',
+                                                },
+                                                {
+                                                    name: 'Resolved at',
+                                                    value: 'resolved_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
                 },
                 {
                     displayName: 'Id',
@@ -10665,7 +11013,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 538c9bfa78b342bd9922dd4648f29969',
+                    description: 'The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10705,7 +11053,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 538c9bfa78b342bd9922dd4648f29969',
+                    description: 'The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10848,6 +11196,470 @@ class Reporter {
                                     ],
                                 },
                             ],
+                        },
+                    ],
+                },
+                // Tool Finding - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List tool findings',
+                            value: 'listToolFindings',
+                            action: 'List tool findings',
+                            description: 'Retrieve a list of all tool findings. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a tool finding',
+                            value: 'retrieveAToolFinding',
+                            action: 'Retrieve a tool finding',
+                            description: 'Retrieve all details of the given tool finding. Object information.',
+                        },
+                        {
+                            name: 'Update a tool finding',
+                            value: 'updateAToolFinding',
+                            action: 'Update a tool finding',
+                            description: 'Update an existing tool finding. Object information.',
+                        },
+                    ],
+                    default: 'listToolFindings',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['listToolFindings'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Title',
+                                                    value: 'title',
+                                                },
+                                                {
+                                                    name: 'Severity',
+                                                    value: 'severity',
+                                                },
+                                                {
+                                                    name: 'Import status',
+                                                    value: 'import_status',
+                                                },
+                                                {
+                                                    name: 'Status',
+                                                    value: 'status',
+                                                },
+                                                {
+                                                    name: 'Date',
+                                                    value: 'date',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['retrieveAToolFinding'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadToolfindings',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['retrieveAToolFinding'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['updateAToolFinding'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadToolfindings',
+                        loadOptionsDependsOn: ['finding_id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['updateAToolFinding'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Import status',
+                            name: 'import_status',
+                            type: 'options',
+                            options: [
+                                {
+                                    name: 'Pending',
+                                    value: 0,
+                                    description: 'Pending',
+                                },
+                                {
+                                    name: 'Ignored',
+                                    value: 1,
+                                    description: 'Ignored',
+                                },
+                                {
+                                    name: 'Linked to finding',
+                                    value: 2,
+                                    description: 'Linked to finding',
+                                },
+                            ],
+                            default: 0,
+                            description: 'The import status of the tool finding. Must be a valid import status. Example: 2',
+                        },
+                        {
+                            displayName: 'Comment',
+                            name: 'comment',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'A comment of the tool finding. Must not be greater than 65535 characters. Example: This is a comment.',
+                        },
+                        {
+                            displayName: 'Finding id',
+                            name: 'finding_id',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadFindings',
+                            },
+                            default: undefined,
+                            description: 'A finding ID only has to be provided when the import status is also set to linked to a finding. Example: 7662299759094c718a278e6fc74d9ecc',
+                        },
+                    ],
+                },
+                // Tool Target - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List tool targets',
+                            value: 'listToolTargets',
+                            action: 'List tool targets',
+                            description: 'Retrieve a list of all tool targets. Object information.',
+                        },
+                        {
+                            name: 'Update a tool target',
+                            value: 'updateAToolTarget',
+                            action: 'Update a tool target',
+                            description: 'Update the given tool target. Object information.',
+                        },
+                    ],
+                    default: 'listToolTargets',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['listToolTargets'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['updateAToolTarget'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the tool target. Example: 7eb0126d9abc4c40bfa9cc0b2d8cf4a0',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['updateAToolTarget'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Target confirmed',
+                            name: 'target_confirmed',
+                            type: 'boolean',
+                            default: '',
+                            description: 'When a tool target is created, the target id is set if it is matched with a target with an identical or similar URL or IP address. To confirm it was matched correctly this field has to be set to tr...',
+                        },
+                        {
+                            displayName: 'In scope',
+                            name: 'in_scope',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Whether the tool target is in scope. Example: true',
                         },
                     ],
                 },
@@ -11152,7 +11964,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: cmepkgddwljwsyauq',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: pnsxyzgddkkhfrzusytyckudm',
                         },
                         {
                             displayName: 'Clients',
@@ -11234,7 +12046,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 80ad5033cb8940328b88702d19d081ce',
+                    description: 'The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11273,7 +12085,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 80ad5033cb8940328b88702d19d081ce',
+                    description: 'The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11340,7 +12152,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'The user account status. Must be a valid user status. Example: 6',
+                            description: 'The user account status. Must be a valid user status. Example: 10',
                         },
                         {
                             displayName: 'Phone',
@@ -11378,7 +12190,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: pjnolhqvednvbnhxyguy',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: aveppbbdfaaca',
                         },
                     ],
                 },
@@ -11423,333 +12235,6 @@ class Reporter {
                         },
                     ],
                 },
-                // User Group - Operations
-                {
-                    displayName: 'Operation',
-                    name: 'operation',
-                    type: 'options',
-                    noDataExpression: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                        },
-                    },
-                    options: [
-                        {
-                            name: 'List user groups',
-                            value: 'listUserGroups',
-                            action: 'List user groups',
-                            description: 'Retrieve a list of all accessible user groups. Object information.',
-                        },
-                        {
-                            name: 'Create a user group',
-                            value: 'createAUserGroup',
-                            action: 'Create a user group',
-                            description: 'Create a new user group. Object information.',
-                        },
-                        {
-                            name: 'Retrieve a user group',
-                            value: 'retrieveAUserGroup',
-                            action: 'Retrieve a user group',
-                            description: 'Retrieve all details of the given user group. Object information.',
-                        },
-                        {
-                            name: 'Update a user group',
-                            value: 'updateAUserGroup',
-                            action: 'Update a user group',
-                            description: 'Update an existing user group. Object information.',
-                        },
-                    ],
-                    default: 'listUserGroups',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['listUserGroups'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Filter fields',
-                            name: 'filter_fields',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Filter',
-                            description: 'Filter parameters as key-value pairs',
-                            options: [
-                                {
-                                    name: 'filters',
-                                    displayName: 'Filter',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter field name',
-                                        },
-                                        {
-                                            displayName: 'Value',
-                                            name: 'value',
-                                            type: 'string',
-                                            default: '',
-                                            description: 'Filter value',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Sort',
-                            name: 'sort',
-                            type: 'fixedCollection',
-                            typeOptions: {
-                                multipleValues: true,
-                            },
-                            default: [],
-                            placeholder: 'Add Sort Field',
-                            description: 'Sort fields and directions',
-                            options: [
-                                {
-                                    name: 'sorts',
-                                    displayName: 'Sort',
-                                    values: [
-                                        {
-                                            displayName: 'Field',
-                                            name: 'field',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Id',
-                                                    value: 'id',
-                                                },
-                                                {
-                                                    name: 'Client id',
-                                                    value: 'client_id',
-                                                },
-                                                {
-                                                    name: 'Name',
-                                                    value: 'name',
-                                                },
-                                                {
-                                                    name: 'Created at',
-                                                    value: 'created_at',
-                                                },
-                                                {
-                                                    name: 'Updated at',
-                                                    value: 'updated_at',
-                                                },
-                                            ],
-                                            default: '',
-                                            description: 'Field name to sort by',
-                                        },
-                                        {
-                                            displayName: 'Direction',
-                                            name: 'direction',
-                                            type: 'options',
-                                            options: [
-                                                {
-                                                    name: 'Ascending',
-                                                    value: 'asc',
-                                                },
-                                                {
-                                                    name: 'Descending',
-                                                    value: 'desc',
-                                                },
-                                            ],
-                                            default: 'asc',
-                                            description: 'Sort direction',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            displayName: 'Include',
-                            name: 'include',
-                            type: 'string',
-                            default: '',
-                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Client id',
-                    name: 'client_id',
-                    type: 'options',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['createAUserGroup'],
-                        },
-                    },
-                    typeOptions: {
-                        loadOptionsMethod: 'loadClients',
-                    },
-                    default: undefined,
-                    description: 'The ID of the client. Example: dfc1a2c7c2914c94932c3cf4140c7c4b',
-                },
-                {
-                    displayName: 'Name',
-                    name: 'name',
-                    type: 'string',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['createAUserGroup'],
-                        },
-                    },
-                    default: '',
-                    description: 'The name of the user group. Must not be greater than 191 characters. Example: Team 1',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['createAUserGroup'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Color',
-                            name: 'color',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'The color used to show the user group. (On creation, a random color will be used if none is provided). Example: #0000FF',
-                        },
-                        {
-                            displayName: 'Users',
-                            name: 'users',
-                            type: 'options',
-                            typeOptions: {
-                                loadOptionsMethod: 'loadUsers',
-                                multipleValues: true,
-                            },
-                            default: undefined,
-                            description: 'The members of the user group. Each user must be attached to the client first. Example: ["6144002a2cd84c61b6678593837d95dc"]',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'options',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['retrieveAUserGroup'],
-                        },
-                    },
-                    typeOptions: {
-                        loadOptionsMethod: 'loadUsergroups',
-                        loadOptionsDependsOn: ['id'],
-                    },
-                    default: undefined,
-                    description: 'The ID of the user group. Example: 8279c8c6e2e54bfc96ddf74fd9f481f4',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['retrieveAUserGroup'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Include',
-                            name: 'include',
-                            type: 'string',
-                            default: '',
-                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
-                        },
-                    ],
-                },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'options',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['updateAUserGroup'],
-                        },
-                    },
-                    typeOptions: {
-                        loadOptionsMethod: 'loadUsergroups',
-                        loadOptionsDependsOn: ['id'],
-                    },
-                    default: undefined,
-                    description: 'The ID of the user group. Example: 8279c8c6e2e54bfc96ddf74fd9f481f4',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['userGroup'],
-                            operation: ['updateAUserGroup'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Name',
-                            name: 'name',
-                            type: 'string',
-                            default: '',
-                            description: 'The name of the user group. Must not be greater than 191 characters. Example: Team 1',
-                        },
-                        {
-                            displayName: 'Color',
-                            name: 'color',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'The color used to show the user group. (On creation, a random color will be used if none is provided). Example: #0000FF',
-                        },
-                        {
-                            displayName: 'Users',
-                            name: 'users',
-                            type: 'options',
-                            typeOptions: {
-                                loadOptionsMethod: 'loadUsers',
-                                multipleValues: true,
-                            },
-                            default: undefined,
-                            description: 'The members of the user group. Each user must be attached to the client first. Example: ["6144002a2cd84c61b6678593837d95dc"]',
-                        },
-                    ],
-                },
             ],
         };
         this.methods = {
@@ -11758,11 +12243,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/custom-fields`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11791,11 +12275,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/custom-fields`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11824,11 +12307,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/custom-fields`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11857,11 +12339,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/custom-fields`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11890,11 +12371,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/activities`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11921,11 +12401,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11952,11 +12431,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-templates`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -11983,11 +12461,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/clients`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12014,11 +12491,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/custom-fields`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12045,11 +12521,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12076,11 +12551,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-layouts`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12107,11 +12581,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-events`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12138,11 +12611,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-templates`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12169,11 +12641,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/languages`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12200,11 +12671,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/output-files`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12231,11 +12701,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/tool-findings`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12262,11 +12731,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/tool-targets`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12293,11 +12761,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/roles`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12324,11 +12791,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/targets`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12355,11 +12821,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/tasks`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12386,11 +12851,40 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/task-sets`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadTestCases() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/test-cases`,
+                            headers: {
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12417,11 +12911,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/themes`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12448,11 +12941,10 @@ class Reporter {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/users`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12470,37 +12962,6 @@ class Reporter {
                                 itemData.email,
                             ].filter(Boolean);
                             const name = nameParts.join(' ');
-                            return {
-                                name: (name || itemData.id),
-                                value: itemData.id,
-                            };
-                        });
-                    }
-                    catch (error) {
-                        return [];
-                    }
-                },
-                async loadUserGroups() {
-                    const credentials = await this.getCredentials('reporterApi');
-                    const baseUrl = credentials.url.replace(/\/$/, '');
-                    try {
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url: `${baseUrl}/api/v1/user-groups`,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                            },
-                            qs: {
-                                'all': '1',
-                            },
-                            json: true,
-                        });
-                        const responseData = response;
-                        const items = Array.isArray(response) ? response : (responseData.data || []);
-                        return items.map((item) => {
-                            const itemData = item;
-                            const name = itemData.name || itemData.id;
                             return {
                                 name: (name || itemData.id),
                                 value: itemData.id,
@@ -12533,11 +12994,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12555,11 +13015,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12607,11 +13066,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12629,11 +13087,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12681,11 +13138,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12703,11 +13159,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12755,11 +13210,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12777,11 +13231,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12829,11 +13282,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12851,11 +13303,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12903,11 +13354,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12925,11 +13375,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -12977,11 +13426,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -12999,11 +13447,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13051,11 +13498,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13073,11 +13519,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13125,11 +13570,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13147,11 +13591,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13199,11 +13642,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13221,11 +13663,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13251,7 +13692,7 @@ class Reporter {
                         return [];
                     }
                 },
-                async loadUsergroups() {
+                async loadTeams() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
                     try {
@@ -13273,11 +13714,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13295,20 +13735,19 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
-                                'include': 'userGroups',
+                                'include': 'teams',
                             },
                             json: true,
                         });
                         // For show routes, the response is the resource directly (no 'data' wrapper)
-                        const items = response.userGroups || [];
+                        const items = response.teams || [];
                         return items.map((item) => {
                             const itemData = item;
                             const name = itemData.name || itemData.title || itemData.id;
@@ -13347,11 +13786,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13369,11 +13807,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13421,11 +13858,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13443,11 +13879,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13495,11 +13930,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13517,11 +13951,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-section-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13569,11 +14002,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13591,11 +14023,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-users/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13643,11 +14074,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13665,11 +14095,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13717,11 +14146,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13739,11 +14167,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-comments/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13791,11 +14218,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13813,11 +14239,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/finding-layouts/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13865,11 +14290,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13887,11 +14311,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -13939,11 +14362,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -13961,11 +14383,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14013,11 +14434,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14035,11 +14455,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14087,11 +14506,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14109,11 +14527,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14161,11 +14578,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14183,11 +14599,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14235,11 +14650,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14257,11 +14671,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14309,11 +14722,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14331,11 +14743,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14383,11 +14794,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14405,11 +14815,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14457,11 +14866,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14479,11 +14887,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14531,11 +14938,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14553,11 +14959,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14605,11 +15010,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14627,11 +15031,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/report-pages/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14679,11 +15082,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14701,11 +15103,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/themes/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14753,11 +15154,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14775,11 +15175,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/tool-findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14827,11 +15226,10 @@ class Reporter {
                                     // Try to determine which resource we're working with
                                     const resource = this.getNodeParameter('resource');
                                     // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequest({
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                                         method: 'GET',
                                         url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
                                         headers: {
-                                            'Authorization': `Bearer ${credentials.apiToken}`,
                                             'Accept': 'application/vnd.api+json',
                                         },
                                         json: true,
@@ -14849,11 +15247,10 @@ class Reporter {
                             return [];
                         }
                         // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/tool-findings/${parentId}`,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                             },
                             qs: {
@@ -14948,11 +15345,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15016,11 +15412,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15092,11 +15487,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15160,11 +15554,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15197,7 +15590,7 @@ class Reporter {
                                         body[key] = value;
                                     }
                                 }
-                                else if (['tags', 'client_user_groups'].includes(key)) {
+                                else if (['tags', 'client_teams'].includes(key)) {
                                     // Handle array of strings fields
                                     // Extract values from fixedCollection format
                                     // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
@@ -15228,11 +15621,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15258,11 +15650,10 @@ class Reporter {
                             }
                         }
                         // This operation returns binary data (file download)
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': '*/*',
                             },
                             encoding: 'arraybuffer',
@@ -15303,11 +15694,10 @@ class Reporter {
                             }
                         }
                         // This operation returns binary data (file download)
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': '*/*',
                             },
                             encoding: 'arraybuffer',
@@ -15381,11 +15771,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15410,11 +15799,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15469,11 +15857,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15491,11 +15878,10 @@ class Reporter {
                         // Build URL with parameters
                         let url = `${baseUrl}/api/v1/assessment-sections/{id}`;
                         url = url.replace('{id}', id);
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15519,11 +15905,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15586,11 +15971,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15615,11 +15999,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15647,11 +16030,10 @@ class Reporter {
                         if (assignedUsersValue !== '') {
                             body['assigned_users'] = assignedUsersValue;
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15669,11 +16051,10 @@ class Reporter {
                         let url = `${baseUrl}/api/v1/assessments/{assessment_id}/task-sets/{id}`;
                         url = url.replace('{assessment_id}', assessmentId);
                         url = url.replace('{id}', id);
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'DELETE',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15736,11 +16117,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15804,11 +16184,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15843,11 +16222,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15874,11 +16252,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15896,11 +16273,10 @@ class Reporter {
                         let url = `${baseUrl}/api/v1/assessments/{assessment_id}/users/{id}`;
                         url = url.replace('{assessment_id}', assessmentId);
                         url = url.replace('{id}', id);
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'DELETE',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -15963,11 +16339,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16037,11 +16412,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16105,11 +16479,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16173,11 +16546,107 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateClientManagers') {
+                        // Update client managers
+                        // Read URL parameters
+                        const clientId = this.getNodeParameter('client_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/clients/{client_id}/client-managers`;
+                        url = url.replace('{client_id}', clientId);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        // Add custom fields to body
+                        const customFields = this.getNodeParameter('customFields', i, {});
+                        if (customFields.customFieldValues && Array.isArray(customFields.customFieldValues)) {
+                            for (const customField of customFields.customFieldValues) {
+                                const fieldName = customField.fieldName;
+                                const value = customField.value;
+                                if (fieldName && value !== '') {
+                                    body[fieldName] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'removeAccountManager') {
+                        // Remove account manager
+                        // Read URL parameters
+                        const clientId = this.getNodeParameter('client_id', i);
+                        const userId = this.getNodeParameter('user_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/clients/{client_id}/account-managers/{user_id}`;
+                        url = url.replace('{client_id}', clientId);
+                        url = url.replace('{user_id}', userId);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['unassign_from_assessments'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'DELETE',
+                            url,
+                            headers: {
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16241,11 +16710,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16264,11 +16732,10 @@ class Reporter {
                         let url = `${baseUrl}/api/v1/documents/{id}`;
                         url = url.replace('{id}', id);
                         // This operation returns binary data (file download)
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': '*/*',
                             },
                             encoding: 'arraybuffer',
@@ -16331,11 +16798,12 @@ class Reporter {
                             type: fileBinaryData.mimeType || 'application/octet-stream',
                         });
                         formData.append('file', fileBlob, fileBinaryData.fileName || 'file');
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
+                                'Accept': 'application/vnd.api+json',
+                                // No explicit Content-Type — FormData sets multipart/form-data with boundary
                             },
                             body: formData,
                             json: false,
@@ -16398,11 +16866,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16486,11 +16953,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16554,11 +17020,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16622,11 +17087,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16672,83 +17136,14 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
                             body,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                }
-                if (resource === 'findingLayout') {
-                    if (operation === 'listFindingLayouts') {
-                        // List finding layouts
-                        // Read URL parameters
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/finding-layouts`;
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
                             json: true,
                         });
                         responseData = response;
@@ -16808,11 +17203,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16869,11 +17263,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16898,11 +17291,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -16971,11 +17363,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17000,11 +17391,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17061,11 +17451,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17090,11 +17479,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17151,11 +17539,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17180,15 +17567,81 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
                             body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'findingLayout') {
+                    if (operation === 'listFindingLayouts') {
+                        // List finding layouts
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/finding-layouts`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
                             json: true,
                         });
                         responseData = response;
@@ -17237,11 +17690,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17303,11 +17755,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17381,11 +17832,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17449,11 +17899,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17517,11 +17966,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17585,11 +18033,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -17634,11 +18081,12 @@ class Reporter {
                             type: fileBinaryData.mimeType || 'application/octet-stream',
                         });
                         formData.append('file', fileBlob, fileBinaryData.fileName || 'file');
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
+                                'Accept': 'application/vnd.api+json',
+                                // No explicit Content-Type — FormData sets multipart/form-data with boundary
                             },
                             body: formData,
                             json: false,
@@ -17699,277 +18147,14 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
                             qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                }
-                if (resource === 'toolFinding') {
-                    if (operation === 'listToolFindings') {
-                        // List tool findings
-                        // Read URL parameters
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/tool-findings`;
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'retrieveAToolFinding') {
-                        // Retrieve a tool finding
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/tool-findings/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'updateAToolFinding') {
-                        // Update a tool finding
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/tool-findings/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build request body
-                        const body = {};
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                body[key] = value;
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'PUT',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            body,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                }
-                if (resource === 'toolTarget') {
-                    if (operation === 'listToolTargets') {
-                        // List tool targets
-                        // Read URL parameters
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/tool-targets`;
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'updateAToolTarget') {
-                        // Update a tool target
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/tool-targets/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build request body
-                        const body = {};
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                body[key] = value;
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'PUT',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            body,
                             json: true,
                         });
                         responseData = response;
@@ -17995,11 +18180,10 @@ class Reporter {
                         if (reactionValue !== '') {
                             body['reaction'] = reactionValue;
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18063,11 +18247,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18129,11 +18312,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18197,11 +18379,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18258,11 +18439,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18326,11 +18506,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18355,11 +18534,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18423,11 +18601,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18491,11 +18668,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18520,11 +18696,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18561,11 +18736,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18629,11 +18803,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18677,11 +18850,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18745,11 +18917,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18787,11 +18958,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18801,7 +18971,230 @@ class Reporter {
                         responseData = response;
                     }
                 }
+                if (resource === 'team') {
+                    if (operation === 'createATeam') {
+                        // Create a team
+                        // Read URL parameters
+                        const clientId = this.getNodeParameter('client_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/clients/{client_id}/teams`;
+                        url = url.replace('{client_id}', clientId);
+                        // Build request body
+                        const body = {};
+                        const nameValue = this.getNodeParameter('name', i, '');
+                        if (nameValue !== '') {
+                            body['name'] = nameValue;
+                        }
+                        const typeValue = this.getNodeParameter('type', i, '');
+                        if (typeValue !== '') {
+                            body['type'] = typeValue;
+                        }
+                        const assessmentAccessScopeValue = this.getNodeParameter('assessment_access_scope', i, '');
+                        if (assessmentAccessScopeValue !== '') {
+                            body['assessment_access_scope'] = assessmentAccessScopeValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateATeam') {
+                        // Update a team
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'teamUser') {
+                    if (operation === 'addAUserToATeam') {
+                        // Add a user to a team
+                        // Read URL parameters
+                        const teamId = this.getNodeParameter('team_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{team_id}/users`;
+                        url = url.replace('{team_id}', teamId);
+                        // Build request body
+                        const body = {};
+                        const userIdValue = this.getNodeParameter('user_id', i, '');
+                        if (userIdValue !== '') {
+                            body['user_id'] = userIdValue;
+                        }
+                        const typeValue = this.getNodeParameter('type', i, '');
+                        if (typeValue !== '') {
+                            body['type'] = typeValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateATeamUser') {
+                        // Update a team user
+                        // Read URL parameters
+                        const teamId = this.getNodeParameter('team_id', i);
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{team_id}/users/{id}`;
+                        url = url.replace('{team_id}', teamId);
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'removeAUserFromATeam') {
+                        // Remove a user from a team
+                        // Read URL parameters
+                        const teamId = this.getNodeParameter('team_id', i);
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{team_id}/users/{id}`;
+                        url = url.replace('{team_id}', teamId);
+                        url = url.replace('{id}', id);
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'DELETE',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
                 if (resource === 'testCase') {
+                    if (operation === 'listTestCases') {
+                        // List test cases
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/test-cases`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
                     if (operation === 'retrieveATestCase') {
                         // Retrieve a test case
                         // Read URL parameters
@@ -18857,11 +19250,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18886,11 +19278,10 @@ class Reporter {
                                 body[key] = value;
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -18954,15 +19345,271 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
                             qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'toolFinding') {
+                    if (operation === 'listToolFindings') {
+                        // List tool findings
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tool-findings`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'retrieveAToolFinding') {
+                        // Retrieve a tool finding
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tool-findings/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateAToolFinding') {
+                        // Update a tool finding
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tool-findings/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'toolTarget') {
+                    if (operation === 'listToolTargets') {
+                        // List tool targets
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tool-targets`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateAToolTarget') {
+                        // Update a tool target
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tool-targets/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
                             json: true,
                         });
                         responseData = response;
@@ -19022,11 +19669,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -19088,11 +19734,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -19138,11 +19783,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -19206,11 +19850,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
@@ -19246,209 +19889,10 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequest({
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
                             url,
                             headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            body,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                }
-                if (resource === 'userGroup') {
-                    if (operation === 'listUserGroups') {
-                        // List user groups
-                        // Read URL parameters
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/user-groups`;
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'createAUserGroup') {
-                        // Create a user group
-                        // Read URL parameters
-                        const clientId = this.getNodeParameter('client_id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/clients/{client_id}/user-groups`;
-                        url = url.replace('{client_id}', clientId);
-                        // Build request body
-                        const body = {};
-                        const nameValue = this.getNodeParameter('name', i, '');
-                        if (nameValue !== '') {
-                            body['name'] = nameValue;
-                        }
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                body[key] = value;
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'POST',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            body,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'retrieveAUserGroup') {
-                        // Retrieve a user group
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/user-groups/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build query parameters
-                        const qs = {};
-                        // Add optional query parameters from Additional Fields
-                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                // Special handling for filter_fields - convert to Spatie Query Builder format
-                                if (key === 'filter_fields') {
-                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
-                                    if (value && typeof value === 'object' && 'filters' in value) {
-                                        const filterData = value;
-                                        if (Array.isArray(filterData.filters)) {
-                                            for (const filter of filterData.filters) {
-                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
-                                                    qs[`filter[${filter.field}]`] = filter.value;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'sort') {
-                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
-                                    if (value && typeof value === 'object' && 'sorts' in value) {
-                                        const sortData = value;
-                                        if (Array.isArray(sortData.sorts)) {
-                                            const sortParts = [];
-                                            for (const sort of sortData.sorts) {
-                                                if (sort.field) {
-                                                    const prefix = sort.direction === 'desc' ? '-' : '';
-                                                    sortParts.push(`${prefix}${sort.field}`);
-                                                }
-                                            }
-                                            if (sortParts.length > 0) {
-                                                qs['sort'] = sortParts.join(',');
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (key === 'include') {
-                                    if (value && typeof value === 'string' && value.trim()) {
-                                        qs['include'] = value.trim();
-                                    }
-                                }
-                                else {
-                                    qs[key] = value;
-                                }
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'updateAUserGroup') {
-                        // Update a user group
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/user-groups/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build request body
-                        const body = {};
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                body[key] = value;
-                            }
-                        }
-                        const response = await this.helpers.httpRequest({
-                            method: 'PUT',
-                            url,
-                            headers: {
-                                'Authorization': `Bearer ${credentials.apiToken}`,
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },

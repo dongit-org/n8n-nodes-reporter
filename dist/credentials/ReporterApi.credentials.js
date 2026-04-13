@@ -30,9 +30,7 @@ class ReporterApi {
             type: 'generic',
             properties: {
                 headers: {
-                    'Authorization': '=Bearer {{$credentials.apiToken}}',
-                    'Accept': 'application/vnd.api+json',
-                    'Content-Type': 'application/vnd.api+json',
+                    'Authorization': '=Bearer {{ $credentials.apiToken.replace(/\\n/g, "|") }}',
                 },
             },
         };
