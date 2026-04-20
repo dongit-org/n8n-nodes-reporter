@@ -1,16 +1,16 @@
 import {
+    IBinaryKeyData,
+    IDataObject,
     IExecuteFunctions,
+    ILoadOptionsFunctions,
     INodeExecutionData,
+    INodePropertyOptions,
     INodeType,
     INodeTypeDescription,
-    IDataObject,
-    ILoadOptionsFunctions,
-    INodePropertyOptions,
-    IBinaryKeyData,
+    JsonObject,
     NodeApiError,
     NodeConnectionTypes,
     NodeOperationError,
-    JsonObject,
 } from "n8n-workflow";
 
 export class Reporter implements INodeType {
@@ -328,6 +328,56 @@ export class Reporter implements INodeType {
                 ],
             },
 
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["activity"],
+                        operation: ["listActivities"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["activity"],
+                        operation: ["listActivities"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["activity"],
+                        operation: ["listActivities"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
             // Assessment - Operations
             {
                 displayName: "Operation",
@@ -519,6 +569,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["assessment"],
+                        operation: ["listAssessments"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["assessment"],
+                        operation: ["listAssessments"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["assessment"],
+                        operation: ["listAssessments"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Client id",
                 name: "client_id",
                 type: "options",
@@ -534,7 +634,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 1cc42d007cd847cf8707639eea0fa447",
+                    "The ID of the client. Example: 6a7978d66df545cdbd4bb309a3d4546f",
             },
 
             {
@@ -767,7 +867,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a",
+                    "The ID of the assessment. Example: 4b49e21bc5f944fa8030976755bbcfe7",
             },
 
             {
@@ -810,7 +910,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a",
+                    "The ID of the assessment. Example: 4b49e21bc5f944fa8030976755bbcfe7",
             },
 
             {
@@ -969,7 +1069,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The current assessment status. Must be a valid assessment status. Example: 1",
+                            "The current assessment status. Must be a valid assessment status. Example: 13",
                     },
 
                     {
@@ -1004,7 +1104,7 @@ export class Reporter implements INodeType {
                         ],
                         default: "CWE",
                         description:
-                            'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["et"]',
+                            'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["iure"]',
                     },
 
                     {
@@ -1459,7 +1559,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: e59ad975355549f596fe592d665a97a9",
+                    "The ID of the assessment. Example: 97932e29c898431697a7d0de3cb2c693",
             },
 
             {
@@ -1505,7 +1605,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: f40853812bdf429fb48ded995e76bc85",
+                    "The ID of the assessment. Example: 49002af660164cd082d53ad5c9bc1694",
             },
 
             {
@@ -1581,7 +1681,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: fc67bb3a8d204a85909e73adf4544533",
+                    "The ID of the assessment. Example: bb3b5abd3ea2489d8362a4b7e68cb621",
             },
 
             {
@@ -1673,7 +1773,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment comment. Example: 7a6d51df15f14fe98c80d5a54f4d6cce",
+                    "The ID of the assessment comment. Example: 65cf2a9628304ae88c90bed827948f04",
             },
 
             {
@@ -1752,7 +1852,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment phase. Example: ea80dba878ab49648d93191986fb2969",
+                    "The ID of the assessment phase. Example: 919c2ab79eae42f4b41af36cdc596d71",
             },
 
             {
@@ -1956,7 +2056,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec",
+                    "The ID of the assessment section. Example: afeb5ef43df7461c91d2c59b8721fef0",
             },
 
             {
@@ -1976,7 +2076,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec",
+                    "The ID of the assessment section. Example: afeb5ef43df7461c91d2c59b8721fef0",
             },
 
             {
@@ -2057,7 +2157,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "Whether this section will be included in the report. Must be a valid report section visibility. Example: 2",
+                            "Whether this section will be included in the report. Must be a valid report section visibility. Example: 14",
                     },
 
                     {
@@ -2110,7 +2210,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "Whether this section will be included in the management report. Must be a valid report section visibility. Example: 1",
+                            "Whether this section will be included in the management report. Must be a valid report section visibility. Example: 9",
                     },
 
                     {
@@ -2151,7 +2251,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "An optional custom heading size of this section in the report. Must be a valid report heading. Example: 10",
+                            "An optional custom heading size of this section in the report. Must be a valid report heading. Example: 20",
                     },
 
                     {
@@ -2243,7 +2343,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment section. Example: e06803e2267e42f58ff7b6a095315ddf",
+                    "The ID of the assessment section. Example: 44f5764cbc2c4f83943a3232372a1f24",
             },
 
             {
@@ -2337,7 +2437,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the assessment section comment. Example: f49a403c9539442680328aab1b6249ce",
+                    "The ID of the assessment section comment. Example: fe8f3cf0aa944f80962e7bd2c210c636",
             },
 
             {
@@ -2422,7 +2522,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: c9c6163ec4a94f3daf3ae12497b150fc",
+                    "The ID of the assessment. Example: 0ca83ad130064c32b4989a02b480b641",
             },
 
             {
@@ -2495,7 +2595,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: 3f703eb0eef74ff18b23d3022e7af973",
+                    "The ID of the assessment. Example: 0a269621e3874b71a2f5f9c0dc97cbde",
             },
             {
                 displayName: "Id",
@@ -2510,7 +2610,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the task set. Example: c31e6606672944019a98256f0c736c65",
+                    "The ID of the task set. Example: 4bd83f8797524137b961455dfe40a6a2",
             },
 
             // Assessment Template - Operations
@@ -2668,6 +2768,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["assessmentTemplate"],
+                        operation: ["listAssessmentTemplates"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["assessmentTemplate"],
+                        operation: ["listAssessmentTemplates"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["assessmentTemplate"],
+                        operation: ["listAssessmentTemplates"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Id",
                 name: "id",
                 type: "string",
@@ -2680,7 +2830,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the assessment template. Example: d9133d3b5fd04bd782b8d9b4d503d69d",
+                    "The ID of the assessment template. Example: 12de300fa4ab4a9e82ce6e74f435b49e",
             },
 
             {
@@ -2760,7 +2910,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: b307a5fe3e8c4acbb3c15e3f94bb576d",
+                    "The ID of the assessment. Example: 40b7013750e64d95b3c7e3ddde64e4dc",
             },
 
             {
@@ -2964,7 +3114,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [3]",
+                            "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [7]",
                     },
 
                     {
@@ -2976,7 +3126,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13",
+                            "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-20",
                     },
                 ],
             },
@@ -2997,7 +3147,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a",
+                    "The ID of the assessment. Example: c7db707e430a45fba72c1e81dc154612",
             },
             {
                 displayName: "Id",
@@ -3016,7 +3166,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131",
+                    "The ID of the user. Example: 6f46f32d6a6e49ffbf08ea0621d5d43e",
             },
 
             {
@@ -3195,7 +3345,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [20]",
+                            "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [13]",
                     },
 
                     {
@@ -3207,7 +3357,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13",
+                            "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-20",
                     },
                 ],
             },
@@ -3228,7 +3378,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a",
+                    "The ID of the assessment. Example: c7db707e430a45fba72c1e81dc154612",
             },
             {
                 displayName: "Id",
@@ -3247,7 +3397,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131",
+                    "The ID of the user. Example: 6f46f32d6a6e49ffbf08ea0621d5d43e",
             },
 
             // Client - Operations
@@ -3433,6 +3583,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["client"],
+                        operation: ["listClients"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["client"],
+                        operation: ["listClients"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["client"],
+                        operation: ["listClients"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Name",
                 name: "name",
                 type: "string",
@@ -3598,7 +3798,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4",
+                    "The ID of the client. Example: d3b90c6c8d184fa08bb2b66abb43c3a4",
             },
 
             {
@@ -3641,7 +3841,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4",
+                    "The ID of the client. Example: d3b90c6c8d184fa08bb2b66abb43c3a4",
             },
 
             {
@@ -3797,7 +3997,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 1712327bede34b3cb084016e2f9ecaa7",
+                    "The ID of the client. Example: f30ab11d910a488f837c35777da8d2e5",
             },
 
             {
@@ -3886,7 +4086,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 6be49fb4c72741ad8a22e51a9ce80e09",
+                    "The ID of the client. Example: 10f270cc3648411487adf2b67f5d5048",
             },
             {
                 displayName: "User id",
@@ -3904,7 +4104,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the user. Example: 5dacbf0c35b847cab4f7f0e0496ef164",
+                    "The ID of the user. Example: 426b5019fa674c3dabeaeea9ca80ba85",
             },
 
             {
@@ -4110,6 +4310,56 @@ export class Reporter implements INodeType {
                 ],
             },
 
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["customField"],
+                        operation: ["listCustomFields"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["customField"],
+                        operation: ["listCustomFields"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["customField"],
+                        operation: ["listCustomFields"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
             // Document - Operations
             {
                 displayName: "Operation",
@@ -4153,7 +4403,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the document. Example: 03a17f88f8e84f88b78056ce44ddc9f1",
+                    "The ID of the document. Example: 35025a9c247146b7aed255b264e99f3a",
             },
 
             {
@@ -4526,6 +4776,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["finding"],
+                        operation: ["listFindings"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["finding"],
+                        operation: ["listFindings"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["finding"],
+                        operation: ["listFindings"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Assessment id",
                 name: "assessment_id",
                 type: "options",
@@ -4541,7 +4841,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: e00344b3570f4a83a7a8953b4707fa3b",
+                    "The ID of the assessment. Example: 0e5c67029f444e0f8452ffef252f4207",
             },
 
             {
@@ -4712,7 +5012,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 3",
+                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 2",
                     },
 
                     {
@@ -5018,7 +5318,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108",
+                    "The ID of the finding. Example: 5c8ed7d0620b4224a7888858677711ca",
             },
 
             {
@@ -5061,7 +5361,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108",
+                    "The ID of the finding. Example: 5c8ed7d0620b4224a7888858677711ca",
             },
 
             {
@@ -5146,7 +5446,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 4",
+                            "The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 10",
                     },
 
                     {
@@ -5215,7 +5515,7 @@ export class Reporter implements INodeType {
                         type: "boolean",
                         default: "",
                         description:
-                            "Whether the finding is published. Example: false",
+                            "Whether the finding is published. Example: true",
                     },
 
                     {
@@ -5533,7 +5833,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: 7bfa733ed9334b4b9d9c20c4e172fa52",
+                    "The ID of the assessment. Example: 49b62070ec234bc89480b081fc84635d",
             },
             {
                 displayName: "Finding template id",
@@ -5870,6 +6170,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["findingEvent"],
+                        operation: ["listFindingEvents"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["findingEvent"],
+                        operation: ["listFindingEvents"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["findingEvent"],
+                        operation: ["listFindingEvents"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Finding id",
                 name: "finding_id",
                 type: "options",
@@ -5885,7 +6235,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding. Example: ec73fbcbf49442879f25cf1bc457e4de",
+                    "The ID of the finding. Example: 8d2839d03a5743e89cc031d01857f165",
             },
 
             {
@@ -5977,7 +6327,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding comment. Example: f2fa7fbc509b4294a066cd8f80345b05",
+                    "The ID of the finding comment. Example: 622a89a5ae4e444b953ecccf1de8f070",
             },
 
             {
@@ -6032,7 +6382,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding. Example: 6f2d00dadd8948f6a0ada1f803f2bb96",
+                    "The ID of the finding. Example: 22b0e63653e046f5baf6826046991e24",
             },
 
             {
@@ -6249,7 +6599,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding retest. Example: 41a91c36670d49d9b0faf6996d8a5acd",
+                    "The ID of the finding retest. Example: 944d05447d7b4c69837632dd4861a627",
             },
 
             {
@@ -6450,7 +6800,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding. Example: 9b6e0e25ebc64540b3d725dbc99d567e",
+                    "The ID of the finding. Example: bff4f5c4678a4472993686e1e5f740d5",
             },
 
             {
@@ -6533,7 +6883,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding retest inquiry. Example: 783e749c94dd4535951aba98164e4d6d",
+                    "The ID of the finding retest inquiry. Example: a0d39a102a2d4764a216fbcb7f37dccc",
             },
 
             {
@@ -6580,7 +6930,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding retest inquiry. Example: b1725ba5b78c4a22ba34023b500374b9",
+                    "The ID of the finding retest inquiry. Example: 8b13e37e538a41b79226184d2116e42d",
             },
 
             {
@@ -6663,7 +7013,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the finding retest cancelled event. Example: 49b11f71a1874c77bccd32ac9fd3eaac",
+                    "The ID of the finding retest cancelled event. Example: 0b8155b209374a21b2e8bfe7cbe454d0",
             },
 
             {
@@ -6763,6 +7113,56 @@ export class Reporter implements INodeType {
                         ],
                     },
                 ],
+            },
+
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["findingLayout"],
+                        operation: ["listFindingLayouts"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["findingLayout"],
+                        operation: ["listFindingLayouts"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["findingLayout"],
+                        operation: ["listFindingLayouts"],
+                        fetchAllPages: [false],
+                    },
+                },
             },
 
             // Finding Template - Operations
@@ -7123,6 +7523,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["findingTemplate"],
+                        operation: ["listFindingTemplates"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["findingTemplate"],
+                        operation: ["listFindingTemplates"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["findingTemplate"],
+                        operation: ["listFindingTemplates"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Title",
                 name: "title",
                 type: "string",
@@ -7261,7 +7711,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 16",
+                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 9",
                     },
 
                     {
@@ -7653,7 +8103,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 19",
+                            "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 20",
                     },
 
                     {
@@ -8002,6 +8452,56 @@ export class Reporter implements INodeType {
                 ],
             },
 
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["language"],
+                        operation: ["listLanguages"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["language"],
+                        operation: ["listLanguages"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["language"],
+                        operation: ["listLanguages"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
             // Output File - Operations
             {
                 displayName: "Operation",
@@ -8048,7 +8548,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: c94d995f28164ba7af29432ebb926b17",
+                    "The ID of the assessment. Example: 754eaecf9016403d94dcecf0b16a57d4",
             },
 
             {
@@ -9111,7 +9611,7 @@ export class Reporter implements INodeType {
                 ],
                 default: "crunch42",
                 description:
-                    "The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: corporis",
+                    "The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: voluptatem",
             },
 
             {
@@ -9244,6 +9744,56 @@ export class Reporter implements INodeType {
                             "Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)",
                     },
                 ],
+            },
+
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["outputFile"],
+                        operation: ["listOutputFiles"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["outputFile"],
+                        operation: ["listOutputFiles"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["outputFile"],
+                        operation: ["listOutputFiles"],
+                        fetchAllPages: [false],
+                    },
+                },
             },
 
             // Reaction - Operations
@@ -9463,6 +10013,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listGlobalRoles"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listGlobalRoles"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listGlobalRoles"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Additional Fields",
                 name: "additionalFields",
                 type: "collection",
@@ -9571,6 +10171,56 @@ export class Reporter implements INodeType {
                         ],
                     },
                 ],
+            },
+
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listAssessmentRoles"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listAssessmentRoles"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["role"],
+                        operation: ["listAssessmentRoles"],
+                        fetchAllPages: [false],
+                    },
+                },
             },
 
             // Target - Operations
@@ -9733,6 +10383,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["target"],
+                        operation: ["listTargets"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["target"],
+                        operation: ["listTargets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["target"],
+                        operation: ["listTargets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Assessment id",
                 name: "assessment_id",
                 type: "options",
@@ -9748,7 +10448,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: b318208aaf164daaa7ae021d7d7f761d",
+                    "The ID of the assessment. Example: 6ab7d17b78b44d718cb873da5cc2dc32",
             },
 
             {
@@ -9911,7 +10611,7 @@ export class Reporter implements INodeType {
                 ],
                 default: 0,
                 description:
-                    "The type of target. Must be a valid target type. Example: 9",
+                    "The type of target. Must be a valid target type. Example: 18",
             },
 
             {
@@ -9980,7 +10680,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The importance of the target to the business. Must be a valid business impact. Example: 10",
+                            "The importance of the target to the business. Must be a valid business impact. Example: 3",
                     },
 
                     {
@@ -10022,7 +10722,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "Any details researchers or clients should know about the target (markdown). Example: numquam",
+                            "Any details researchers or clients should know about the target (markdown). Example: recusandae",
                     },
 
                     {
@@ -10084,7 +10784,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the target. Example: 5322f912fd00430d939819676fdbd46d",
+                    "The ID of the target. Example: d93ae5675d894b7c829c8699abba9b96",
             },
 
             {
@@ -10127,7 +10827,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the target. Example: 5322f912fd00430d939819676fdbd46d",
+                    "The ID of the target. Example: d93ae5675d894b7c829c8699abba9b96",
             },
 
             {
@@ -10317,7 +11017,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The type of target. Must be a valid target type. Example: 3",
+                            "The type of target. Must be a valid target type. Example: 15",
                     },
 
                     {
@@ -10343,7 +11043,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The importance of the target to the business. Must be a valid business impact. Example: 2",
+                            "The importance of the target to the business. Must be a valid business impact. Example: 5",
                     },
 
                     {
@@ -10385,7 +11085,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "Any details researchers or clients should know about the target (markdown). Example: expedita",
+                            "Any details researchers or clients should know about the target (markdown). Example: aut",
                     },
 
                     {
@@ -10570,6 +11270,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["task"],
+                        operation: ["listTasks"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["task"],
+                        operation: ["listTasks"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["task"],
+                        operation: ["listTasks"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Id",
                 name: "id",
                 type: "options",
@@ -10585,7 +11335,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the task. Example: 44e3e9623f284af396d0140eb0691741",
+                    "The ID of the task. Example: 33c508c4c4b541afae2ccb95403db5f1",
             },
 
             {
@@ -10628,7 +11378,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the task. Example: 44e3e9623f284af396d0140eb0691741",
+                    "The ID of the task. Example: 33c508c4c4b541afae2ccb95403db5f1",
             },
 
             {
@@ -10692,7 +11442,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The type of deadline for this task. Must be a valid deadline type. Example: 4",
+                            "The type of deadline for this task. Must be a valid deadline type. Example: 5",
                     },
 
                     {
@@ -10782,7 +11532,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the assessment. Example: f079062800a444b9ac7733051580cdb0",
+                    "The ID of the assessment. Example: 7d83fbf4002c443d8a8c6d08969a1d43",
             },
 
             {
@@ -10855,7 +11605,7 @@ export class Reporter implements INodeType {
                 ],
                 default: 0,
                 description:
-                    "The type of deadline for this task. Must be a valid deadline type. Example: 2",
+                    "The type of deadline for this task. Must be a valid deadline type. Example: 3",
             },
             {
                 displayName: "Weight",
@@ -11091,6 +11841,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["taskSet"],
+                        operation: ["listTaskSets"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["taskSet"],
+                        operation: ["listTaskSets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["taskSet"],
+                        operation: ["listTaskSets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Name",
                 name: "name",
                 type: "string",
@@ -11150,7 +11950,7 @@ export class Reporter implements INodeType {
                 ],
                 default: 0,
                 description:
-                    "The deadline type of this task set. Must be a valid deadline type. Example: 7",
+                    "The deadline type of this task set. Must be a valid deadline type. Example: 12",
             },
 
             {
@@ -11176,7 +11976,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 20",
+                            "The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 13",
                     },
 
                     {
@@ -11287,7 +12087,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7",
+                    "The ID of the task set. Example: 12a1c91353bf47b6a1fb306b5475e2d7",
             },
 
             {
@@ -11331,7 +12131,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7",
+                    "The ID of the task set. Example: 12a1c91353bf47b6a1fb306b5475e2d7",
             },
 
             {
@@ -11397,7 +12197,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 0,
                         description:
-                            "The deadline type of this task set. Must be a valid deadline type. Example: 17",
+                            "The deadline type of this task set. Must be a valid deadline type. Example: 3",
                     },
 
                     {
@@ -11536,7 +12336,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the client. Example: 7f10657679fe4d76a6c8df31feff587e",
+                    "The ID of the client. Example: 1c31e7dd56184933a8ce90885e4096d3",
             },
 
             {
@@ -11640,7 +12440,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the team. Example: b05aaa16765040ffa3ce618402b1dccf",
+                    "The ID of the team. Example: 9f0c4e01920b470686530d0d1f3c9f79",
             },
 
             {
@@ -11758,7 +12558,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the team. Example: 71fc3cda7cc0400bb5f4159ceb154d1f",
+                    "The ID of the team. Example: 9ee41c95f435420e83732b6e99127850",
             },
 
             {
@@ -11858,7 +12658,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13",
+                            "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-20",
                     },
 
                     {
@@ -11889,7 +12689,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the team. Example: e138262080c94b358a1d353d416a6dc2",
+                    "The ID of the team. Example: 0a1c6c332b834946b458c3f3ed8a8c38",
             },
             {
                 displayName: "Id",
@@ -11904,7 +12704,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8",
+                    "The ID of the user. Example: f01bfe1ddef44ac8894975ae9d08a540",
             },
 
             {
@@ -11979,7 +12779,7 @@ export class Reporter implements INodeType {
                         },
                         default: "",
                         description:
-                            "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13",
+                            "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-20",
                     },
 
                     {
@@ -12010,7 +12810,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the team. Example: e138262080c94b358a1d353d416a6dc2",
+                    "The ID of the team. Example: 0a1c6c332b834946b458c3f3ed8a8c38",
             },
             {
                 displayName: "Id",
@@ -12025,7 +12825,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8",
+                    "The ID of the user. Example: f01bfe1ddef44ac8894975ae9d08a540",
             },
 
             // Test Case - Operations
@@ -12198,6 +12998,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["testCase"],
+                        operation: ["listTestCases"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["testCase"],
+                        operation: ["listTestCases"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["testCase"],
+                        operation: ["listTestCases"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Id",
                 name: "id",
                 type: "options",
@@ -12214,7 +13064,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2",
+                    "The ID of the test case. Example: 89a3c6a71a7e4636845ea0e076738617",
             },
 
             {
@@ -12258,7 +13108,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2",
+                    "The ID of the test case. Example: 89a3c6a71a7e4636845ea0e076738617",
             },
 
             {
@@ -12414,6 +13264,56 @@ export class Reporter implements INodeType {
                         ],
                     },
                 ],
+            },
+
+            {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["theme"],
+                        operation: ["listThemes"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["theme"],
+                        operation: ["listThemes"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["theme"],
+                        operation: ["listThemes"],
+                        fetchAllPages: [false],
+                    },
+                },
             },
 
             // Tool Finding - Operations
@@ -12590,6 +13490,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["toolFinding"],
+                        operation: ["listToolFindings"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["toolFinding"],
+                        operation: ["listToolFindings"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["toolFinding"],
+                        operation: ["listToolFindings"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Id",
                 name: "id",
                 type: "options",
@@ -12606,7 +13556,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4",
+                    "The ID of the tool finding. Example: fcf49f59e5c44da88f004e803c0edea7",
             },
 
             {
@@ -12650,7 +13600,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4",
+                    "The ID of the tool finding. Example: fcf49f59e5c44da88f004e803c0edea7",
             },
 
             {
@@ -12865,6 +13815,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["toolTarget"],
+                        operation: ["listToolTargets"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["toolTarget"],
+                        operation: ["listToolTargets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["toolTarget"],
+                        operation: ["listToolTargets"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "Id",
                 name: "id",
                 type: "string",
@@ -12877,7 +13877,7 @@ export class Reporter implements INodeType {
                 },
                 default: "",
                 description:
-                    "The ID of the tool target. Example: 7eb0126d9abc4c40bfa9cc0b2d8cf4a0",
+                    "The ID of the tool target. Example: cb03bacd31774f63ab1556a55f43aaba",
             },
 
             {
@@ -13125,6 +14125,56 @@ export class Reporter implements INodeType {
             },
 
             {
+                displayName: "Fetch All Pages",
+                name: "fetchAllPages",
+                type: "boolean",
+                default: false,
+                description:
+                    "Whether to automatically fetch all pages of results. Filters and sorting still apply.",
+                displayOptions: {
+                    show: {
+                        resource: ["user"],
+                        operation: ["listUsers"],
+                    },
+                },
+            },
+            {
+                displayName: "Page Size",
+                name: "pageSize",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                    maxValue: 100,
+                },
+                default: 30,
+                description: "Number of results per page (max 100)",
+                displayOptions: {
+                    show: {
+                        resource: ["user"],
+                        operation: ["listUsers"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+            {
+                displayName: "Page Number",
+                name: "pageNumber",
+                type: "number",
+                typeOptions: {
+                    minValue: 1,
+                },
+                default: 1,
+                description: "Which page to retrieve",
+                displayOptions: {
+                    show: {
+                        resource: ["user"],
+                        operation: ["listUsers"],
+                        fetchAllPages: [false],
+                    },
+                },
+            },
+
+            {
                 displayName: "First name",
                 name: "first_name",
                 type: "string",
@@ -13243,7 +14293,7 @@ export class Reporter implements INodeType {
                         type: "string",
                         default: "",
                         description:
-                            "The user's LinkedIn page. Must not be greater than 191 characters. Example: pnsxyzgddkkhfrzusytyckudm",
+                            "The user's LinkedIn page. Must not be greater than 191 characters. Example: zuzmeezkcbrwft",
                     },
 
                     {
@@ -13333,7 +14383,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e",
+                    "The ID of the user. Example: 21961b23d52a43b9897f0a8593284868",
             },
 
             {
@@ -13376,7 +14426,7 @@ export class Reporter implements INodeType {
                 },
                 default: undefined,
                 description:
-                    "The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e",
+                    "The ID of the user. Example: 21961b23d52a43b9897f0a8593284868",
             },
 
             {
@@ -13455,7 +14505,7 @@ export class Reporter implements INodeType {
                         ],
                         default: 1,
                         description:
-                            "The user account status. Must be a valid user status. Example: 10",
+                            "The user account status. Must be a valid user status. Example: 16",
                     },
 
                     {
@@ -13502,7 +14552,7 @@ export class Reporter implements INodeType {
                         type: "string",
                         default: "",
                         description:
-                            "The user's LinkedIn page. Must not be greater than 191 characters. Example: aveppbbdfaaca",
+                            "The user's LinkedIn page. Must not be greater than 191 characters. Example: nxnawtqzbecnxomzjghku",
                     },
                 ],
             },
@@ -18374,22 +19424,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "assessment") {
@@ -18500,22 +19616,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAnAssessment") {
@@ -19732,22 +20914,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "retrieveAnAssessmentTemplate") {
@@ -20140,22 +21388,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAClient") {
@@ -20795,22 +22109,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "document") {
@@ -21094,22 +22474,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAFinding") {
@@ -21713,22 +23159,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAFindingComment") {
@@ -22469,22 +23981,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "findingTemplate") {
@@ -22681,22 +24259,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAFindingTemplate") {
@@ -23176,22 +24820,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "outputFile") {
@@ -23397,22 +25107,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "reaction") {
@@ -23577,22 +25353,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "listAssessmentRoles") {
@@ -23702,22 +25544,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "target") {
@@ -23828,22 +25736,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createATarget") {
@@ -24231,22 +26205,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "retrieveATask") {
@@ -24609,22 +26649,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createATaskSet") {
@@ -25289,22 +27395,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "retrieveATestCase") {
@@ -25591,22 +27763,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
                     }
                     if (resource === "toolFinding") {
@@ -25717,22 +27955,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "retrieveAToolFinding") {
@@ -26019,22 +28323,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "updateAToolTarget") {
@@ -26319,22 +28689,88 @@ export class Reporter implements INodeType {
                                 }
                             }
 
-                            const response =
-                                await this.helpers.httpRequestWithAuthentication.call(
-                                    this,
-                                    "reporterApi",
-                                    {
-                                        method: "GET",
-                                        url,
-                                        headers: {
-                                            Accept: "application/vnd.api+json",
-                                            "Content-Type": "application/json",
-                                        },
-                                        qs,
-                                        json: true,
+                            // List request with pagination support
+                            const fetchAllPages = this.getNodeParameter(
+                                "fetchAllPages",
+                                i,
+                                false
+                            ) as boolean;
+
+                            if (fetchAllPages) {
+                                qs["page[size]"] = 100;
+                            } else {
+                                const pageSize = this.getNodeParameter(
+                                    "pageSize",
+                                    i,
+                                    30
+                                ) as number;
+                                const pageNumber = this.getNodeParameter(
+                                    "pageNumber",
+                                    i,
+                                    1
+                                ) as number;
+                                qs["page[size]"] = pageSize;
+                                qs["page[number]"] = pageNumber;
+                            }
+
+                            if (fetchAllPages) {
+                                let allData: IDataObject[] = [];
+                                let nextUrl: string | null = url;
+
+                                while (nextUrl) {
+                                    const response =
+                                        await this.helpers.httpRequestWithAuthentication.call(
+                                            this,
+                                            "reporterApi",
+                                            {
+                                                method: "GET",
+                                                url: nextUrl,
+                                                headers: {
+                                                    Accept: "application/vnd.api+json",
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                                ...(nextUrl === url
+                                                    ? { qs }
+                                                    : {}),
+                                                json: true,
+                                            }
+                                        );
+
+                                    const page = response as IDataObject;
+                                    const pageData = page.data as
+                                        | IDataObject[]
+                                        | undefined;
+                                    if (pageData) {
+                                        allData = allData.concat(pageData);
                                     }
-                                );
-                            responseData = response as IDataObject;
+
+                                    const links = page.links as
+                                        | IDataObject
+                                        | undefined;
+                                    nextUrl = (links?.next as string) || null;
+                                }
+
+                                responseData = { data: allData } as IDataObject;
+                            } else {
+                                const response =
+                                    await this.helpers.httpRequestWithAuthentication.call(
+                                        this,
+                                        "reporterApi",
+                                        {
+                                            method: "GET",
+                                            url,
+                                            headers: {
+                                                Accept: "application/vnd.api+json",
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            qs,
+                                            json: true,
+                                        }
+                                    );
+                                responseData = response as IDataObject;
+                            }
                         }
 
                         if (operation === "createAUser") {

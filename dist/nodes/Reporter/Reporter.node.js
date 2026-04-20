@@ -310,6 +310,54 @@ class Reporter {
                         },
                     ],
                 },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['activity'],
+                            operation: ['listActivities'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['activity'],
+                            operation: ['listActivities'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['activity'],
+                            operation: ['listActivities'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
                 // Assessment - Operations
                 {
                     displayName: 'Operation',
@@ -490,6 +538,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessment'],
+                            operation: ['listAssessments'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessment'],
+                            operation: ['listAssessments'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessment'],
+                            operation: ['listAssessments'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Client id',
                     name: 'client_id',
                     type: 'options',
@@ -504,7 +600,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 1cc42d007cd847cf8707639eea0fa447',
+                    description: 'The ID of the client. Example: 6a7978d66df545cdbd4bb309a3d4546f',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -703,7 +799,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a',
+                    description: 'The ID of the assessment. Example: 4b49e21bc5f944fa8030976755bbcfe7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -742,7 +838,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: ea993af82ccd413f836e502c0169fd7a',
+                    description: 'The ID of the assessment. Example: 4b49e21bc5f944fa8030976755bbcfe7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -888,7 +984,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 1',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 13',
                         },
                         {
                             displayName: 'On hold',
@@ -919,7 +1015,7 @@ class Reporter {
                                 },
                             ],
                             default: 'CWE',
-                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["et"]',
+                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["iure"]',
                         },
                         {
                             displayName: 'Scoring system',
@@ -1279,7 +1375,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e59ad975355549f596fe592d665a97a9',
+                    description: 'The ID of the assessment. Example: 97932e29c898431697a7d0de3cb2c693',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1321,7 +1417,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: f40853812bdf429fb48ded995e76bc85',
+                    description: 'The ID of the assessment. Example: 49002af660164cd082d53ad5c9bc1694',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1390,7 +1486,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: fc67bb3a8d204a85909e73adf4544533',
+                    description: 'The ID of the assessment. Example: bb3b5abd3ea2489d8362a4b7e68cb621',
                 },
                 {
                     displayName: 'Body',
@@ -1459,7 +1555,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: 7a6d51df15f14fe98c80d5a54f4d6cce',
+                    description: 'The ID of the assessment comment. Example: 65cf2a9628304ae88c90bed827948f04',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1530,7 +1626,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: ea80dba878ab49648d93191986fb2969',
+                    description: 'The ID of the assessment phase. Example: 919c2ab79eae42f4b41af36cdc596d71',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1681,7 +1777,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec',
+                    description: 'The ID of the assessment section. Example: afeb5ef43df7461c91d2c59b8721fef0',
                 },
                 {
                     displayName: 'Id',
@@ -1699,7 +1795,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: bd204c41dd9849dfb5216526d34157ec',
+                    description: 'The ID of the assessment section. Example: afeb5ef43df7461c91d2c59b8721fef0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1770,7 +1866,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 2',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 14',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
@@ -1815,7 +1911,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 1',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 9',
                         },
                         {
                             displayName: 'Report heading',
@@ -1854,7 +1950,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 10',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 20',
                         },
                         {
                             displayName: 'Review status',
@@ -1937,7 +2033,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: e06803e2267e42f58ff7b6a095315ddf',
+                    description: 'The ID of the assessment section. Example: 44f5764cbc2c4f83943a3232372a1f24',
                 },
                 {
                     displayName: 'Body',
@@ -2009,7 +2105,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: f49a403c9539442680328aab1b6249ce',
+                    description: 'The ID of the assessment section comment. Example: fe8f3cf0aa944f80962e7bd2c210c636',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2085,7 +2181,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: c9c6163ec4a94f3daf3ae12497b150fc',
+                    description: 'The ID of the assessment. Example: 0ca83ad130064c32b4989a02b480b641',
                 },
                 {
                     displayName: 'Task set id',
@@ -2138,7 +2234,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 3f703eb0eef74ff18b23d3022e7af973',
+                    description: 'The ID of the assessment. Example: 0a269621e3874b71a2f5f9c0dc97cbde',
                 },
                 {
                     displayName: 'Id',
@@ -2152,7 +2248,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: c31e6606672944019a98256f0c736c65',
+                    description: 'The ID of the task set. Example: 4bd83f8797524137b961455dfe40a6a2',
                 },
                 // Assessment Template - Operations
                 {
@@ -2302,6 +2398,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplate'],
+                            operation: ['listAssessmentTemplates'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplate'],
+                            operation: ['listAssessmentTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplate'],
+                            operation: ['listAssessmentTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Id',
                     name: 'id',
                     type: 'string',
@@ -2313,7 +2457,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: d9133d3b5fd04bd782b8d9b4d503d69d',
+                    description: 'The ID of the assessment template. Example: 12de300fa4ab4a9e82ce6e74f435b49e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2385,7 +2529,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: b307a5fe3e8c4acbb3c15e3f94bb576d',
+                    description: 'The ID of the assessment. Example: 40b7013750e64d95b3c7e3ddde64e4dc',
                 },
                 {
                     displayName: 'User id',
@@ -2575,7 +2719,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [3]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [7]',
                         },
                         {
                             displayName: 'Expires on',
@@ -2585,7 +2729,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-20',
                         },
                     ],
                 },
@@ -2604,7 +2748,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a',
+                    description: 'The ID of the assessment. Example: c7db707e430a45fba72c1e81dc154612',
                 },
                 {
                     displayName: 'Id',
@@ -2622,7 +2766,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131',
+                    description: 'The ID of the user. Example: 6f46f32d6a6e49ffbf08ea0621d5d43e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2788,7 +2932,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [20]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [13]',
                         },
                         {
                             displayName: 'Expires on',
@@ -2798,7 +2942,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-13',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-20',
                         },
                     ],
                 },
@@ -2817,7 +2961,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 9a49175a77524d3c84f1f61020a78f3a',
+                    description: 'The ID of the assessment. Example: c7db707e430a45fba72c1e81dc154612',
                 },
                 {
                     displayName: 'Id',
@@ -2835,7 +2979,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: fccbe9a007c64fdfb2726021a112a131',
+                    description: 'The ID of the user. Example: 6f46f32d6a6e49ffbf08ea0621d5d43e',
                 },
                 // Client - Operations
                 {
@@ -3009,6 +3153,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['listClients'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['listClients'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['client'],
+                            operation: ['listClients'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Name',
                     name: 'name',
                     type: 'string',
@@ -3146,7 +3338,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4',
+                    description: 'The ID of the client. Example: d3b90c6c8d184fa08bb2b66abb43c3a4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3185,7 +3377,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 7f3007d33b434e8e88766249ee2f00e4',
+                    description: 'The ID of the client. Example: d3b90c6c8d184fa08bb2b66abb43c3a4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3311,7 +3503,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 1712327bede34b3cb084016e2f9ecaa7',
+                    description: 'The ID of the client. Example: f30ab11d910a488f837c35777da8d2e5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3394,7 +3586,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 6be49fb4c72741ad8a22e51a9ce80e09',
+                    description: 'The ID of the client. Example: 10f270cc3648411487adf2b67f5d5048',
                 },
                 {
                     displayName: 'User id',
@@ -3411,7 +3603,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 5dacbf0c35b847cab4f7f0e0496ef164',
+                    description: 'The ID of the user. Example: 426b5019fa674c3dabeaeea9ca80ba85',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3593,6 +3785,54 @@ class Reporter {
                         },
                     ],
                 },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['customField'],
+                            operation: ['listCustomFields'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['customField'],
+                            operation: ['listCustomFields'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['customField'],
+                            operation: ['listCustomFields'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
                 // Document - Operations
                 {
                     displayName: 'Operation',
@@ -3632,7 +3872,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: 03a17f88f8e84f88b78056ce44ddc9f1',
+                    description: 'The ID of the document. Example: 35025a9c247146b7aed255b264e99f3a',
                 },
                 {
                     displayName: 'Documentable type',
@@ -3984,6 +4224,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['finding'],
+                            operation: ['listFindings'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['finding'],
+                            operation: ['listFindings'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['finding'],
+                            operation: ['listFindings'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Assessment id',
                     name: 'assessment_id',
                     type: 'options',
@@ -3998,7 +4286,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e00344b3570f4a83a7a8953b4707fa3b',
+                    description: 'The ID of the assessment. Example: 0e5c67029f444e0f8452ffef252f4207',
                 },
                 {
                     displayName: 'Title',
@@ -4158,7 +4446,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 3',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 2',
                         },
                         {
                             displayName: 'Draft documents',
@@ -4421,7 +4709,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108',
+                    description: 'The ID of the finding. Example: 5c8ed7d0620b4224a7888858677711ca',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4460,7 +4748,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 84b99a70ec04483ca27399482e27c108',
+                    description: 'The ID of the finding. Example: 5c8ed7d0620b4224a7888858677711ca',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4537,7 +4825,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 4',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 10',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -4585,7 +4873,7 @@ class Reporter {
                             name: 'is_published',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the finding is published. Example: false',
+                            description: 'Whether the finding is published. Example: true',
                         },
                         {
                             displayName: 'Severity metrics',
@@ -4858,7 +5146,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 7bfa733ed9334b4b9d9c20c4e172fa52',
+                    description: 'The ID of the assessment. Example: 49b62070ec234bc89480b081fc84635d',
                 },
                 {
                     displayName: 'Finding template id',
@@ -5174,6 +5462,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['listFindingEvents'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['listFindingEvents'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['listFindingEvents'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Finding id',
                     name: 'finding_id',
                     type: 'options',
@@ -5188,7 +5524,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: ec73fbcbf49442879f25cf1bc457e4de',
+                    description: 'The ID of the finding. Example: 8d2839d03a5743e89cc031d01857f165',
                 },
                 {
                     displayName: 'Body',
@@ -5257,7 +5593,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: f2fa7fbc509b4294a066cd8f80345b05',
+                    description: 'The ID of the finding comment. Example: 622a89a5ae4e444b953ecccf1de8f070',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5306,7 +5642,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 6f2d00dadd8948f6a0ada1f803f2bb96',
+                    description: 'The ID of the finding. Example: 22b0e63653e046f5baf6826046991e24',
                 },
                 {
                     displayName: 'Status',
@@ -5493,7 +5829,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 41a91c36670d49d9b0faf6996d8a5acd',
+                    description: 'The ID of the finding retest. Example: 944d05447d7b4c69837632dd4861a627',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5679,7 +6015,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 9b6e0e25ebc64540b3d725dbc99d567e',
+                    description: 'The ID of the finding. Example: bff4f5c4678a4472993686e1e5f740d5',
                 },
                 {
                     displayName: 'Body',
@@ -5741,7 +6077,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 783e749c94dd4535951aba98164e4d6d',
+                    description: 'The ID of the finding retest inquiry. Example: a0d39a102a2d4764a216fbcb7f37dccc',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5784,7 +6120,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: b1725ba5b78c4a22ba34023b500374b9',
+                    description: 'The ID of the finding retest inquiry. Example: 8b13e37e538a41b79226184d2116e42d',
                 },
                 {
                     displayName: 'Body',
@@ -5846,7 +6182,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: 49b11f71a1874c77bccd32ac9fd3eaac',
+                    description: 'The ID of the finding retest cancelled event. Example: 0b8155b209374a21b2e8bfe7cbe454d0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5941,6 +6277,54 @@ class Reporter {
                             ],
                         },
                     ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingLayout'],
+                            operation: ['listFindingLayouts'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingLayout'],
+                            operation: ['listFindingLayouts'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingLayout'],
+                            operation: ['listFindingLayouts'],
+                            fetchAllPages: [false],
+                        },
+                    },
                 },
                 // Finding Template - Operations
                 {
@@ -6264,6 +6648,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingTemplate'],
+                            operation: ['listFindingTemplates'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingTemplate'],
+                            operation: ['listFindingTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['findingTemplate'],
+                            operation: ['listFindingTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Title',
                     name: 'title',
                     type: 'string',
@@ -6377,7 +6809,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 16',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 9',
                         },
                         {
                             displayName: 'Classifications',
@@ -6705,7 +7137,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 19',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 20',
                         },
                         {
                             displayName: 'Classifications',
@@ -7033,6 +7465,54 @@ class Reporter {
                         },
                     ],
                 },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['language'],
+                            operation: ['listLanguages'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['language'],
+                            operation: ['listLanguages'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['language'],
+                            operation: ['listLanguages'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
                 // Output File - Operations
                 {
                     displayName: 'Operation',
@@ -7075,7 +7555,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: c94d995f28164ba7af29432ebb926b17',
+                    description: 'The ID of the assessment. Example: 754eaecf9016403d94dcecf0b16a57d4',
                 },
                 {
                     displayName: 'Name',
@@ -8134,7 +8614,7 @@ class Reporter {
                         },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: corporis',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: voluptatem',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8263,6 +8743,54 @@ class Reporter {
                             description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
                         },
                     ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['outputFile'],
+                            operation: ['listOutputFiles'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['outputFile'],
+                            operation: ['listOutputFiles'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['outputFile'],
+                            operation: ['listOutputFiles'],
+                            fetchAllPages: [false],
+                        },
+                    },
                 },
                 // Reaction - Operations
                 {
@@ -8470,6 +8998,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listGlobalRoles'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listGlobalRoles'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listGlobalRoles'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Additional Fields',
                     name: 'additionalFields',
                     type: 'collection',
@@ -8577,6 +9153,54 @@ class Reporter {
                             ],
                         },
                     ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listAssessmentRoles'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listAssessmentRoles'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['role'],
+                            operation: ['listAssessmentRoles'],
+                            fetchAllPages: [false],
+                        },
+                    },
                 },
                 // Target - Operations
                 {
@@ -8730,6 +9354,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['target'],
+                            operation: ['listTargets'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['target'],
+                            operation: ['listTargets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['target'],
+                            operation: ['listTargets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Assessment id',
                     name: 'assessment_id',
                     type: 'options',
@@ -8744,7 +9416,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: b318208aaf164daaa7ae021d7d7f761d',
+                    description: 'The ID of the assessment. Example: 6ab7d17b78b44d718cb873da5cc2dc32',
                 },
                 {
                     displayName: 'Target type',
@@ -8905,7 +9577,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 9',
+                    description: 'The type of target. Must be a valid target type. Example: 18',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8966,7 +9638,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 10',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 3',
                         },
                         {
                             displayName: 'Name',
@@ -9000,7 +9672,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: numquam',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: recusandae',
                         },
                         {
                             displayName: 'Credentials',
@@ -9041,7 +9713,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 5322f912fd00430d939819676fdbd46d',
+                    description: 'The ID of the target. Example: d93ae5675d894b7c829c8699abba9b96',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9080,7 +9752,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 5322f912fd00430d939819676fdbd46d',
+                    description: 'The ID of the target. Example: d93ae5675d894b7c829c8699abba9b96',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9264,7 +9936,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 3',
+                            description: 'The type of target. Must be a valid target type. Example: 15',
                         },
                         {
                             displayName: 'Business impact',
@@ -9288,7 +9960,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 2',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 5',
                         },
                         {
                             displayName: 'Name',
@@ -9322,7 +9994,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: expedita',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: aut',
                         },
                         {
                             displayName: 'Credentials',
@@ -9496,6 +10168,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['task'],
+                            operation: ['listTasks'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['task'],
+                            operation: ['listTasks'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['task'],
+                            operation: ['listTasks'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Id',
                     name: 'id',
                     type: 'options',
@@ -9510,7 +10230,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 44e3e9623f284af396d0140eb0691741',
+                    description: 'The ID of the task. Example: 33c508c4c4b541afae2ccb95403db5f1',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9549,7 +10269,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 44e3e9623f284af396d0140eb0691741',
+                    description: 'The ID of the task. Example: 33c508c4c4b541afae2ccb95403db5f1',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9611,7 +10331,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
+                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 5',
                         },
                         {
                             displayName: 'Deadline change',
@@ -9687,7 +10407,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: f079062800a444b9ac7733051580cdb0',
+                    description: 'The ID of the assessment. Example: 7d83fbf4002c443d8a8c6d08969a1d43',
                 },
                 {
                     displayName: 'Data',
@@ -9757,7 +10477,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 2',
+                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 3',
                 },
                 {
                     displayName: 'Weight',
@@ -9976,6 +10696,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['taskSet'],
+                            operation: ['listTaskSets'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['taskSet'],
+                            operation: ['listTaskSets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['taskSet'],
+                            operation: ['listTaskSets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Name',
                     name: 'name',
                     type: 'string',
@@ -10033,7 +10801,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 7',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 12',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10057,7 +10825,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 20',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 13',
                         },
                         {
                             displayName: 'Tasks',
@@ -10160,7 +10928,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7',
+                    description: 'The ID of the task set. Example: 12a1c91353bf47b6a1fb306b5475e2d7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10200,7 +10968,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: dcec64f8f58f442c97206ca164d07de7',
+                    description: 'The ID of the task set. Example: 12a1c91353bf47b6a1fb306b5475e2d7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10262,7 +11030,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 17',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 3',
                         },
                         {
                             displayName: 'Tasks',
@@ -10391,7 +11159,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 7f10657679fe4d76a6c8df31feff587e',
+                    description: 'The ID of the client. Example: 1c31e7dd56184933a8ce90885e4096d3',
                 },
                 {
                     displayName: 'Name',
@@ -10486,7 +11254,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the team. Example: b05aaa16765040ffa3ce618402b1dccf',
+                    description: 'The ID of the team. Example: 9f0c4e01920b470686530d0d1f3c9f79',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10590,7 +11358,7 @@ class Reporter {
                         loadOptionsDependsOn: ['user_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 71fc3cda7cc0400bb5f4159ceb154d1f',
+                    description: 'The ID of the team. Example: 9ee41c95f435420e83732b6e99127850',
                 },
                 {
                     displayName: 'User id',
@@ -10683,7 +11451,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-20',
                         },
                         {
                             displayName: 'Read only',
@@ -10710,7 +11478,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: e138262080c94b358a1d353d416a6dc2',
+                    description: 'The ID of the team. Example: 0a1c6c332b834946b458c3f3ed8a8c38',
                 },
                 {
                     displayName: 'Id',
@@ -10724,7 +11492,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8',
+                    description: 'The ID of the user. Example: f01bfe1ddef44ac8894975ae9d08a540',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10793,7 +11561,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-13',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-20',
                         },
                         {
                             displayName: 'Read only',
@@ -10820,7 +11588,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: e138262080c94b358a1d353d416a6dc2',
+                    description: 'The ID of the team. Example: 0a1c6c332b834946b458c3f3ed8a8c38',
                 },
                 {
                     displayName: 'Id',
@@ -10834,7 +11602,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: ac6f1307edaf4f819c44a28bcb9059c8',
+                    description: 'The ID of the user. Example: f01bfe1ddef44ac8894975ae9d08a540',
                 },
                 // Test Case - Operations
                 {
@@ -10998,6 +11766,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCase'],
+                            operation: ['listTestCases'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCase'],
+                            operation: ['listTestCases'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCase'],
+                            operation: ['listTestCases'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Id',
                     name: 'id',
                     type: 'options',
@@ -11013,7 +11829,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2',
+                    description: 'The ID of the test case. Example: 89a3c6a71a7e4636845ea0e076738617',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11053,7 +11869,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 9e9725f0f1b245228b8e5cda9f5917c2',
+                    description: 'The ID of the test case. Example: 89a3c6a71a7e4636845ea0e076738617',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11198,6 +12014,54 @@ class Reporter {
                             ],
                         },
                     ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['theme'],
+                            operation: ['listThemes'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['theme'],
+                            operation: ['listThemes'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['theme'],
+                            operation: ['listThemes'],
+                            fetchAllPages: [false],
+                        },
+                    },
                 },
                 // Tool Finding - Operations
                 {
@@ -11365,6 +12229,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['listToolFindings'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['listToolFindings'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolFinding'],
+                            operation: ['listToolFindings'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Id',
                     name: 'id',
                     type: 'options',
@@ -11380,7 +12292,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4',
+                    description: 'The ID of the tool finding. Example: fcf49f59e5c44da88f004e803c0edea7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11420,7 +12332,7 @@ class Reporter {
                         loadOptionsDependsOn: ['finding_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: b78c361872be478f95ea64d344e942d4',
+                    description: 'The ID of the tool finding. Example: fcf49f59e5c44da88f004e803c0edea7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11621,6 +12533,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['listToolTargets'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['listToolTargets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['toolTarget'],
+                            operation: ['listToolTargets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'Id',
                     name: 'id',
                     type: 'string',
@@ -11632,7 +12592,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the tool target. Example: 7eb0126d9abc4c40bfa9cc0b2d8cf4a0',
+                    description: 'The ID of the tool target. Example: cb03bacd31774f63ab1556a55f43aaba',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11863,6 +12823,54 @@ class Reporter {
                     ],
                 },
                 {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['user'],
+                            operation: ['listUsers'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['user'],
+                            operation: ['listUsers'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['user'],
+                            operation: ['listUsers'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
                     displayName: 'First name',
                     name: 'first_name',
                     type: 'string',
@@ -11964,7 +12972,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: pnsxyzgddkkhfrzusytyckudm',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: zuzmeezkcbrwft',
                         },
                         {
                             displayName: 'Clients',
@@ -12046,7 +13054,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e',
+                    description: 'The ID of the user. Example: 21961b23d52a43b9897f0a8593284868',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12085,7 +13093,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: fa91b83e921c4cc09bdda4573b79d82e',
+                    description: 'The ID of the user. Example: 21961b23d52a43b9897f0a8593284868',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12152,7 +13160,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'The user account status. Must be a valid user status. Example: 10',
+                            description: 'The user account status. Must be a valid user status. Example: 16',
                         },
                         {
                             displayName: 'Phone',
@@ -12190,7 +13198,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: aveppbbdfaaca',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: nxnawtqzbecnxomzjghku',
                         },
                     ],
                 },
@@ -15345,17 +16353,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'assessment') {
@@ -15412,17 +16457,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAnAssessment') {
                         // Create an assessment
@@ -16117,17 +17199,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'retrieveAnAssessmentTemplate') {
                         // Retrieve an assessment template
@@ -16339,17 +17458,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAClient') {
                         // Create a client
@@ -16710,17 +17866,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'document') {
@@ -16866,17 +18059,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAFinding') {
                         // Create a finding
@@ -17203,17 +18433,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAFindingComment') {
                         // Create a finding comment
@@ -17634,17 +18901,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'findingTemplate') {
@@ -17755,17 +19059,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAFindingTemplate') {
                         // Create a finding template
@@ -18033,17 +19374,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'outputFile') {
@@ -18147,17 +19525,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'reaction') {
@@ -18247,17 +19662,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'listAssessmentRoles') {
                         // List assessment roles
@@ -18312,17 +19764,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'target') {
@@ -18379,17 +19868,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createATarget') {
                         // Create a target
@@ -18601,17 +20127,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'retrieveATask') {
                         // Retrieve a task
@@ -18803,17 +20366,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createATaskSet') {
                         // Create a task set
@@ -19183,17 +20783,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'retrieveATestCase') {
                         // Retrieve a test case
@@ -19345,17 +20982,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                 }
                 if (resource === 'toolFinding') {
@@ -19412,17 +21086,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'retrieveAToolFinding') {
                         // Retrieve a tool finding
@@ -19574,17 +21285,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'updateAToolTarget') {
                         // Update a tool target
@@ -19734,17 +21482,54 @@ class Reporter {
                                 }
                             }
                         }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            qs,
-                            json: true,
-                        });
-                        responseData = response;
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
                     }
                     if (operation === 'createAUser') {
                         // Create a user

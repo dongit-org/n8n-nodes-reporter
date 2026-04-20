@@ -128,7 +128,7 @@ Poll Reporter for new items at regular intervals:
 
 ## Compatibility
 
-- Tested with n8n version 1.0.0 and above
+- Requires n8n version 2.0.0 and above
 - Requires Security Reporter API v1
 
 ## Resources
