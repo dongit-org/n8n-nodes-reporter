@@ -51,6 +51,26 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing assessment is updated',
                         },
                         {
+                            name: 'New Assessment Section',
+                            value: 'assessmentSection_created',
+                            description: 'Triggers when a new assessment section is created',
+                        },
+                        {
+                            name: 'Updated Assessment Section',
+                            value: 'assessmentSection_updated',
+                            description: 'Triggers when an existing assessment section is updated',
+                        },
+                        {
+                            name: 'New Assessment Section Template',
+                            value: 'assessmentSectionTemplate_created',
+                            description: 'Triggers when a new assessment section template is created',
+                        },
+                        {
+                            name: 'Updated Assessment Section Template',
+                            value: 'assessmentSectionTemplate_updated',
+                            description: 'Triggers when an existing assessment section template is updated',
+                        },
+                        {
                             name: 'New Assessment Template',
                             value: 'assessmentTemplate_created',
                             description: 'Triggers when a new assessment template is created',
@@ -280,6 +300,26 @@ class ReporterPollingTrigger {
             },
             'assessment_updated': {
                 apiPath: '/api/v1/assessments',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'assessmentSection_created': {
+                apiPath: '/api/v1/assessment-sections',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'assessmentSection_updated': {
+                apiPath: '/api/v1/assessment-sections',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'assessmentSectionTemplate_created': {
+                apiPath: '/api/v1/assessment-section-templates',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'assessmentSectionTemplate_updated': {
+                apiPath: '/api/v1/assessment-section-templates',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },

@@ -28,7 +28,7 @@
         "lint": "eslint --ext .ts nodes credentials",
         "lintfix": "eslint --ext .ts nodes credentials --fix",
         "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials",
-        "filtered-audit": "node ../../../.dev/ci/npm-audit-filtered.mjs"
+        "filtered-audit": "node ../../../.dev/ci/npm-audit/filtered.mts"
     },
     "files": [
         "dist"
@@ -58,5 +58,5 @@
     "peerDependencies": {
         "n8n-workflow": "2.*"
     },
-    "version": "2026.04.20"
+    "version": "2026.04.30"
 }
