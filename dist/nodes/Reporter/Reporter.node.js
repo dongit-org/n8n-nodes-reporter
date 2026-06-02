@@ -35,6 +35,10 @@ class Reporter {
                             value: 'activity',
                         },
                         {
+                            name: 'API Token',
+                            value: 'aPIToken',
+                        },
+                        {
                             name: 'Assessment',
                             value: 'assessment',
                         },
@@ -362,6 +366,322 @@ class Reporter {
                         },
                     },
                 },
+                // API Token - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Retrieve current API token',
+                            value: 'retrieveCurrentAPIToken',
+                            action: 'Retrieve current API token',
+                            description: 'Retrieve details of the API token used to authenticate the current request. No token permissions are required for this request. Object information.',
+                        },
+                        {
+                            name: 'List API tokens',
+                            value: 'listAPITokens',
+                            action: 'List API tokens',
+                            description: 'Retrieve a list of API tokens for the authenticated user. Object information.',
+                        },
+                        {
+                            name: 'Create an API token',
+                            value: 'createAnAPIToken',
+                            action: 'Create an API token',
+                            description: 'Create a new API token. The created token\'s abilities must be a subset of the creating token\'s abilities and cannot include `api_token:read` or `api_token:write`. The expiration date must be before...',
+                        },
+                    ],
+                    default: 'retrieveCurrentAPIToken',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['retrieveCurrentAPIToken'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['listAPITokens'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Last used at',
+                                                    value: 'last_used_at',
+                                                },
+                                                {
+                                                    name: 'Expires at',
+                                                    value: 'expires_at',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['listAPITokens'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['listAPITokens'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['listAPITokens'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Name',
+                    name: 'name',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['createAnAPIToken'],
+                        },
+                    },
+                    default: '',
+                    description: 'The name for the new API token. Must not be greater than 191 characters. Example: Client Dashboard Token',
+                },
+                {
+                    displayName: 'Abilities',
+                    name: 'abilities',
+                    type: 'fixedCollection',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['createAnAPIToken'],
+                        },
+                    },
+                    options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "A token ability string. Must be a subset of the creating token's abilities. Cannot include `api_token:read` or `api_token:write`. Example: [\"client:read\"]" }] }],
+                    typeOptions: {
+                        multipleValues: true,
+                    },
+                    default: [],
+                    description: 'A token ability string. Must be a subset of the creating token\'s abilities. Cannot include `api_token:read` or `api_token:write`. Example: ["client:read"]',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['aPIToken'],
+                            operation: ['createAnAPIToken'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Expires at',
+                            name: 'expires_at',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The expiration date of the token in ISO 8601 format. Must be before or equal to the creating token\'s expiration date. Must be a valid date. Must be a date after now. Example: 2026-06-01T00:00:00Z',
+                        },
+                        {
+                            displayName: 'Scope',
+                            name: 'scope',
+                            type: 'number',
+                            default: '',
+                            description: 'The scope for the new token. `0` (default) grants access to all clients and assessments the user has access to. `1` restricts the token to the clients listed in `clients`. `2` restricts the token t...',
+                        },
+                        {
+                            displayName: 'Clients',
+                            name: 'clients',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadClients',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'A client id. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                        },
+                        {
+                            displayName: 'Assessments',
+                            name: 'assessments',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadAssessments',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'An assessment id. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                        },
+                        {
+                            displayName: 'User id',
+                            name: 'user_id',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadUsers',
+                            },
+                            default: undefined,
+                            description: 'The user to create the token for. If not provided, the token is created for the authenticated user. Only admins can create tokens for other users. The id of an existing record in the users table. E...',
+                        },
+                    ],
+                },
                 // Assessment - Operations
                 {
                     displayName: 'Operation',
@@ -604,7 +924,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 5a23ba01080545fd822ddb7759181e9b',
+                    description: 'The ID of the client. Example: d6da420883c04549a24b5ae7e967cf77',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -803,7 +1123,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: f3c4ce53b8cd4aa2affce43144712601',
+                    description: 'The ID of the assessment. Example: 44591cbe8ff948b2975c21f67f9c1f84',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -842,7 +1162,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: f3c4ce53b8cd4aa2affce43144712601',
+                    description: 'The ID of the assessment. Example: 44591cbe8ff948b2975c21f67f9c1f84',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -988,7 +1308,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 6',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 3',
                         },
                         {
                             displayName: 'On hold',
@@ -1019,7 +1339,7 @@ class Reporter {
                                 },
                             ],
                             default: 'CWE',
-                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["excepturi"]',
+                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["voluptatum"]',
                         },
                         {
                             displayName: 'Scoring system',
@@ -1299,7 +1619,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 12',
+                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 16',
                         },
                         {
                             displayName: 'Restrict findings to resolvers',
@@ -1413,7 +1733,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: acaf0e78829c4bb3b667dd4e9d2cb70f',
+                    description: 'The ID of the assessment. Example: 14af1755368748939bc6c987534cb6df',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1455,7 +1775,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: acb7ccd7597f472b94c2dd4eaa336327',
+                    description: 'The ID of the assessment. Example: 5eba11ec79ce4bf792ff50ca9611c473',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1524,7 +1844,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 5dc68600188440aab3368a8fd0f9cb8f',
+                    description: 'The ID of the assessment. Example: 450be5bbb4104d0db8ceb1d17d8ab90d',
                 },
                 {
                     displayName: 'Body',
@@ -1593,7 +1913,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: 2a61c56e65d34267a1453d9841e2ada2',
+                    description: 'The ID of the assessment comment. Example: 5c5ba25c716444cfa6614cf1640d106a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1664,7 +1984,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: 3d9b9164af2e4fc48cdaf5c27881964e',
+                    description: 'The ID of the assessment phase. Example: 2eb948f64d3e4eb1b1acc2775ed154ef',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1987,7 +2307,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 3c465e154bd045d3b0d14d6b72304bf8',
+                    description: 'The ID of the assessment section. Example: f7e3275e54e34cd4ad8491649de992ab',
                 },
                 {
                     displayName: 'Id',
@@ -2005,7 +2325,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 3c465e154bd045d3b0d14d6b72304bf8',
+                    description: 'The ID of the assessment section. Example: f7e3275e54e34cd4ad8491649de992ab',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2076,7 +2396,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 18',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 7',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
@@ -2121,7 +2441,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 20',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 5',
                         },
                         {
                             displayName: 'Report heading',
@@ -2160,7 +2480,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 4',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 8',
                         },
                         {
                             displayName: 'Review status',
@@ -2189,7 +2509,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 14',
+                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 8',
                         },
                         {
                             displayName: 'Is published',
@@ -2215,7 +2535,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d60a31d8e8c84425af041fb383a0c8f0',
+                    description: 'The ID of the assessment. Example: 2b0492bdc8fb47e6abc5cdcd595f600a',
                 },
                 {
                     displayName: 'Name',
@@ -2400,7 +2720,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 13',
+                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 19',
                 },
                 {
                     displayName: 'Is published',
@@ -2554,7 +2874,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 0ee726b021b84c8290855f58a774a23d',
+                    description: 'The ID of the assessment section. Example: 3632eecd0a7f4258ad953a8c01a95f9b',
                 },
                 {
                     displayName: 'Body',
@@ -2626,7 +2946,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: 56fa1ee51c014cf09b0a562b4cb03025',
+                    description: 'The ID of the assessment section comment. Example: 8fb377ff619a441994cec28575339ed9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2871,7 +3191,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 4919614c5a924ad6821f2dd3249b69a5',
+                    description: 'The ID of the assessment section template. Example: 0a63d7b588154b9f8c34154a6f6dec3d',
                 },
                 {
                     displayName: 'Id',
@@ -2885,7 +3205,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 4919614c5a924ad6821f2dd3249b69a5',
+                    description: 'The ID of the assessment section template. Example: 0a63d7b588154b9f8c34154a6f6dec3d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2918,7 +3238,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The contents of the section template (markdown). Example: Perspiciatis totam adipisci inventore cumque velit dolorum.',
+                            description: 'The contents of the section template (markdown). Example: Id explicabo cum velit quas fugit laudantium voluptatem.',
                         },
                         {
                             displayName: 'Can have findings',
@@ -3102,7 +3422,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: bb5a13366f354985b0ff6d6a49d3b765',
+                    description: 'The ID of the assessment template. Example: b28d9a439e504ccb9ad4208a7221dd6d',
                 },
                 {
                     displayName: 'Name',
@@ -3355,7 +3675,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The contents of the section template (markdown). Example: Quis illum qui mollitia ea cupiditate laborum neque.',
+                            description: 'The contents of the section template (markdown). Example: Labore laboriosam fugiat facilis perspiciatis voluptatem quisquam aut.',
                         },
                         {
                             displayName: 'Report heading',
@@ -3440,7 +3760,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 561428a998a14609a3870d1be6c172e0',
+                    description: 'The ID of the assessment. Example: 4222ead790524389a7e2ef013dda8749',
                 },
                 {
                     displayName: 'Task set id',
@@ -3493,7 +3813,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 5702ea6fc26d4f7b9df89121fd882329',
+                    description: 'The ID of the assessment. Example: 7b7863444d744828a22db460cfe8af4f',
                 },
                 {
                     displayName: 'Id',
@@ -3507,7 +3827,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: 416d2094ebac45e5b0fd42daee60aca5',
+                    description: 'The ID of the task set. Example: b2fbeeeb6f1b428ab5bc9b0d63dcae6c',
                 },
                 // Assessment Template - Operations
                 {
@@ -3782,7 +4102,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 8d30abb88ed74c329f166fd547d89ada',
+                    description: 'The ID of the assessment template. Example: 178fffd6208a49c2ad5768da042dcf3e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3818,7 +4138,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 8d30abb88ed74c329f166fd547d89ada',
+                    description: 'The ID of the assessment template. Example: 178fffd6208a49c2ad5768da042dcf3e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3878,7 +4198,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: b5d29da14f734e4f958ea1fb7ebf4ea6',
+                    description: 'The ID of the assessment template. Example: 1c3e7c844241488c97c9a4501c078a21',
                 },
                 {
                     displayName: 'Language id',
@@ -3931,7 +4251,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 19dbb874d47f4f4dbe30b1e6201172f8',
+                    description: 'The ID of the assessment template. Example: 3b06b09c7c5440379503fd6384a52e19',
                 },
                 {
                     displayName: 'Language id',
@@ -3995,7 +4315,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d60af49e38ac4b6cbe5ff8ca616648db',
+                    description: 'The ID of the assessment. Example: ab97449911f449a680f704e1861a763a',
                 },
                 {
                     displayName: 'User id',
@@ -4185,7 +4505,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [9]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [5]',
                         },
                         {
                             displayName: 'Expires on',
@@ -4195,7 +4515,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-30',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-06-02',
                         },
                     ],
                 },
@@ -4214,7 +4534,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 6a63cf04def34cb1822650db5e8b536f',
+                    description: 'The ID of the assessment. Example: f94811a529bf4c448850e19ec21ed591',
                 },
                 {
                     displayName: 'Id',
@@ -4232,7 +4552,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 00f7285e61164770a22d331fcf4f5a3b',
+                    description: 'The ID of the user. Example: 9e4287ce0b8e4dbabbc14161b15a7cb8',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4398,7 +4718,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [9]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [18]',
                         },
                         {
                             displayName: 'Expires on',
@@ -4408,7 +4728,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-04-30',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-06-02',
                         },
                     ],
                 },
@@ -4427,7 +4747,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 6a63cf04def34cb1822650db5e8b536f',
+                    description: 'The ID of the assessment. Example: f94811a529bf4c448850e19ec21ed591',
                 },
                 {
                     displayName: 'Id',
@@ -4445,7 +4765,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 00f7285e61164770a22d331fcf4f5a3b',
+                    description: 'The ID of the user. Example: 9e4287ce0b8e4dbabbc14161b15a7cb8',
                 },
                 // Client - Operations
                 {
@@ -4804,7 +5124,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: eec5529f3aff43cfa767fa46c50a25a0',
+                    description: 'The ID of the client. Example: 8ab23f763d9f40c9844e51e59e64fe19',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4843,7 +5163,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: eec5529f3aff43cfa767fa46c50a25a0',
+                    description: 'The ID of the client. Example: 8ab23f763d9f40c9844e51e59e64fe19',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4969,7 +5289,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 6ea6640fb7f043afbe5fa4c8b0fc8a90',
+                    description: 'The ID of the client. Example: 842b80e78a224b35a384b322fd2c7b75',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5052,7 +5372,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 50c0d11d3da4425f8651882a3172f925',
+                    description: 'The ID of the client. Example: 096e53fb256c4213b48a89d917811c46',
                 },
                 {
                     displayName: 'User id',
@@ -5069,7 +5389,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 38706c495878489eb2c84766f00d7293',
+                    description: 'The ID of the user. Example: 3ad65052cb8040b3808763208e5bc02a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5338,7 +5658,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: d83f88c67d704a309bd5d4cf22d63fcf',
+                    description: 'The ID of the document. Example: 271f943ebb7f4b2a8dfee357b8260483',
                 },
                 {
                     displayName: 'Documentable type',
@@ -5762,7 +6082,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: eec678e262d44182ab6d0a03feebe0d4',
+                    description: 'The ID of the assessment. Example: 61232337ef874ae395c7231e9cdd1012',
                 },
                 {
                     displayName: 'Title',
@@ -5844,7 +6164,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the finding. Must be a valid review status. Example: 5',
+                    description: 'The current review status of the finding. Must be a valid review status. Example: 3',
                 },
                 {
                     displayName: 'Is published',
@@ -5858,7 +6178,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'Whether the finding is published. Example: true',
+                    description: 'Whether the finding is published. Example: false',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5937,7 +6257,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 7',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 0',
                         },
                         {
                             displayName: 'Draft documents',
@@ -6008,7 +6328,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 6',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 14',
                         },
                         {
                             displayName: 'Priority',
@@ -6239,7 +6559,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: ec150319d4754d3d861639859e9ffd10',
+                    description: 'The ID of the finding. Example: c7ac2bd0177b4253a935d164ad3fd45f',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6278,7 +6598,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: ec150319d4754d3d861639859e9ffd10',
+                    description: 'The ID of the finding. Example: c7ac2bd0177b4253a935d164ad3fd45f',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6350,7 +6670,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 10',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 7',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -6401,7 +6721,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the finding. Must be a valid review status. Example: 1',
+                            description: 'The current review status of the finding. Must be a valid review status. Example: 20',
                         },
                         {
                             displayName: 'Is published',
@@ -6489,7 +6809,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 7',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 5',
                         },
                         {
                             displayName: 'Priority',
@@ -6720,7 +7040,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 3292ffc8e4b6447293be47ee1daec5b8',
+                    description: 'The ID of the assessment. Example: 14fbdce91727473b8447b95097de2267',
                 },
                 {
                     displayName: 'Finding template id',
@@ -7098,7 +7418,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: b42e84a812214c4d9f1e7e166f7e8b9c',
+                    description: 'The ID of the finding. Example: f8b3ee43e32f4dd9ac3ef36b6495c8fc',
                 },
                 {
                     displayName: 'Body',
@@ -7167,7 +7487,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: c9d2e62f8c264fef84f35e49a45b00fb',
+                    description: 'The ID of the finding comment. Example: fcf7da796d254be8bedc01fbec4b36d3',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7216,7 +7536,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 094f8d2154014a27a777409834e4f223',
+                    description: 'The ID of the finding. Example: 438d02513b424074876bfc2f8d132b79',
                 },
                 {
                     displayName: 'Status',
@@ -7403,7 +7723,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 98687e130f044a6fb66c6ef3fe0617c8',
+                    description: 'The ID of the finding retest. Example: c70fcdb93d7d4029b378101899bf0789',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7589,7 +7909,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 495721001f584b35a3112d8a50cef552',
+                    description: 'The ID of the finding. Example: 2f19e5a56b7348879d7ef604ca21ccbc',
                 },
                 {
                     displayName: 'Body',
@@ -7651,7 +7971,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 40eaa0fb89cc4dbeafd7857ea5e3394f',
+                    description: 'The ID of the finding retest inquiry. Example: b03a43349b34473ebcf765cc52214fa9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7694,7 +8014,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 110e370739cb4bcfa65d871fa5440f97',
+                    description: 'The ID of the finding retest inquiry. Example: 57a62554b95340f6bf961e624a8ea378',
                 },
                 {
                     displayName: 'Body',
@@ -7756,7 +8076,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: 50b07042462d4da09b7ec11e102aad11',
+                    description: 'The ID of the finding retest cancelled event. Example: 039d1f397e334b56b7ac77ccee24d615',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7916,7 +8236,7 @@ class Reporter {
                             name: 'Search finding templates',
                             value: 'searchFindingTemplates',
                             action: 'Search finding templates',
-                            description: 'Search for finding templates. It is not possible to include relations or filter the search. Object information. If a search term is submitted and neither "prefer_language" nor "language_id" are, th...',
+                            description: 'Search for finding templates. It is not possible to include relations. Object information. If a search term is submitted and neither "prefer_language" nor "language_id" are, this will return the te...',
                         },
                         {
                             name: 'List finding templates',
@@ -7961,127 +8281,54 @@ class Reporter {
                         {
                             displayName: 'Term',
                             name: 'term',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'The search term. Example: Cross-site scripting.',
-                        },
-                        {
-                            displayName: 'Source',
-                            name: 'source',
-                            type: 'options',
-                            options: [
-                                {
-                                    name: 'Custom',
-                                    value: 0,
-                                    description: 'Custom',
-                                },
-                                {
-                                    name: 'Burp Suite',
-                                    value: 1,
-                                    description: 'Burp Suite',
-                                },
-                                {
-                                    name: 'VulnDB',
-                                    value: 2,
-                                    description: 'VulnDB',
-                                },
-                                {
-                                    name: 'Acunetix',
-                                    value: 3,
-                                    description: 'Acunetix',
-                                },
-                                {
-                                    name: 'Reporter',
-                                    value: 4,
-                                    description: 'Reporter',
-                                },
-                            ],
-                            default: 0,
-                            description: 'Only return templates from the selected source. Must be a valid finding template source. Example: 0',
-                        },
-                        {
-                            displayName: 'Severity',
-                            name: 'severity',
-                            type: 'options',
-                            options: [
-                                {
-                                    name: 'Not Applicable',
-                                    value: 0,
-                                    description: 'Not Applicable',
-                                },
-                                {
-                                    name: 'Unknown',
-                                    value: 1,
-                                    description: 'Unknown',
-                                },
-                                {
-                                    name: 'OK',
-                                    value: 2,
-                                    description: 'OK',
-                                },
-                                {
-                                    name: 'False Positive',
-                                    value: 3,
-                                    description: 'False Positive',
-                                },
-                                {
-                                    name: 'Resolved',
-                                    value: 7,
-                                    description: 'Resolved',
-                                },
-                                {
-                                    name: 'Info',
-                                    value: 8,
-                                    description: 'Info',
-                                },
-                                {
-                                    name: 'Low',
-                                    value: 9,
-                                    description: 'Low',
-                                },
-                                {
-                                    name: 'Medium',
-                                    value: 10,
-                                    description: 'Medium',
-                                },
-                                {
-                                    name: 'High',
-                                    value: 11,
-                                    description: 'High',
-                                },
-                                {
-                                    name: 'Critical',
-                                    value: 12,
-                                    description: 'Critical',
-                                },
-                            ],
-                            default: 0,
-                            description: 'Only include templates with these severities. Must be a valid severity. Example: [11]',
-                        },
-                        {
-                            displayName: 'Tags',
-                            name: 'tags',
                             type: 'fixedCollection',
                             typeOptions: {
                                 multipleValues: true,
                             },
                             default: [],
                             placeholder: 'Add Item',
-                            description: 'Filter by tags. Example: ["XSS"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Filter by tags. Example: [\"XSS\"]" }] }],
+                            description: 'The search term. Example: Cross-site scripting.',
+                            options: [
+                                {
+                                    name: 'items',
+                                    displayName: 'Item',
+                                    values: [
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'The search term. Example: Cross-site scripting.',
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                         {
                             displayName: 'Prefer language',
                             name: 'prefer_language',
-                            type: 'string',
+                            type: 'fixedCollection',
                             typeOptions: {
-                                rows: 4,
+                                multipleValues: true,
                             },
-                            default: '',
-                            description: 'Boosts results in the selected language and translates the model into that language if available. Example: en',
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Boost ranking of templates translated into this language; prefer this language for rendering when `language_id` is not set. Example: en',
+                            options: [
+                                {
+                                    name: 'items',
+                                    displayName: 'Item',
+                                    values: [
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Boost ranking of templates translated into this language; prefer this language for rendering when `language_id` is not set. Example: en',
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                         {
                             displayName: 'Language id',
@@ -8089,9 +8336,43 @@ class Reporter {
                             type: 'options',
                             typeOptions: {
                                 loadOptionsMethod: 'loadLanguages',
+                                multipleValues: true,
                             },
                             default: undefined,
-                            description: 'Only return templates that have been translated into the selected language and return results in that language. Example: en',
+                            description: 'Restrict the search to translation fields in this language and render the response in this language. Example: en',
+                        },
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                     ],
                 },
@@ -8398,7 +8679,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 20',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 9',
                         },
                         {
                             displayName: 'Classifications',
@@ -8731,7 +9012,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 20',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 6',
                         },
                         {
                             displayName: 'Classifications',
@@ -9149,7 +9430,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: c081fc3b95074c489a8c62102ebb4a2b',
+                    description: 'The ID of the assessment. Example: 6c659415c72041bb81f37de045eafa21',
                 },
                 {
                     displayName: 'Name',
@@ -9395,6 +9676,11 @@ class Reporter {
                             name: 'Clair',
                             value: 'clair',
                             description: 'Clair',
+                        },
+                        {
+                            name: 'Cloudflare Insights',
+                            value: 'cloudflare_insights',
+                            description: 'Cloudflare Insights',
                         },
                         {
                             name: 'CloudSploit (AquaSecurity)',
@@ -9657,6 +9943,11 @@ class Reporter {
                             description: 'Invicti',
                         },
                         {
+                            name: 'IriusRisk',
+                            value: 'iriusrisk',
+                            description: 'IriusRisk',
+                        },
+                        {
                             name: 'JFrog Xray',
                             value: 'jfrogxray',
                             description: 'JFrog Xray',
@@ -9762,6 +10053,11 @@ class Reporter {
                             description: 'Mozilla Observatory',
                         },
                         {
+                            name: 'n0s1',
+                            value: 'n0s1',
+                            description: 'n0s1',
+                        },
+                        {
                             name: 'Nancy',
                             value: 'nancy',
                             description: 'Nancy',
@@ -9822,6 +10118,11 @@ class Reporter {
                             description: 'Nuclei',
                         },
                         {
+                            name: 'OpenReports',
+                            value: 'openreports',
+                            description: 'OpenReports',
+                        },
+                        {
                             name: 'OpenSCAP',
                             value: 'openscap',
                             description: 'OpenSCAP',
@@ -9830,6 +10131,11 @@ class Reporter {
                             name: 'OpenVAS',
                             value: 'openvas',
                             description: 'OpenVAS',
+                        },
+                        {
+                            name: 'Orca Security',
+                            value: 'orca_security',
+                            description: 'Orca Security',
                         },
                         {
                             name: 'OssIndex Devaudit',
@@ -9862,6 +10168,11 @@ class Reporter {
                             description: 'PHP Symfony Security Check',
                         },
                         {
+                            name: 'PingCastle',
+                            value: 'pingcastle',
+                            description: 'PingCastle',
+                        },
+                        {
                             name: 'pip-audit',
                             value: 'pip_audit',
                             description: 'pip-audit',
@@ -9880,6 +10191,11 @@ class Reporter {
                             name: 'Progpilot',
                             value: 'progpilot',
                             description: 'Progpilot',
+                        },
+                        {
+                            name: 'Prowler',
+                            value: 'prowler',
+                            description: 'Prowler',
                         },
                         {
                             name: 'PTART',
@@ -9905,6 +10221,11 @@ class Reporter {
                             name: 'Qualys InfraScan WebGUI',
                             value: 'qualys_infrascan_webgui',
                             description: 'Qualys InfraScan WebGUI',
+                        },
+                        {
+                            name: 'Qualys VMDR',
+                            value: 'qualys_vmdr',
+                            description: 'Qualys VMDR',
                         },
                         {
                             name: 'Qualys Web App',
@@ -10206,9 +10527,14 @@ class Reporter {
                             value: 'zap',
                             description: 'Zed Attack Proxy',
                         },
+                        {
+                            name: 'Zora',
+                            value: 'zora',
+                            description: 'Zora',
+                        },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: autem',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: sed',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11010,7 +11336,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e71cbc6ea9974435a238aa1237e2ae6f',
+                    description: 'The ID of the assessment. Example: 79e47abecbb34a19ac634030e0cf8bd8',
                 },
                 {
                     displayName: 'Target type',
@@ -11171,7 +11497,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 20',
+                    description: 'The type of target. Must be a valid target type. Example: 12',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11232,7 +11558,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 14',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 1',
                         },
                         {
                             displayName: 'Name',
@@ -11266,7 +11592,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: ea',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: doloribus',
                         },
                         {
                             displayName: 'Credentials',
@@ -11307,7 +11633,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: a3600ef40b5a440f812267825924f137',
+                    description: 'The ID of the target. Example: 1733c732b9654bb785bc98cf8b6b504d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11346,7 +11672,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: a3600ef40b5a440f812267825924f137',
+                    description: 'The ID of the target. Example: 1733c732b9654bb785bc98cf8b6b504d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11530,7 +11856,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 15',
+                            description: 'The type of target. Must be a valid target type. Example: 1',
                         },
                         {
                             displayName: 'Business impact',
@@ -11554,7 +11880,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 4',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 12',
                         },
                         {
                             displayName: 'Name',
@@ -11588,7 +11914,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: id',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: et',
                         },
                         {
                             displayName: 'Credentials',
@@ -11824,7 +12150,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: f0dd00734c434cd6a40bda57e35f5b87',
+                    description: 'The ID of the task. Example: 3a34caf4e72a433fb6434a33fd16de43',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11863,7 +12189,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: f0dd00734c434cd6a40bda57e35f5b87',
+                    description: 'The ID of the task. Example: 3a34caf4e72a433fb6434a33fd16de43',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11925,7 +12251,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 0',
+                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 3',
                         },
                         {
                             displayName: 'Deadline change',
@@ -12001,7 +12327,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 5ee2bfd4bd7a49659351ce199deeb004',
+                    description: 'The ID of the assessment. Example: 5070a2153cfc4b01b61386725309abf7',
                 },
                 {
                     displayName: 'Data',
@@ -12071,7 +12397,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
+                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 0',
                 },
                 {
                     displayName: 'Weight',
@@ -12395,7 +12721,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 17',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 2',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12419,7 +12745,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 18',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 22',
                         },
                         {
                             displayName: 'Tasks',
@@ -12522,7 +12848,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 0777e5b75f544b0d8a2a84fc85a7b20b',
+                    description: 'The ID of the task set. Example: 9c7b497e91be4dd4b70175d73f0c9e0e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12562,7 +12888,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 0777e5b75f544b0d8a2a84fc85a7b20b',
+                    description: 'The ID of the task set. Example: 9c7b497e91be4dd4b70175d73f0c9e0e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12624,7 +12950,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 20',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 4',
                         },
                         {
                             displayName: 'Tasks',
@@ -12753,7 +13079,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: a3a2469fb5d742778bde4d0ad045ef68',
+                    description: 'The ID of the client. Example: b19119e3099841cea2a0f054cb54dc02',
                 },
                 {
                     displayName: 'Name',
@@ -12848,7 +13174,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the team. Example: 50ae90f6da4a4ad8b4ff74b7044560de',
+                    description: 'The ID of the team. Example: a1a4f3e33ba0480689f18c2bd150cbbb',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12952,7 +13278,7 @@ class Reporter {
                         loadOptionsDependsOn: ['user_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: e164f60bc9c946ea9ecdb91e66a9e3b6',
+                    description: 'The ID of the team. Example: e28d720eb8eb4a0c809484d3e850d4f6',
                 },
                 {
                     displayName: 'User id',
@@ -13045,7 +13371,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-30',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-06-02',
                         },
                         {
                             displayName: 'Read only',
@@ -13072,7 +13398,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 355966c5781341e8a9ca26c83c764432',
+                    description: 'The ID of the team. Example: 819ac44c1ca14766a5caa127d32fb702',
                 },
                 {
                     displayName: 'Id',
@@ -13086,7 +13412,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: a41703340b8e41bdb7937e362e59a720',
+                    description: 'The ID of the user. Example: 1692736302f7462097ef1b454db9ddca',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13155,7 +13481,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-04-30',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-06-02',
                         },
                         {
                             displayName: 'Read only',
@@ -13182,7 +13508,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 355966c5781341e8a9ca26c83c764432',
+                    description: 'The ID of the team. Example: 819ac44c1ca14766a5caa127d32fb702',
                 },
                 {
                     displayName: 'Id',
@@ -13196,7 +13522,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: a41703340b8e41bdb7937e362e59a720',
+                    description: 'The ID of the user. Example: 1692736302f7462097ef1b454db9ddca',
                 },
                 // Test Case - Operations
                 {
@@ -13423,7 +13749,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 6dad5e26949544cd9b83b5b6a0b1a9f4',
+                    description: 'The ID of the test case. Example: fc9e3fffffce42628fdb184f4ea20652',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13463,7 +13789,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 6dad5e26949544cd9b83b5b6a0b1a9f4',
+                    description: 'The ID of the test case. Example: fc9e3fffffce42628fdb184f4ea20652',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13886,7 +14212,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 93f89a18a4a5444c9128163345db0a84',
+                    description: 'The ID of the tool finding. Example: 5d75586c5d2c4a75bb5634300ad986ef',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13926,7 +14252,7 @@ class Reporter {
                         loadOptionsDependsOn: ['finding_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 93f89a18a4a5444c9128163345db0a84',
+                    description: 'The ID of the tool finding. Example: 5d75586c5d2c4a75bb5634300ad986ef',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14186,7 +14512,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the tool target. Example: 1a7b3fe8ce2c4101b6f953733a1bfb2c',
+                    description: 'The ID of the tool target. Example: 0a561f7667ab40d89d69e17afe130e97',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14566,7 +14892,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: ks',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: ehqlrkoyxvjpkiz',
                         },
                         {
                             displayName: 'Clients',
@@ -14648,7 +14974,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 9cb7e25ed7b3440eac65e39aadc0c798',
+                    description: 'The ID of the user. Example: 8bd5b85e1a48440893b4f5e2eca5ac87',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14687,7 +15013,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 9cb7e25ed7b3440eac65e39aadc0c798',
+                    description: 'The ID of the user. Example: 8bd5b85e1a48440893b4f5e2eca5ac87',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14754,7 +15080,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'The user account status. Must be a valid user status. Example: 19',
+                            description: 'The user account status. Must be a valid user status. Example: 20',
                         },
                         {
                             displayName: 'Phone',
@@ -14792,7 +15118,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: rrpgdsrb',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: rvojvqmmhdiqmdxwzd',
                         },
                     ],
                 },
@@ -14989,6 +15315,36 @@ class Reporter {
                         return items.map((item) => {
                             const itemData = item;
                             const name = itemData.id || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadApiTokens() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/api-tokens`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
                             return {
                                 name: (name || itemData.id),
                                 value: itemData.id,
@@ -15631,6 +15987,78 @@ class Reporter {
                         });
                     }
                     catch (error) {
+                        return [];
+                    }
+                },
+                async loadApitokens() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'api_token_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/api-tokens/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'parent',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.parent || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
                         return [];
                     }
                 },
@@ -18343,6 +18771,209 @@ class Reporter {
                             });
                             responseData = response;
                         }
+                    }
+                }
+                if (resource === 'aPIToken') {
+                    if (operation === 'retrieveCurrentAPIToken') {
+                        // Retrieve current API token
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/api-tokens/me`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'listAPITokens') {
+                        // List API tokens
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/api-tokens`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'createAnAPIToken') {
+                        // Create an API token
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/api-tokens`;
+                        // Build request body
+                        const body = {};
+                        const nameValue = this.getNodeParameter('name', i, '');
+                        if (nameValue !== '') {
+                            body['name'] = nameValue;
+                        }
+                        const abilitiesValue = this.getNodeParameter('abilities', i, '');
+                        if (abilitiesValue !== '') {
+                            body['abilities'] = abilitiesValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
                     }
                 }
                 if (resource === 'assessment') {
@@ -21398,40 +22029,51 @@ class Reporter {
                         // Read URL parameters
                         // Build URL with parameters
                         let url = `${baseUrl}/api/v1/finding-templates/search`;
-                        // Build request body
-                        const body = {};
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
                             if (value !== '' && value !== null && value !== undefined) {
-                                // Handle fixedCollection fields (arrays of objects)
-                                if ([''].includes(key)) {
-                                    // Extract items from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        body[key] = value.items;
-                                    }
-                                    else {
-                                        body[key] = value;
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
-                                else if (['tags'].includes(key)) {
-                                    // Handle array of strings fields
-                                    // Extract values from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        const valueObj = value;
-                                        body[key] = valueObj.items.map((item) => {
-                                            const itemData = item;
-                                            return itemData.value;
-                                        });
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
                                     }
-                                    else {
-                                        body[key] = value;
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
                                     }
                                 }
                                 else {
-                                    body[key] = value;
+                                    qs[key] = value;
                                 }
                             }
                         }
@@ -21442,7 +22084,7 @@ class Reporter {
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
-                            body,
+                            qs,
                             json: true,
                         });
                         responseData = response;

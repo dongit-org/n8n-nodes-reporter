@@ -48,6 +48,16 @@ export class ReporterPollingTrigger implements INodeType {
             description: "Triggers when an existing activity is updated",
           },
           {
+            name: "New API Token",
+            value: "aPIToken_created",
+            description: "Triggers when a new api token is created",
+          },
+          {
+            name: "Updated API Token",
+            value: "aPIToken_updated",
+            description: "Triggers when an existing api token is updated",
+          },
+          {
             name: "New Assessment",
             value: "assessment_created",
             description: "Triggers when a new assessment is created",
@@ -335,6 +345,16 @@ export class ReporterPollingTrigger implements INodeType {
       },
       activity_updated: {
         apiPath: "/api/v1/activities",
+        filterField: "updated_at_after",
+        sortField: "-updated_at",
+      },
+      aPIToken_created: {
+        apiPath: "/api/v1/api-tokens",
+        filterField: "created_at_after",
+        sortField: "-created_at",
+      },
+      aPIToken_updated: {
+        apiPath: "/api/v1/api-tokens",
         filterField: "updated_at_after",
         sortField: "-updated_at",
       },

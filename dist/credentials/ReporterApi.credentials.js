@@ -23,7 +23,7 @@ class ReporterApi {
                     password: true,
                 },
                 default: '',
-                description: 'The API Token that you will use. See the Api Tokens part of your documentation (found at \'{reporterURL}/docs/settings/api_tokens.html\').',
+                description: 'The API Token that you will use. See the API Tokens part of your documentation (found at \'{reporterURL}/docs/settings/api_tokens.html\').',
             },
         ];
         this.authenticate = {

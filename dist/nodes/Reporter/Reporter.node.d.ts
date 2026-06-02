@@ -8,6 +8,7 @@ export declare class Reporter implements INodeType {
             getCustomFields_AppModelsFinding(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             getCustomFields_AppModelsUser(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadActivitys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadApiTokens(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentSections(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentSectionTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
@@ -29,6 +30,7 @@ export declare class Reporter implements INodeType {
             loadTestCases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadThemes(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadUsers(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadApitokens(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadDocuments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentcomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadReactions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
