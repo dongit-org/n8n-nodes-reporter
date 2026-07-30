@@ -993,7 +993,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: aa6f515e4292426bba0bfba0932353d5",
+          "The ID of the client. Example: 2aca6140dc284441b018c4d6b61efc3f",
       },
 
       {
@@ -1225,7 +1225,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 5c364cf919ad4331af0dd05dcc9dbad2",
+          "The ID of the assessment. Example: a0c229e8823c4381a0fa2387b11a2b75",
       },
 
       {
@@ -1268,7 +1268,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 5c364cf919ad4331af0dd05dcc9dbad2",
+          "The ID of the assessment. Example: a0c229e8823c4381a0fa2387b11a2b75",
       },
 
       {
@@ -1427,7 +1427,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current assessment status. Must be a valid assessment status. Example: 12",
+              "The current assessment status. Must be a valid assessment status. Example: 7",
           },
 
           {
@@ -1462,7 +1462,7 @@ export class Reporter implements INodeType {
             ],
             default: "CWE",
             description:
-              'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["consequatur"]',
+              'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["cupiditate"]',
           },
 
           {
@@ -1823,7 +1823,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 1",
+              "Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 15",
           },
 
           {
@@ -1950,7 +1950,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: e76d56e7fd724972904396fcf9f98725",
+          "The ID of the assessment. Example: 1c283a057b6c45788c144dda27cf9b8c",
       },
 
       {
@@ -1996,7 +1996,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 3240f6a54d854ca58f7e18c9fb50dced",
+          "The ID of the assessment. Example: 78e8e5ad339a433588553796ac758933",
       },
 
       {
@@ -2071,7 +2071,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: a895f7c5e38c47a5a05fbaf8698695d8",
+          "The ID of the assessment. Example: a282d1952d0b448fa71da3163cbefa5a",
       },
 
       {
@@ -2162,7 +2162,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment comment. Example: a65cb9838ff24f71a59cc8726ee4c7a2",
+          "The ID of the assessment comment. Example: b3a3b79dcc844fc49e5a22cac02b6057",
       },
 
       {
@@ -2241,7 +2241,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment phase. Example: e5a1db9bf5e045478d383bb2f60c3f59",
+          "The ID of the assessment phase. Example: af50bd8a848f4f97981d951c123d386f",
       },
 
       {
@@ -2625,7 +2625,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment section. Example: 1d72eb49d80e4f33ad5e9cf8002b0ba9",
+          "The ID of the assessment section. Example: e9cbd8546a17418f924f2231fe5112d2",
       },
 
       {
@@ -2645,7 +2645,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment section. Example: 1d72eb49d80e4f33ad5e9cf8002b0ba9",
+          "The ID of the assessment section. Example: e9cbd8546a17418f924f2231fe5112d2",
       },
 
       {
@@ -2665,11 +2665,9 @@ export class Reporter implements INodeType {
             displayName: "Name",
             name: "name",
             type: "string",
-            typeOptions: {
-              rows: 4,
-            },
             default: "",
-            description: "Name of the section. Example: Introduction",
+            description:
+              "Name of the section. Must not be greater than 191 characters. Example: Introduction",
           },
 
           {
@@ -2725,7 +2723,7 @@ export class Reporter implements INodeType {
             ],
             default: 1,
             description:
-              "Whether this section will be included in the report. Must be a valid report section visibility. Example: 6",
+              "Whether this section will be included in the report. Must be a valid report section visibility. Example: 7",
           },
 
           {
@@ -2778,7 +2776,7 @@ export class Reporter implements INodeType {
             ],
             default: 1,
             description:
-              "Whether this section will be included in the management report. Must be a valid report section visibility. Example: 11",
+              "Whether this section will be included in the management report. Must be a valid report section visibility. Example: 8",
           },
 
           {
@@ -2819,7 +2817,7 @@ export class Reporter implements INodeType {
             ],
             default: 1,
             description:
-              "An optional custom heading size of this section in the report. Must be a valid report heading. Example: 8",
+              "An optional custom heading size of this section in the report. Must be a valid report heading. Example: 4",
           },
 
           {
@@ -2850,7 +2848,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current review status of the assessment section. Must be a valid review status. Example: 18",
+              "The current review status of the assessment section. Must be a valid review status. Example: 1",
           },
 
           {
@@ -2880,7 +2878,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 5734defc74964e1b8d130cd4292cb8c0",
+          "The ID of the assessment. Example: e044f20a1c34472193421bb66939abe7",
       },
 
       {
@@ -3074,7 +3072,7 @@ export class Reporter implements INodeType {
         ],
         default: 0,
         description:
-          "The current review status of the assessment section. Must be a valid review status. Example: 17",
+          "The current review status of the assessment section. Must be a valid review status. Example: 8",
       },
       {
         displayName: "Is published",
@@ -3241,7 +3239,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment section. Example: 193a3d30b5354081bec27929bbd89ac8",
+          "The ID of the assessment section. Example: 9dc1733c8aca40c3b99b14838eb124f5",
       },
 
       {
@@ -3334,7 +3332,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment section comment. Example: cd33c40968564e5d8f6e1027f26a0d39",
+          "The ID of the assessment section comment. Example: 5a2380ff8f9e42dda029f3e1058da358",
       },
 
       {
@@ -3595,7 +3593,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment section template. Example: 722b7e8918bc4bebbef9196cd9e59e4c",
+          "The ID of the assessment section template. Example: 4e15e48762004cf4b246ca92a37eaf38",
       },
 
       {
@@ -3611,7 +3609,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment section template. Example: 722b7e8918bc4bebbef9196cd9e59e4c",
+          "The ID of the assessment section template. Example: 4e15e48762004cf4b246ca92a37eaf38",
       },
 
       {
@@ -3648,7 +3646,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "The contents of the section template (markdown). Example: Nemo veritatis et non sapiente.",
+              "The contents of the section template (markdown). Example: Illo amet omnis quos voluptatem odio distinctio vitae.",
           },
 
           {
@@ -3856,7 +3854,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment template. Example: d8929cc9e3a6421c8c4a8adb8c8ab8bb",
+          "The ID of the assessment template. Example: 085a527900f94acc8843793b7ab93a75",
       },
 
       {
@@ -4124,7 +4122,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "The contents of the section template (markdown). Example: Omnis voluptas libero maiores dolores.",
+              "The contents of the section template (markdown). Example: Qui repellat quaerat esse illum qui et dolor id.",
           },
 
           {
@@ -4216,7 +4214,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 4805964c3390456da46616b5c0704059",
+          "The ID of the assessment. Example: 3ea34873407749058b572ed8891565ee",
       },
 
       {
@@ -4289,7 +4287,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: e46accddd26a43729ab3410c113496f8",
+          "The ID of the assessment. Example: fb5a2fb4fe424a4fb07d782615d3f8c0",
       },
       {
         displayName: "Id",
@@ -4304,7 +4302,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the task set. Example: ab32739cb45e4a29899fa69ff73e12cd",
+          "The ID of the task set. Example: 37eed83947cd4e0994313cd848483947",
       },
 
       // Assessment Template - Operations
@@ -4597,7 +4595,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment template. Example: 02b8d10f67484fa5a658f6a607e04bb2",
+          "The ID of the assessment template. Example: b3db69ca0e2f42e2bc37101c41876495",
       },
 
       {
@@ -4637,7 +4635,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment template. Example: 02b8d10f67484fa5a658f6a607e04bb2",
+          "The ID of the assessment template. Example: b3db69ca0e2f42e2bc37101c41876495",
       },
 
       {
@@ -4707,7 +4705,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment template. Example: 9d97b2fb769f4733a185c2acc8a60d77",
+          "The ID of the assessment template. Example: d534781b80fe42d2ae195b10746bfcfe",
       },
 
       {
@@ -4766,7 +4764,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the assessment template. Example: 43949a00125c48b2aa90b0c9a280d44c",
+          "The ID of the assessment template. Example: 58e92636d2d940bab4c1f4d8ff26094b",
       },
       {
         displayName: "Language id",
@@ -4836,7 +4834,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: e25f64e527bd44e48c9e75e752417c82",
+          "The ID of the assessment. Example: d019de3bad49431699687fd3ff15287f",
       },
 
       {
@@ -5037,7 +5035,7 @@ export class Reporter implements INodeType {
             ],
             default: 1,
             description:
-              "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [5]",
+              "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [4]",
           },
 
           {
@@ -5049,7 +5047,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-06-30",
+              "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-07-30",
           },
         ],
       },
@@ -5070,7 +5068,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 3f3d957f25f94ad1a667200c202cf2a0",
+          "The ID of the assessment. Example: dd707476ae7e423d9f5118deb3505249",
       },
       {
         displayName: "Id",
@@ -5089,7 +5087,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the user. Example: 039be7efea0c4e169a9ae5ac54489a38",
+          "The ID of the user. Example: 493767ca2c0e404a8edef911fa70d862",
       },
 
       {
@@ -5265,7 +5263,7 @@ export class Reporter implements INodeType {
             ],
             default: 1,
             description:
-              "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [16]",
+              "Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [5]",
           },
 
           {
@@ -5277,7 +5275,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-06-30",
+              "An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-07-30",
           },
         ],
       },
@@ -5298,7 +5296,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 3f3d957f25f94ad1a667200c202cf2a0",
+          "The ID of the assessment. Example: dd707476ae7e423d9f5118deb3505249",
       },
       {
         displayName: "Id",
@@ -5317,7 +5315,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the user. Example: 039be7efea0c4e169a9ae5ac54489a38",
+          "The ID of the user. Example: 493767ca2c0e404a8edef911fa70d862",
       },
 
       // Client - Operations
@@ -5717,7 +5715,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: 029d82b9faec44a5a09845d0c0e8de2d",
+          "The ID of the client. Example: f672d05942b340069802009540d576c1",
       },
 
       {
@@ -5760,7 +5758,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: 029d82b9faec44a5a09845d0c0e8de2d",
+          "The ID of the client. Example: f672d05942b340069802009540d576c1",
       },
 
       {
@@ -5915,7 +5913,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: acdc1d15c6424666a1c709cb6e12db6a",
+          "The ID of the client. Example: d26d80fff2ec43edabe9a04761235135",
       },
 
       {
@@ -6003,7 +6001,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: 5f9e1792d4954d9e8a5b1d031cb0bff8",
+          "The ID of the client. Example: 50cea8cdcb1a44c094c3a6b8f7cf77f4",
       },
       {
         displayName: "User id",
@@ -6021,7 +6019,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the user. Example: 188e1b99b2db4191ae4d29ccda42bf2f",
+          "The ID of the user. Example: d4299bc4ba624b8dab7f499cebf98f0f",
       },
 
       {
@@ -6320,7 +6318,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the document. Example: abddf7c6fac24d4d9edfc8f90011191a",
+          "The ID of the document. Example: 83926d4d285d41288093dd68e1d1e00a",
       },
 
       {
@@ -6766,7 +6764,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 96a49fe205104e7f97f6894f0f135405",
+          "The ID of the assessment. Example: e4ae65eed21e4db98b2811c7065dc48e",
       },
 
       {
@@ -6853,7 +6851,7 @@ export class Reporter implements INodeType {
         ],
         default: 0,
         description:
-          "The current review status of the finding. Must be a valid review status. Example: 4",
+          "The current review status of the finding. Must be a valid review status. Example: 10",
       },
       {
         displayName: "Is published",
@@ -6953,7 +6951,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 0",
+              "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 7",
           },
 
           {
@@ -7045,7 +7043,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 14",
+              "The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 13",
           },
 
           {
@@ -7299,7 +7297,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding. Example: 9136d7457ccc46d8be725403c7a49141",
+          "The ID of the finding. Example: d150233bb5b940709345cd5b10f7b00d",
       },
 
       {
@@ -7342,7 +7340,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding. Example: 9136d7457ccc46d8be725403c7a49141",
+          "The ID of the finding. Example: d150233bb5b940709345cd5b10f7b00d",
       },
 
       {
@@ -7422,7 +7420,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 1",
+              "The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 15",
           },
 
           {
@@ -7493,7 +7491,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current review status of the finding. Must be a valid review status. Example: 19",
+              "The current review status of the finding. Must be a valid review status. Example: 6",
           },
 
           {
@@ -7605,7 +7603,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 2",
+              "The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 3",
           },
 
           {
@@ -7859,7 +7857,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 52e7da8ad9d240bcbbe3b10f489e970b",
+          "The ID of the assessment. Example: 2a0a4c394fab4b09b95fe42f952a64bd",
       },
       {
         displayName: "Finding template id",
@@ -8260,7 +8258,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding. Example: cdf629b9354d4b38ba9769e9f88fa840",
+          "The ID of the finding. Example: c8560524d95142c99eb56849d2758d2d",
       },
 
       {
@@ -8351,7 +8349,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding comment. Example: f184d4e2c59a4d13b98e466b006e15d0",
+          "The ID of the finding comment. Example: 39dea8afba8d4824b29d8733e2eeed26",
       },
 
       {
@@ -8406,7 +8404,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding. Example: cec2f2d98d294ac9a7093de35c97d763",
+          "The ID of the finding. Example: e878290fb051448dbd7d56b409a10e7f",
       },
 
       {
@@ -8621,7 +8619,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding retest. Example: 3403857c1cd0443d9b64d5e801783e08",
+          "The ID of the finding retest. Example: 6b609200bc384b87b147b27876d47d00",
       },
 
       {
@@ -8822,7 +8820,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding. Example: f9fd7b07ffdc4af4ad84a8945ed39414",
+          "The ID of the finding. Example: f72ac1d1b55a444ca1bff09f856f6968",
       },
 
       {
@@ -8905,7 +8903,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding retest inquiry. Example: b3033bff44de4db6bb3d9cac35db8a55",
+          "The ID of the finding retest inquiry. Example: f77fffc498904d14926931314a28971d",
       },
 
       {
@@ -8952,7 +8950,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding retest inquiry. Example: c5b80bc282cc40adaaf9b78244026759",
+          "The ID of the finding retest inquiry. Example: 5e5a591358b44133b76d530b101d7c11",
       },
 
       {
@@ -9035,7 +9033,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the finding retest cancelled event. Example: b473f69e8d1146108cf6bfa56220bc2d",
+          "The ID of the finding retest cancelled event. Example: 13142059e4ad4a4e8eb4e4bdc85b40f4",
       },
 
       {
@@ -10086,7 +10084,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 18",
+              "Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 12",
           },
 
           {
@@ -10530,7 +10528,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: c73dd00c41124b8689c86d774d5252ad",
+          "The ID of the assessment. Example: 01205076de4d4dbb8a1c9c4b388f4c75",
       },
 
       {
@@ -11638,7 +11636,7 @@ export class Reporter implements INodeType {
         ],
         default: "crunch42",
         description:
-          "The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: praesentium",
+          "The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: et",
       },
 
       {
@@ -12473,7 +12471,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 6eef5c9f48f243bc86ad0fd4d248d077",
+          "The ID of the assessment. Example: bb14f5bb553542fb99421cbb2e46628b",
       },
 
       {
@@ -12636,7 +12634,7 @@ export class Reporter implements INodeType {
         ],
         default: 0,
         description:
-          "The type of target. Must be a valid target type. Example: 17",
+          "The type of target. Must be a valid target type. Example: 9",
       },
 
       {
@@ -12704,7 +12702,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The importance of the target to the business. Must be a valid business impact. Example: 15",
+              "The importance of the target to the business. Must be a valid business impact. Example: 9",
           },
 
           {
@@ -12746,7 +12744,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "Any details researchers or clients should know about the target (markdown). Example: magnam",
+              "Any details researchers or clients should know about the target (markdown). Example: ut",
           },
 
           {
@@ -12808,7 +12806,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the target. Example: 369f8ffa9c9e4656b710c06a0fbab24e",
+          "The ID of the target. Example: 9427997d073e41f78730c9907dbdeba6",
       },
 
       {
@@ -12851,7 +12849,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the target. Example: 369f8ffa9c9e4656b710c06a0fbab24e",
+          "The ID of the target. Example: 9427997d073e41f78730c9907dbdeba6",
       },
 
       {
@@ -13040,7 +13038,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The type of target. Must be a valid target type. Example: 9",
+              "The type of target. Must be a valid target type. Example: 12",
           },
 
           {
@@ -13066,7 +13064,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The importance of the target to the business. Must be a valid business impact. Example: 20",
+              "The importance of the target to the business. Must be a valid business impact. Example: 17",
           },
 
           {
@@ -13108,7 +13106,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "Any details researchers or clients should know about the target (markdown). Example: vel",
+              "Any details researchers or clients should know about the target (markdown). Example: possimus",
           },
 
           {
@@ -13356,7 +13354,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the task. Example: 825244c7d0d94701bb61b4094cd04d34",
+          "The ID of the task. Example: 7baaa88478d049c5b320a90801fa3528",
       },
 
       {
@@ -13399,7 +13397,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the task. Example: 825244c7d0d94701bb61b4094cd04d34",
+          "The ID of the task. Example: 7baaa88478d049c5b320a90801fa3528",
       },
 
       {
@@ -13463,7 +13461,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The type of deadline for this task. Must be a valid deadline type. Example: 5",
+              "The type of deadline for this task. Must be a valid deadline type. Example: 3",
           },
 
           {
@@ -13553,7 +13551,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the assessment. Example: 4132b5fe04ff46c38feb7f0aa88aba46",
+          "The ID of the assessment. Example: 98adfa9fc9fd4569872b4643a977c6b0",
       },
 
       {
@@ -13626,7 +13624,7 @@ export class Reporter implements INodeType {
         ],
         default: 0,
         description:
-          "The type of deadline for this task. Must be a valid deadline type. Example: 4",
+          "The type of deadline for this task. Must be a valid deadline type. Example: 3",
       },
       {
         displayName: "Weight",
@@ -13969,7 +13967,7 @@ export class Reporter implements INodeType {
         ],
         default: 0,
         description:
-          "The deadline type of this task set. Must be a valid deadline type. Example: 5",
+          "The deadline type of this task set. Must be a valid deadline type. Example: 14",
       },
 
       {
@@ -13995,7 +13993,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 5",
+              "The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 1",
           },
 
           {
@@ -14105,7 +14103,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the task set. Example: 77dc0e45a2c74d00a7d85ce94abaaf8c",
+          "The ID of the task set. Example: 8ca4528b0a8647049fae799e4bacc388",
       },
 
       {
@@ -14149,7 +14147,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the task set. Example: 77dc0e45a2c74d00a7d85ce94abaaf8c",
+          "The ID of the task set. Example: 8ca4528b0a8647049fae799e4bacc388",
       },
 
       {
@@ -14169,11 +14167,9 @@ export class Reporter implements INodeType {
             displayName: "Name",
             name: "name",
             type: "string",
-            typeOptions: {
-              rows: 4,
-            },
             default: "",
-            description: "The name of the task set. Example: Task Set Name",
+            description:
+              "The name of the task set. Must not be greater than 191 characters. Example: Task Set Name",
           },
 
           {
@@ -14214,7 +14210,7 @@ export class Reporter implements INodeType {
             ],
             default: 0,
             description:
-              "The deadline type of this task set. Must be a valid deadline type. Example: 16",
+              "The deadline type of this task set. Must be a valid deadline type. Example: 11",
           },
 
           {
@@ -14351,7 +14347,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the client. Example: 80d449097b4044caa6e9d2033c2b4ae0",
+          "The ID of the client. Example: d5e3d779ae194882acab8b487bc61ff1",
       },
 
       {
@@ -14455,7 +14451,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the team. Example: e1e10e6229da483fabb2df5d9f3e5241",
+          "The ID of the team. Example: e0385eb84f084cf199b58d75e025b053",
       },
 
       {
@@ -14573,7 +14569,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the team. Example: 4598cdc9b92346afa0ea6e822710bc15",
+          "The ID of the team. Example: d52574dbcc2d4166a0b87c1c3857b4d0",
       },
 
       {
@@ -14673,7 +14669,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-06-30",
+              "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-07-30",
           },
 
           {
@@ -14704,7 +14700,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the team. Example: 3ca47329d27846c381379b032637ad09",
+          "The ID of the team. Example: 2dfaa942899f47c4828dbdb93702cadb",
       },
       {
         displayName: "Id",
@@ -14719,7 +14715,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the user. Example: 1677bd778441431eb8fcbb763a25049f",
+          "The ID of the user. Example: e13338d2b600491b88cd6133f4bb5873",
       },
 
       {
@@ -14794,7 +14790,7 @@ export class Reporter implements INodeType {
             },
             default: "",
             description:
-              "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-06-30",
+              "An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-07-30",
           },
 
           {
@@ -14825,7 +14821,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the team. Example: 3ca47329d27846c381379b032637ad09",
+          "The ID of the team. Example: 2dfaa942899f47c4828dbdb93702cadb",
       },
       {
         displayName: "Id",
@@ -14840,7 +14836,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the user. Example: 1677bd778441431eb8fcbb763a25049f",
+          "The ID of the user. Example: e13338d2b600491b88cd6133f4bb5873",
       },
 
       // Test Case - Operations
@@ -15078,7 +15074,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the test case. Example: 9a8e289e97784d30a1b2e6501f7794a0",
+          "The ID of the test case. Example: 9c7d64c0491e4e53ae55a49500cb891a",
       },
 
       {
@@ -15122,7 +15118,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the test case. Example: 9a8e289e97784d30a1b2e6501f7794a0",
+          "The ID of the test case. Example: 9c7d64c0491e4e53ae55a49500cb891a",
       },
 
       {
@@ -15568,7 +15564,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the tool finding. Example: 4f261ea1197e4666a18df1d2a2b0d8f9",
+          "The ID of the tool finding. Example: 492b6f77e29a4a71a8977d290eb016f2",
       },
 
       {
@@ -15612,7 +15608,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the tool finding. Example: 4f261ea1197e4666a18df1d2a2b0d8f9",
+          "The ID of the tool finding. Example: 492b6f77e29a4a71a8977d290eb016f2",
       },
 
       {
@@ -15888,7 +15884,7 @@ export class Reporter implements INodeType {
         },
         default: "",
         description:
-          "The ID of the tool target. Example: 2815276764234aa78bd594aae3b56e52",
+          "The ID of the tool target. Example: 9c5bbb43655147f2a937c131d708ce23",
       },
 
       {
@@ -16301,7 +16297,7 @@ export class Reporter implements INodeType {
             type: "string",
             default: "",
             description:
-              "The user's LinkedIn page. Must not be greater than 191 characters. Example: ahtgodohrvqs",
+              "The user's LinkedIn page. Must not be greater than 191 characters. Example: zvwvtsazigvvghdu",
           },
 
           {
@@ -16390,7 +16386,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the user. Example: fc6e4af9554340d9be375c9c81875d69",
+          "The ID of the user. Example: ccb772bace5744fe9f416bedf932b9ca",
       },
 
       {
@@ -16433,7 +16429,7 @@ export class Reporter implements INodeType {
         },
         default: undefined,
         description:
-          "The ID of the user. Example: fc6e4af9554340d9be375c9c81875d69",
+          "The ID of the user. Example: ccb772bace5744fe9f416bedf932b9ca",
       },
 
       {
@@ -16559,7 +16555,7 @@ export class Reporter implements INodeType {
             type: "string",
             default: "",
             description:
-              "The user's LinkedIn page. Must not be greater than 191 characters. Example: iqibnulo",
+              "The user's LinkedIn page. Must not be greater than 191 characters. Example: rmxduqzan",
           },
         ],
       },
