@@ -71,6 +71,16 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing assessment section is updated',
                         },
                         {
+                            name: 'New Assessment Section Event',
+                            value: 'assessmentSectionEvent_created',
+                            description: 'Triggers when a new assessment section event is created',
+                        },
+                        {
+                            name: 'Updated Assessment Section Event',
+                            value: 'assessmentSectionEvent_updated',
+                            description: 'Triggers when an existing assessment section event is updated',
+                        },
+                        {
                             name: 'New Assessment Section Template',
                             value: 'assessmentSectionTemplate_created',
                             description: 'Triggers when a new assessment section template is created',
@@ -161,6 +171,16 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing language is updated',
                         },
                         {
+                            name: 'New Notification',
+                            value: 'notification_created',
+                            description: 'Triggers when a new notification is created',
+                        },
+                        {
+                            name: 'Updated Notification',
+                            value: 'notification_updated',
+                            description: 'Triggers when an existing notification is updated',
+                        },
+                        {
                             name: 'New Output File',
                             value: 'outputFile_created',
                             description: 'Triggers when a new output file is created',
@@ -201,6 +221,26 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing role is updated',
                         },
                         {
+                            name: 'New Snippet',
+                            value: 'snippet_created',
+                            description: 'Triggers when a new snippet is created',
+                        },
+                        {
+                            name: 'Updated Snippet',
+                            value: 'snippet_updated',
+                            description: 'Triggers when an existing snippet is updated',
+                        },
+                        {
+                            name: 'New Tag',
+                            value: 'tag_created',
+                            description: 'Triggers when a new tag is created',
+                        },
+                        {
+                            name: 'Updated Tag',
+                            value: 'tag_updated',
+                            description: 'Triggers when an existing tag is updated',
+                        },
+                        {
                             name: 'New Target',
                             value: 'target_created',
                             description: 'Triggers when a new target is created',
@@ -229,6 +269,16 @@ class ReporterPollingTrigger {
                             name: 'Updated Task Set',
                             value: 'taskSet_updated',
                             description: 'Triggers when an existing task set is updated',
+                        },
+                        {
+                            name: 'New Team',
+                            value: 'team_created',
+                            description: 'Triggers when a new team is created',
+                        },
+                        {
+                            name: 'Updated Team',
+                            value: 'team_updated',
+                            description: 'Triggers when an existing team is updated',
                         },
                         {
                             name: 'New Test Case',
@@ -273,7 +323,7 @@ class ReporterPollingTrigger {
                     options: [{ "name": "filter", "displayName": "Filter", "values": [{ "displayName": "Field", "name": "field", "type": "string", "default": "", "description": "The field to filter on" }, { "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "The value to filter for" }] }],
                     placeholder: 'Add Filter',
                     default: [],
-                    description: 'Filter names and the values to filter for. Allowed fields: "id", "and_id", "assessment_id", "and_assessment_id", "user_id", "and_user_id", "impersonator_id", "and_impersonator_id", "finding_id", "a...',
+                    description: 'Filter names and the values to filter for. Allowed fields: "ID", "and_id", "assessment_id", "and_assessment_id", "user_id", "and_user_id", "impersonator_id", "and_impersonator_id", "finding_id", "a...',
                 },
                 {
                     displayName: 'Include',
@@ -330,6 +380,16 @@ class ReporterPollingTrigger {
             },
             'assessmentSection_updated': {
                 apiPath: '/api/v1/assessment-sections',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'assessmentSectionEvent_created': {
+                apiPath: '/api/v1/assessment-section-events',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'assessmentSectionEvent_updated': {
+                apiPath: '/api/v1/assessment-section-events',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
@@ -423,6 +483,16 @@ class ReporterPollingTrigger {
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
+            'notification_created': {
+                apiPath: '/api/v1/notifications',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'notification_updated': {
+                apiPath: '/api/v1/notifications',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
             'outputFile_created': {
                 apiPath: '/api/v1/output-files',
                 filterField: 'created_at_after',
@@ -463,6 +533,26 @@ class ReporterPollingTrigger {
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
+            'snippet_created': {
+                apiPath: '/api/v1/snippets',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'snippet_updated': {
+                apiPath: '/api/v1/snippets',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'tag_created': {
+                apiPath: '/api/v1/tags',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'tag_updated': {
+                apiPath: '/api/v1/tags',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
             'target_created': {
                 apiPath: '/api/v1/targets',
                 filterField: 'created_at_after',
@@ -490,6 +580,16 @@ class ReporterPollingTrigger {
             },
             'taskSet_updated': {
                 apiPath: '/api/v1/task-sets',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'team_created': {
+                apiPath: '/api/v1/teams',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'team_updated': {
+                apiPath: '/api/v1/teams',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },

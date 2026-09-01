@@ -55,8 +55,8 @@ class Reporter {
                             value: 'assessmentSection',
                         },
                         {
-                            name: 'Assessment Section Comment',
-                            value: 'assessmentSectionComment',
+                            name: 'Assessment Section Event',
+                            value: 'assessmentSectionEvent',
                         },
                         {
                             name: 'Assessment Section Template',
@@ -107,6 +107,10 @@ class Reporter {
                             value: 'language',
                         },
                         {
+                            name: 'Notification',
+                            value: 'notification',
+                        },
+                        {
                             name: 'Output File',
                             value: 'outputFile',
                         },
@@ -117,6 +121,14 @@ class Reporter {
                         {
                             name: 'Role',
                             value: 'role',
+                        },
+                        {
+                            name: 'Snippet',
+                            value: 'snippet',
+                        },
+                        {
+                            name: 'Tag',
+                            value: 'tag',
                         },
                         {
                             name: 'Target',
@@ -269,6 +281,10 @@ class Reporter {
                                                     value: 'finding_id',
                                                 },
                                                 {
+                                                    name: 'Model id',
+                                                    value: 'model_id',
+                                                },
+                                                {
                                                     name: 'Type',
                                                     value: 'type',
                                                 },
@@ -388,7 +404,7 @@ class Reporter {
                             name: 'List API tokens',
                             value: 'listAPITokens',
                             action: 'List API tokens',
-                            description: 'Retrieve a list of API tokens for the authenticated user. Object information.',
+                            description: 'Retrieve a list of API tokens: the token used for this request and the tokens it created. Admin users receive every user\'s tokens, which can be narrowed down with the `tokenable_id` and `created_by...',
                         },
                         {
                             name: 'Create an API token',
@@ -657,7 +673,7 @@ class Reporter {
                                 multipleValues: true,
                             },
                             default: undefined,
-                            description: 'A client id. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                            description: 'A client ID. Example: ["6144002a2cd84c61b6678593837d95dc"]',
                         },
                         {
                             displayName: 'Assessments',
@@ -668,7 +684,7 @@ class Reporter {
                                 multipleValues: true,
                             },
                             default: undefined,
-                            description: 'An assessment id. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                            description: 'An assessment ID. Example: ["6144002a2cd84c61b6678593837d95dc"]',
                         },
                         {
                             displayName: 'User id',
@@ -678,7 +694,7 @@ class Reporter {
                                 loadOptionsMethod: 'loadUsers',
                             },
                             default: undefined,
-                            description: 'The user to create the token for. If not provided, the token is created for the authenticated user. Only admins can create tokens for other users. The id of an existing record in the users table. E...',
+                            description: 'The user to create the token for. If not provided, the token is created for the authenticated user. Only admins can create tokens for other users. The ID of an existing record in the users table. E...',
                         },
                     ],
                 },
@@ -924,7 +940,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 2aca6140dc284441b018c4d6b61efc3f',
+                    description: 'The ID of the client. Example: aedb24112041481faccdb74c67ded457',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -942,7 +958,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'ID of the assessment template. The id of an existing record in the assessment_templates table. Example: owasp_top10_2021',
+                    description: 'ID of the assessment template. The ID of an existing record in the assessment_templates table. Example: owasp_top10_2021',
                 },
                 {
                     displayName: 'Title',
@@ -984,14 +1000,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize assessments. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Mobile"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize assessments. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Mobile\"]" }] }],
                         },
                         {
                             displayName: 'Description',
@@ -1034,6 +1049,11 @@ class Reporter {
                                     name: 'Audit Rating',
                                     value: 'audit_rating',
                                     description: 'Audit Rating',
+                                },
+                                {
+                                    name: 'Implementation Status',
+                                    value: 'implementation_status',
+                                    description: 'Implementation Status',
                                 },
                                 {
                                     name: 'Compliant/Not Compliant',
@@ -1123,7 +1143,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: a0c229e8823c4381a0fa2387b11a2b75',
+                    description: 'The ID of the assessment. Example: 77b3949cd58842b7a43611c5b695a15d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1162,7 +1182,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: a0c229e8823c4381a0fa2387b11a2b75',
+                    description: 'The ID of the assessment. Example: 77b3949cd58842b7a43611c5b695a15d',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1308,7 +1328,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 7',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 19',
                         },
                         {
                             displayName: 'On hold',
@@ -1339,7 +1359,7 @@ class Reporter {
                                 },
                             ],
                             default: 'CWE',
-                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["cupiditate"]',
+                            description: 'Classification system(s) used for this assessment. Must be a valid classifications. Example: ["CWE"]',
                         },
                         {
                             displayName: 'Scoring system',
@@ -1377,6 +1397,11 @@ class Reporter {
                                     description: 'Audit Rating',
                                 },
                                 {
+                                    name: 'Implementation Status',
+                                    value: 'implementation_status',
+                                    description: 'Implementation Status',
+                                },
+                                {
                                     name: 'Compliant/Not Compliant',
                                     value: 'compliance',
                                     description: 'Compliant/Not Compliant',
@@ -1395,14 +1420,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize assessments. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Mobile"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize assessments. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Mobile\"]" }] }],
                         },
                         {
                             displayName: 'Description',
@@ -1445,6 +1469,13 @@ class Reporter {
                             type: 'boolean',
                             default: '',
                             description: 'Show the assessment results as a tab in the overview. Example: true',
+                        },
+                        {
+                            displayName: 'Show shared information',
+                            name: 'show_shared_information',
+                            type: 'boolean',
+                            default: '',
+                            description: 'Enable the shared information tab for client users. Example: true',
                         },
                         {
                             displayName: 'Auto generate pdf',
@@ -1619,7 +1650,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 15',
+                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 8',
                         },
                         {
                             displayName: 'Restrict findings to resolvers',
@@ -1733,7 +1764,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 1c283a057b6c45788c144dda27cf9b8c',
+                    description: 'The ID of the assessment. Example: 01aca05b452340d09109a45219653e22',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1775,7 +1806,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 78e8e5ad339a433588553796ac758933',
+                    description: 'The ID of the assessment. Example: 4e201c64b8f143d1a7f58b37fa45fef9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1844,7 +1875,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: a282d1952d0b448fa71da3163cbefa5a',
+                    description: 'The ID of the assessment. Example: d5eb7142cbb6486bb15cbf63c7887153',
                 },
                 {
                     displayName: 'Body',
@@ -1913,7 +1944,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: b3a3b79dcc844fc49e5a22cac02b6057',
+                    description: 'The ID of the assessment comment. Example: 845d5b9e8f6940069cd7d310c590d5a6',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1984,7 +2015,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: af50bd8a848f4f97981d951c123d386f',
+                    description: 'The ID of the assessment phase. Example: 5cfe8e4d361447fa857eedf673cf3b21',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2307,7 +2338,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: e9cbd8546a17418f924f2231fe5112d2',
+                    description: 'The ID of the assessment section. Example: 793599082f0a46eca3b922b355675e56',
                 },
                 {
                     displayName: 'Id',
@@ -2325,7 +2356,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: e9cbd8546a17418f924f2231fe5112d2',
+                    description: 'The ID of the assessment section. Example: 793599082f0a46eca3b922b355675e56',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2393,7 +2424,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 7',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 13',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
@@ -2438,7 +2469,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 8',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 18',
                         },
                         {
                             displayName: 'Report heading',
@@ -2477,7 +2508,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 4',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 7',
                         },
                         {
                             displayName: 'Review status',
@@ -2506,7 +2537,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 1',
+                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 19',
                         },
                         {
                             displayName: 'Is published',
@@ -2532,7 +2563,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e044f20a1c34472193421bb66939abe7',
+                    description: 'The ID of the assessment. Example: 205a25bb239c4783b0bde61e15373307',
                 },
                 {
                     displayName: 'Name',
@@ -2717,7 +2748,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 8',
+                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 5',
                 },
                 {
                     displayName: 'Is published',
@@ -2751,7 +2782,7 @@ class Reporter {
                             name: 'anchor_section_id',
                             type: 'string',
                             default: '',
-                            description: 'ID of the section to place relative to. When omitted, the section is appended at the end. The id of an existing record in the assessment_sections table. Example:',
+                            description: 'ID of the section to place relative to. When omitted, the section is appended at the end. The ID of an existing record in the assessment_sections table. Example:',
                         },
                         {
                             displayName: 'Place',
@@ -2828,7 +2859,7 @@ class Reporter {
                         },
                     ],
                 },
-                // Assessment Section Comment - Operations
+                // Assessment Section Event - Operations
                 {
                     displayName: 'Operation',
                     name: 'operation',
@@ -2836,10 +2867,16 @@ class Reporter {
                     noDataExpression: true,
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                         },
                     },
                     options: [
+                        {
+                            name: 'List assessment section events',
+                            value: 'listAssessmentSectionEvents',
+                            action: 'List assessment section events',
+                            description: 'Retrieve a list of all accessible assessment section events. Object information.',
+                        },
                         {
                             name: 'Create an assessment section comment',
                             value: 'createAnAssessmentSectionComment',
@@ -2852,8 +2889,190 @@ class Reporter {
                             action: 'Update an assessment section comment',
                             description: 'Update an existing assessment section comment. Object information.',
                         },
+                        {
+                            name: 'Create an assessment section review event',
+                            value: 'createAnAssessmentSectionReviewEvent',
+                            action: 'Create an assessment section review event',
+                            description: 'Approve an assessment section, or request a revision of it. Object information. Requesting a revision explains the changes that the researcher has to make, and assigns them a task to make them. App...',
+                        },
                     ],
-                    default: 'createAnAssessmentSectionComment',
+                    default: 'listAssessmentSectionEvents',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['listAssessmentSectionEvents'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Assessment id',
+                                                    value: 'assessment_id',
+                                                },
+                                                {
+                                                    name: 'Assessment section id',
+                                                    value: 'assessment_section_id',
+                                                },
+                                                {
+                                                    name: 'User id',
+                                                    value: 'user_id',
+                                                },
+                                                {
+                                                    name: 'Updated by user id',
+                                                    value: 'updated_by_user_id',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['listAssessmentSectionEvents'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['listAssessmentSectionEvents'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['listAssessmentSectionEvents'],
+                            fetchAllPages: [false],
+                        },
+                    },
                 },
                 {
                     displayName: 'Assessment section id',
@@ -2862,7 +3081,7 @@ class Reporter {
                     required: true,
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['createAnAssessmentSectionComment'],
                         },
                     },
@@ -2871,7 +3090,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 9dc1733c8aca40c3b99b14838eb124f5',
+                    description: 'The ID of the assessment section. Example: 2d77ce3e4f454e0495b7702a5268a5d1',
                 },
                 {
                     displayName: 'Body',
@@ -2880,7 +3099,7 @@ class Reporter {
                     required: true,
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['createAnAssessmentSectionComment'],
                         },
                     },
@@ -2897,7 +3116,7 @@ class Reporter {
                     required: true,
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['createAnAssessmentSectionComment'],
                         },
                     },
@@ -2912,7 +3131,7 @@ class Reporter {
                     default: {},
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['createAnAssessmentSectionComment'],
                         },
                     },
@@ -2938,12 +3157,12 @@ class Reporter {
                     required: true,
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['updateAnAssessmentSectionComment'],
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: 5a2380ff8f9e42dda029f3e1058da358',
+                    description: 'The ID of the assessment section comment. Example: 30d8bc4000584ba187ceb46646a245cf',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2953,7 +3172,7 @@ class Reporter {
                     default: {},
                     displayOptions: {
                         show: {
-                            resource: ['assessmentSectionComment'],
+                            resource: ['assessmentSectionEvent'],
                             operation: ['updateAnAssessmentSectionComment'],
                         },
                     },
@@ -2973,7 +3192,88 @@ class Reporter {
                             name: 'is_private',
                             type: 'boolean',
                             default: '',
-                            description: 'Whether the comment can be read by clients. Example: true',
+                            description: 'Whether the comment can be read by clients. Must be true. Example: true',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Assessment section id',
+                    name: 'assessment_section_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['createAnAssessmentSectionReviewEvent'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadAssessmentsections',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the assessment section. Example: 61321c4ca77c46b3adabef614073d627',
+                },
+                {
+                    displayName: 'Type',
+                    name: 'type',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['createAnAssessmentSectionReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Revision requested',
+                            value: 1,
+                            description: 'Revision requested',
+                        },
+                        {
+                            name: 'Approved',
+                            value: 2,
+                            description: 'Approved',
+                        },
+                    ],
+                    default: 1,
+                    description: 'Must be a valid review event type. Example: 1',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentSectionEvent'],
+                            operation: ['createAnAssessmentSectionReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Body',
+                            name: 'body',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The changes that the reviewer wants to see. This field is required when type is 1. Example: Please add a paragraph explaining ...',
+                        },
+                        {
+                            displayName: 'Draft documents',
+                            name: 'draft_documents',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Document IDs of uploaded draft documents. Example: ["f606a7c2d0474f32a50057be56aba9a9"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Document IDs of uploaded draft documents. Example: [\"f606a7c2d0474f32a50057be56aba9a9\"]" }] }],
                         },
                     ],
                 },
@@ -3188,7 +3488,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 4e15e48762004cf4b246ca92a37eaf38',
+                    description: 'The ID of the assessment section template. Example: 85f0629bdeda42cdb8fc0a95a2bc95a3',
                 },
                 {
                     displayName: 'Id',
@@ -3202,7 +3502,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 4e15e48762004cf4b246ca92a37eaf38',
+                    description: 'The ID of the assessment section template. Example: 85f0629bdeda42cdb8fc0a95a2bc95a3',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3235,7 +3535,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The contents of the section template (markdown). Example: Illo amet omnis quos voluptatem odio distinctio vitae.',
+                            description: 'The contents of the section template (markdown). Example: This report describes findings of ..',
                         },
                         {
                             displayName: 'Can have findings',
@@ -3419,7 +3719,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 085a527900f94acc8843793b7ab93a75',
+                    description: 'The ID of the assessment template. Example: 7f8c7f66b5b348bba2a599cf52e80f57',
                 },
                 {
                     displayName: 'Name',
@@ -3638,7 +3938,7 @@ class Reporter {
                             name: 'anchor_section_id',
                             type: 'string',
                             default: '',
-                            description: 'ID of the section template to place relative to. When omitted, the section is appended at the end. The id of an existing record in the assessment_section_templates table. Example:',
+                            description: 'ID of the section template to place relative to. When omitted, the section is appended at the end. The ID of an existing record in the assessment_section_templates table. Example:',
                         },
                         {
                             displayName: 'Place',
@@ -3672,7 +3972,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'The contents of the section template (markdown). Example: Qui repellat quaerat esse illum qui et dolor id.',
+                            description: 'The contents of the section template (markdown). Example: This report describes findings of ..',
                         },
                         {
                             displayName: 'Report heading',
@@ -3757,7 +4057,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 3ea34873407749058b572ed8891565ee',
+                    description: 'The ID of the assessment. Example: c94b1cce05544ec1958d356470d60175',
                 },
                 {
                     displayName: 'Task set id',
@@ -3775,7 +4075,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set whose tasks should be assigned to the assessment. The id of an existing record in the task_sets table. Example: 59a415a4a32229eebd4407c6a5b6f2a9',
+                    description: 'The ID of the task set whose tasks should be assigned to the assessment. The ID of an existing record in the task_sets table. Example: 59a415a4a32229eebd4407c6a5b6f2a9',
                 },
                 {
                     displayName: 'Assigned users',
@@ -3810,7 +4110,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: fb5a2fb4fe424a4fb07d782615d3f8c0',
+                    description: 'The ID of the assessment. Example: b3b8555836954745adc54f946576d4cb',
                 },
                 {
                     displayName: 'Id',
@@ -3824,7 +4124,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: 37eed83947cd4e0994313cd848483947',
+                    description: 'The ID of the task set. Example: fa61c80f1d194f7cb6e99051a6bfb727',
                 },
                 // Assessment Template - Operations
                 {
@@ -4099,7 +4399,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: b3db69ca0e2f42e2bc37101c41876495',
+                    description: 'The ID of the assessment template. Example: 40e69ae8f97e4b7b943df50f8eaad337',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4135,7 +4435,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: b3db69ca0e2f42e2bc37101c41876495',
+                    description: 'The ID of the assessment template. Example: 40e69ae8f97e4b7b943df50f8eaad337',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4195,7 +4495,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: d534781b80fe42d2ae195b10746bfcfe',
+                    description: 'The ID of the assessment template. Example: 05bb2ce0c58849eb93e586e6abedac61',
                 },
                 {
                     displayName: 'Language id',
@@ -4248,7 +4548,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 58e92636d2d940bab4c1f4d8ff26094b',
+                    description: 'The ID of the assessment template. Example: e3b9c58ab0dd42178178d5bc7ae3d372',
                 },
                 {
                     displayName: 'Language id',
@@ -4312,7 +4612,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d019de3bad49431699687fd3ff15287f',
+                    description: 'The ID of the assessment. Example: 5509ea31c1544684998008849ac8704a',
                 },
                 {
                     displayName: 'User id',
@@ -4329,7 +4629,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The id of the user that should be attached to the assessment. Example: 6144002a2cd84c61b6678593837d95dc',
+                    description: 'The ID of the user that should be attached to the assessment. Example: 6144002a2cd84c61b6678593837d95dc',
                 },
                 {
                     displayName: 'Type',
@@ -4502,7 +4802,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [4]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [7]',
                         },
                         {
                             displayName: 'Expires on',
@@ -4512,7 +4812,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-07-30',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-01',
                         },
                     ],
                 },
@@ -4531,7 +4831,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: dd707476ae7e423d9f5118deb3505249',
+                    description: 'The ID of the assessment. Example: d627bc04fcc0413daf53c444cfb95f65',
                 },
                 {
                     displayName: 'Id',
@@ -4549,7 +4849,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 493767ca2c0e404a8edef911fa70d862',
+                    description: 'The ID of the user. Example: 38b28c7990644fd3a9e6b78ca198dff2',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4715,7 +5015,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [5]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [18]',
                         },
                         {
                             displayName: 'Expires on',
@@ -4725,7 +5025,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-07-30',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-01',
                         },
                     ],
                 },
@@ -4744,7 +5044,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: dd707476ae7e423d9f5118deb3505249',
+                    description: 'The ID of the assessment. Example: d627bc04fcc0413daf53c444cfb95f65',
                 },
                 {
                     displayName: 'Id',
@@ -4762,7 +5062,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 493767ca2c0e404a8edef911fa70d862',
+                    description: 'The ID of the user. Example: 38b28c7990644fd3a9e6b78ca198dff2',
                 },
                 // Client - Operations
                 {
@@ -5054,14 +5354,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize clients. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Internal"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize clients. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Internal\"]" }] }],
                         },
                     ],
                 },
@@ -5121,7 +5420,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: f672d05942b340069802009540d576c1',
+                    description: 'The ID of the client. Example: 4bbf638711e24ccf873a1db4fb00b6f4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5160,7 +5459,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: f672d05942b340069802009540d576c1',
+                    description: 'The ID of the client. Example: 4bbf638711e24ccf873a1db4fb00b6f4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5219,14 +5518,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize clients. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Internal"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize clients. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Internal\"]" }] }],
                         },
                     ],
                 },
@@ -5286,7 +5584,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: d26d80fff2ec43edabe9a04761235135',
+                    description: 'The ID of the client. Example: 455b4664fefc4c7cb41e53c8b7799d15',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5369,7 +5667,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 50cea8cdcb1a44c094c3a6b8f7cf77f4',
+                    description: 'The ID of the client. Example: 818d0e3a444d4583b83cef9e6a76ff08',
                 },
                 {
                     displayName: 'User id',
@@ -5386,7 +5684,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: d4299bc4ba624b8dab7f499cebf98f0f',
+                    description: 'The ID of the user. Example: bd2547711a544a8c8e9c37189312014e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5655,7 +5953,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: 83926d4d285d41288093dd68e1d1e00a',
+                    description: 'The ID of the document. Example: 8a3d6b0348f947a8a2519e359e2d3f10',
                 },
                 {
                     displayName: 'Documentable type',
@@ -5693,6 +5991,11 @@ class Reporter {
                             name: 'AssessmentSectionComment',
                             value: 'AssessmentSectionComment',
                             description: 'AssessmentSectionComment',
+                        },
+                        {
+                            name: 'AssessmentSectionReviewEvent',
+                            value: 'AssessmentSectionReviewEvent',
+                            description: 'AssessmentSectionReviewEvent',
                         },
                         {
                             name: 'Client',
@@ -5738,6 +6041,11 @@ class Reporter {
                             name: 'FindingTemplate',
                             value: 'FindingTemplate',
                             description: 'FindingTemplate',
+                        },
+                        {
+                            name: 'Snippet',
+                            value: 'Snippet',
+                            description: 'Snippet',
                         },
                         {
                             name: 'Target',
@@ -5802,7 +6110,7 @@ class Reporter {
                             name: 'documentable_id',
                             type: 'string',
                             default: '',
-                            description: 'The id of the associated model. Must contain only letters and numbers. Example: 3639127a83ad02c3527e9ea1fd69c8c2',
+                            description: 'The ID of the associated model. Must contain only letters and numbers. Example: 3639127a83ad02c3527e9ea1fd69c8c2',
                         },
                         {
                             displayName: 'Caption',
@@ -6079,7 +6387,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e4ae65eed21e4db98b2811c7065dc48e',
+                    description: 'The ID of the assessment. Example: 1130c0f8dc5f4e6da8ee6466538064de',
                 },
                 {
                     displayName: 'Title',
@@ -6161,7 +6469,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the finding. Must be a valid review status. Example: 10',
+                    description: 'The current review status of the finding. Must be a valid review status. Example: 14',
                 },
                 {
                     displayName: 'Is published',
@@ -6175,7 +6483,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'Whether the finding is published. Example: false',
+                    description: 'Whether the finding is published. Example: true',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6254,7 +6562,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 7',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 2',
                         },
                         {
                             displayName: 'Draft documents',
@@ -6325,7 +6633,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 13',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 16',
                         },
                         {
                             displayName: 'Priority',
@@ -6556,7 +6864,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: d150233bb5b940709345cd5b10f7b00d',
+                    description: 'The ID of the finding. Example: 6bbfbbccaf8d417b95b77ca5caf3a471',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6595,7 +6903,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: d150233bb5b940709345cd5b10f7b00d',
+                    description: 'The ID of the finding. Example: 6bbfbbccaf8d417b95b77ca5caf3a471',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6667,7 +6975,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 15',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 4',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -6718,7 +7026,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the finding. Must be a valid review status. Example: 6',
+                            description: 'The current review status of the finding. Must be a valid review status. Example: 19',
                         },
                         {
                             displayName: 'Is published',
@@ -6806,7 +7114,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 3',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 19',
                         },
                         {
                             displayName: 'Priority',
@@ -7037,7 +7345,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 2a0a4c394fab4b09b95fe42f952a64bd',
+                    description: 'The ID of the assessment. Example: 3dbd5ce297904ab28b4fac1748e0344d',
                 },
                 {
                     displayName: 'Finding template id',
@@ -7220,6 +7528,30 @@ class Reporter {
                             value: 'updateARetestCancelledEvent',
                             action: 'Update a retest cancelled event',
                             description: 'Update an existing finding retest cancelled event. Object information.',
+                        },
+                        {
+                            name: 'Create a finding review event',
+                            value: 'createAFindingReviewEvent',
+                            action: 'Create a finding review event',
+                            description: 'Approve a finding, or request a revision of it. Object information. Requesting a revision explains the changes that the researcher has to make, and assigns them a task to make them. Approving and r...',
+                        },
+                        {
+                            name: 'Create a finding retest review event',
+                            value: 'createAFindingRetestReviewEvent',
+                            action: 'Create a finding retest review event',
+                            description: 'Approve a finding retest, or request a revision of it. Object information. The `review_status` of the retest has to be Under review. The review event is created on the finding of the retest, with t...',
+                        },
+                        {
+                            name: 'Create a remediation status change',
+                            value: 'createARemediationStatusChange',
+                            action: 'Create a remediation status change',
+                            description: 'Change the remediation status of a finding, explaining why it is changed. Object information. The remediation status of the finding is updated to the status of the change. Accepting a risk requires...',
+                        },
+                        {
+                            name: 'Update a remediation status change',
+                            value: 'updateARemediationStatusChange',
+                            action: 'Update a remediation status change',
+                            description: 'Update the reason of an existing remediation status change. Object information. The `remediation_status` of the change itself can not be updated. Change the remediation status of the finding again ...',
                         },
                     ],
                     default: 'listFindingEvents',
@@ -7415,7 +7747,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: c8560524d95142c99eb56849d2758d2d',
+                    description: 'The ID of the finding. Example: b2d758580e7a42aba30339fc8473b168',
                 },
                 {
                     displayName: 'Body',
@@ -7484,7 +7816,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: 39dea8afba8d4824b29d8733e2eeed26',
+                    description: 'The ID of the finding comment. Example: 8effe77184474dd3a6db7cb2a30c2894',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7533,7 +7865,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: e878290fb051448dbd7d56b409a10e7f',
+                    description: 'The ID of the finding. Example: 865b8895fb924e718dfd1bd9b5537973',
                 },
                 {
                     displayName: 'Status',
@@ -7720,7 +8052,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 6b609200bc384b87b147b27876d47d00',
+                    description: 'The ID of the finding retest. Example: 7a848dd5d2f246758524e9b6e2a5bcd2',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7906,7 +8238,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: f72ac1d1b55a444ca1bff09f856f6968',
+                    description: 'The ID of the finding. Example: e6a5dc3e654243718ca11021d6609794',
                 },
                 {
                     displayName: 'Body',
@@ -7968,7 +8300,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: f77fffc498904d14926931314a28971d',
+                    description: 'The ID of the finding retest inquiry. Example: c303dceb1b4847d093d72018acea82d3',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8011,7 +8343,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 5e5a591358b44133b76d530b101d7c11',
+                    description: 'The ID of the finding retest inquiry. Example: 18b5df00bf624555b7d20094e62dab2c',
                 },
                 {
                     displayName: 'Body',
@@ -8073,7 +8405,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: 13142059e4ad4a4e8eb4e4bdc85b40f4',
+                    description: 'The ID of the finding retest cancelled event. Example: f100d627d5ea46b89f3791f26de711a8',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8097,6 +8429,306 @@ class Reporter {
                             },
                             default: '',
                             description: 'The text of the retest cancelled event request. Example: I am cancelling this retest request because ...',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Finding id',
+                    name: 'finding_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingReviewEvent'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadFindings',
+                    },
+                    default: undefined,
+                    description: 'The ID of the finding. Example: 2d8e69cf8a5d4fab893bf4ca6c8de19d',
+                },
+                {
+                    displayName: 'Type',
+                    name: 'type',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Revision requested',
+                            value: 1,
+                            description: 'Revision requested',
+                        },
+                        {
+                            name: 'Approved',
+                            value: 2,
+                            description: 'Approved',
+                        },
+                    ],
+                    default: 1,
+                    description: 'Must be a valid review event type. Example: 1',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Body',
+                            name: 'body',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The changes that the reviewer wants to see. This field is required when type is 1. Example: Please add a paragraph explaining ...',
+                        },
+                        {
+                            displayName: 'Draft documents',
+                            name: 'draft_documents',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Document IDs of uploaded draft documents. Example: ["f606a7c2d0474f32a50057be56aba9a9"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Document IDs of uploaded draft documents. Example: [\"f606a7c2d0474f32a50057be56aba9a9\"]" }] }],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Finding retest id',
+                    name: 'finding_retest_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingRetestReviewEvent'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadFindingretests',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the finding retest. Example: 0c93843747ff4ec4a4ac1bf3c1154549',
+                },
+                {
+                    displayName: 'Type',
+                    name: 'type',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingRetestReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Revision requested',
+                            value: 1,
+                            description: 'Revision requested',
+                        },
+                        {
+                            name: 'Approved',
+                            value: 2,
+                            description: 'Approved',
+                        },
+                    ],
+                    default: 1,
+                    description: 'Must be a valid review event type. Example: 1',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createAFindingRetestReviewEvent'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Body',
+                            name: 'body',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The changes that the reviewer wants to see. This field is required when type is 1. Example: Please add a paragraph explaining ...',
+                        },
+                        {
+                            displayName: 'Draft documents',
+                            name: 'draft_documents',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Document IDs of uploaded draft documents. Example: ["f606a7c2d0474f32a50057be56aba9a9"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Document IDs of uploaded draft documents. Example: [\"f606a7c2d0474f32a50057be56aba9a9\"]" }] }],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Finding id',
+                    name: 'finding_id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createARemediationStatusChange'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadFindings',
+                    },
+                    default: undefined,
+                    description: 'The ID of the finding. Example: 21f7877879ad4663a7f5a97f5b8d0e8d',
+                },
+                {
+                    displayName: 'Remediation status',
+                    name: 'remediation_status',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createARemediationStatusChange'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'Open',
+                            value: 0,
+                            description: 'Open',
+                        },
+                        {
+                            name: 'Planned',
+                            value: 1,
+                            description: 'Planned',
+                        },
+                        {
+                            name: 'In Progress',
+                            value: 2,
+                            description: 'In Progress',
+                        },
+                        {
+                            name: 'On Hold',
+                            value: 3,
+                            description: 'On Hold',
+                        },
+                        {
+                            name: 'Accepted Risk',
+                            value: 4,
+                            description: 'Accepted Risk',
+                        },
+                        {
+                            name: 'Resolved (Unverified)',
+                            value: 5,
+                            description: 'Resolved (Unverified)',
+                        },
+                    ],
+                    default: 0,
+                    description: 'The remediation status to move the finding to. Must be a valid remediation status. Example: 4',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['createARemediationStatusChange'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Body',
+                            name: 'body',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'Why the remediation status is changed. This field is required when remediation_status is 4. Example: The risk is accepted because ...',
+                        },
+                        {
+                            displayName: 'Draft documents',
+                            name: 'draft_documents',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Document IDs of uploaded draft documents. Example: ["f606a7c2d0474f32a50057be56aba9a9"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Document IDs of uploaded draft documents. Example: [\"f606a7c2d0474f32a50057be56aba9a9\"]" }] }],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Remediation status change id',
+                    name: 'remediation_status_change_id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['updateARemediationStatusChange'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the remediation status change. Example: b86bfb2d742340d9b71cd69bc356dda2',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['findingEvent'],
+                            operation: ['updateARemediationStatusChange'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Body',
+                            name: 'body',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'Why the remediation status was changed. Example: The risk is accepted because ...',
                         },
                     ],
                 },
@@ -8257,7 +8889,13 @@ class Reporter {
                             name: 'Update a finding template',
                             value: 'updateAFindingTemplate',
                             action: 'Update a finding template',
-                            description: 'Update an existing finding template. Object information. Only custom finding templates (`source`: 0) can be updated.',
+                            description: 'Update an existing finding template. Object information. Only custom finding templates (`source`: 0) can be updated. `language_id` selects which translation to write to. If the translation does not...',
+                        },
+                        {
+                            name: 'Remove a translation from a finding template',
+                            value: 'removeATranslationFromAFindingTemplate',
+                            action: 'Remove a translation from a finding template',
+                            description: 'Remove a language translation, and the documents it references, from the finding template. The primary language can not be removed.',
                         },
                     ],
                     default: 'searchFindingTemplates',
@@ -8625,14 +9263,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize finding templates. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Mobile"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize finding templates. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Mobile\"]" }] }],
                         },
                         {
                             displayName: 'Severity metrics all',
@@ -8676,7 +9313,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 2',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 19',
                         },
                         {
                             displayName: 'Classifications',
@@ -8951,14 +9588,13 @@ class Reporter {
                         {
                             displayName: 'Tags',
                             name: 'tags',
-                            type: 'fixedCollection',
+                            type: 'options',
                             typeOptions: {
+                                loadOptionsMethod: 'loadTags',
                                 multipleValues: true,
                             },
-                            default: [],
-                            placeholder: 'Add Item',
+                            default: undefined,
                             description: 'Tags to organize finding templates. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Mobile"]',
-                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Tags to organize finding templates. Tags are not case sensitive. Must not be greater than 191 characters. Example: [\"Mobile\"]" }] }],
                         },
                         {
                             displayName: 'Is vulnerability',
@@ -9009,7 +9645,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 12',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 10',
                         },
                         {
                             displayName: 'Classifications',
@@ -9191,6 +9827,34 @@ class Reporter {
                             ],
                         },
                     ],
+                },
+                {
+                    displayName: 'Finding template id',
+                    name: 'finding_template_id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingTemplate'],
+                            operation: ['removeATranslationFromAFindingTemplate'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the finding template. Example: 1',
+                },
+                {
+                    displayName: 'Language id',
+                    name: 'language_id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['findingTemplate'],
+                            operation: ['removeATranslationFromAFindingTemplate'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the language. Example: en_default',
                 },
                 // Language - Operations
                 {
@@ -9385,6 +10049,235 @@ class Reporter {
                         },
                     },
                 },
+                // Notification - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['notification'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List notifications',
+                            value: 'listNotifications',
+                            action: 'List notifications',
+                            description: 'Retrieve the notifications of the owner of the API token. Object information.',
+                        },
+                    ],
+                    default: 'listNotifications',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['notification'],
+                            operation: ['listNotifications'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Type',
+                                                    value: 'type',
+                                                },
+                                                {
+                                                    name: 'Notifiable id',
+                                                    value: 'notifiable_id',
+                                                },
+                                                {
+                                                    name: 'Sender id',
+                                                    value: 'sender_id',
+                                                },
+                                                {
+                                                    name: 'Model type',
+                                                    value: 'model_type',
+                                                },
+                                                {
+                                                    name: 'Model id',
+                                                    value: 'model_id',
+                                                },
+                                                {
+                                                    name: 'Assessment id',
+                                                    value: 'assessment_id',
+                                                },
+                                                {
+                                                    name: 'Assessment section id',
+                                                    value: 'assessment_section_id',
+                                                },
+                                                {
+                                                    name: 'Finding id',
+                                                    value: 'finding_id',
+                                                },
+                                                {
+                                                    name: 'Client id',
+                                                    value: 'client_id',
+                                                },
+                                                {
+                                                    name: 'Task id',
+                                                    value: 'task_id',
+                                                },
+                                                {
+                                                    name: 'Read at',
+                                                    value: 'read_at',
+                                                },
+                                                {
+                                                    name: 'Expires at',
+                                                    value: 'expires_at',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['notification'],
+                            operation: ['listNotifications'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['notification'],
+                            operation: ['listNotifications'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['notification'],
+                            operation: ['listNotifications'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
                 // Output File - Operations
                 {
                     displayName: 'Operation',
@@ -9427,7 +10320,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 01205076de4d4dbb8a1c9c4b388f4c75',
+                    description: 'The ID of the assessment. Example: 7c32034dc8404bf1918bb4cf5f1d7153',
                 },
                 {
                     displayName: 'Name',
@@ -10531,7 +11424,7 @@ class Reporter {
                         },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: et',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: unde',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -10759,7 +11652,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The id of the model this reaction belongs to. Example: 6144002a2cd84c61b6678593837d95dc',
+                    description: 'The ID of the model this reaction belongs to. Example: 6144002a2cd84c61b6678593837d95dc',
                 },
                 {
                     displayName: 'Reaction',
@@ -11119,6 +12012,623 @@ class Reporter {
                         },
                     },
                 },
+                // Snippet - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List snippets',
+                            value: 'listSnippets',
+                            action: 'List snippets',
+                            description: 'Retrieve a list of all snippets. Object information.',
+                        },
+                        {
+                            name: 'Create a snippet',
+                            value: 'createASnippet',
+                            action: 'Create a snippet',
+                            description: 'Create a new snippet. Object information. Upload images used in `text` to `POST /v1/documents` first, with `documentable_type`: `Snippet` and `section`: `text`, then pass the returned document IDs ...',
+                        },
+                        {
+                            name: 'Retrieve a snippet',
+                            value: 'retrieveASnippet',
+                            action: 'Retrieve a snippet',
+                            description: 'Retrieve all details of the given snippet. Object information.',
+                        },
+                        {
+                            name: 'Update a snippet',
+                            value: 'updateASnippet',
+                            action: 'Update a snippet',
+                            description: 'Update an existing snippet. Object information. `language_id` selects which translation to write to. If the translation does not exist yet, it will be created. When a translation is created, copies...',
+                        },
+                        {
+                            name: 'Remove a translation from a snippet',
+                            value: 'removeATranslationFromASnippet',
+                            action: 'Remove a translation from a snippet',
+                            description: 'Remove a language translation, and the documents it references, from the snippet. The primary language can not be removed.',
+                        },
+                    ],
+                    default: 'listSnippets',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['listSnippets'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Primary language id',
+                                                    value: 'primary_language_id',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['listSnippets'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['listSnippets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['listSnippets'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Name',
+                    name: 'name',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['createASnippet'],
+                        },
+                    },
+                    default: '',
+                    description: 'The reference used to embed this snippet, as `[snippet="name"]`, in the markdown of other models. Must contain only letters, numbers, dashes and underscores. Must not be greater than 191 characters...',
+                },
+                {
+                    displayName: 'Text',
+                    name: 'text',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['createASnippet'],
+                        },
+                    },
+                    typeOptions: {
+                        rows: 4,
+                    },
+                    default: '',
+                    description: 'Example: This report is confidential.',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['createASnippet'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Primary language id',
+                            name: 'primary_language_id',
+                            type: 'string',
+                            default: '',
+                            description: 'The primary language of the snippet. Optional if there is only one. Example: en',
+                        },
+                        {
+                            displayName: 'Tags',
+                            name: 'tags',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadTags',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'Tags to organize snippets. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Reporting"]',
+                        },
+                        {
+                            displayName: 'Draft documents',
+                            name: 'draft_documents',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Item',
+                            description: 'Document IDs of uploaded draft documents. Example: ["f606a7c2d0474f32a50057be56aba9a9"]',
+                            options: [{ "name": "items", "displayName": "Item", "values": [{ "displayName": "Value", "name": "value", "type": "string", "default": "", "description": "Document IDs of uploaded draft documents. Example: [\"f606a7c2d0474f32a50057be56aba9a9\"]" }] }],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['retrieveASnippet'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the snippet. Example: 1',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['retrieveASnippet'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['updateASnippet'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the snippet. Example: 1',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['updateASnippet'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Language id',
+                            name: 'language_id',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadLanguages',
+                            },
+                            default: undefined,
+                            description: 'The translation to write to. Defaults to the primary language of the snippet. If a translation for the given language does not exist, it is created, together with copies of the documents of the pri...',
+                        },
+                        {
+                            displayName: 'Primary language id',
+                            name: 'primary_language_id',
+                            type: 'string',
+                            default: '',
+                            description: 'Set an existing translation as the primary language. Example: en',
+                        },
+                        {
+                            displayName: 'Name',
+                            name: 'name',
+                            type: 'string',
+                            default: '',
+                            description: 'The reference used to embed this snippet, as `[snippet="name"]`, in the markdown of other models. Can not be changed once the snippet is in use. Must contain only letters, numbers, dashes and under...',
+                        },
+                        {
+                            displayName: 'Tags',
+                            name: 'tags',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadTags',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'Tags to organize snippets. Tags are not case sensitive. Must not be greater than 191 characters. Example: ["Reporting"]',
+                        },
+                        {
+                            displayName: 'Text',
+                            name: 'text',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'Example: This report is confidential.',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Snippet id',
+                    name: 'snippet_id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['removeATranslationFromASnippet'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the snippet. Example: 1',
+                },
+                {
+                    displayName: 'Language id',
+                    name: 'language_id',
+                    type: 'number',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['snippet'],
+                            operation: ['removeATranslationFromASnippet'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the language. Example: en_default',
+                },
+                // Tag - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['tag'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List tags',
+                            value: 'listTags',
+                            action: 'List tags',
+                            description: 'Retrieve a list of all existing tags. Object information. Use `filter[type]` to list only the tags that can be attached to one kind of model, and reuse those exact names (not case sensitive) in the...',
+                        },
+                    ],
+                    default: 'listTags',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['tag'],
+                            operation: ['listTags'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'En name',
+                                                    value: 'en_name',
+                                                },
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'En name',
+                                                    value: 'en_name',
+                                                },
+                                                {
+                                                    name: 'Type',
+                                                    value: 'type',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['tag'],
+                            operation: ['listTags'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['tag'],
+                            operation: ['listTags'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['tag'],
+                            operation: ['listTags'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
                 // Target - Operations
                 {
                     displayName: 'Operation',
@@ -11333,7 +12843,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: bb14f5bb553542fb99421cbb2e46628b',
+                    description: 'The ID of the assessment. Example: e5e18889e0f44a94aca2a4a40a0ebe80',
                 },
                 {
                     displayName: 'Target type',
@@ -11494,7 +13004,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 9',
+                    description: 'The type of target. Must be a valid target type. Example: 4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11555,7 +13065,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 9',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 13',
                         },
                         {
                             displayName: 'Name',
@@ -11589,7 +13099,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: ut',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: There is ...',
                         },
                         {
                             displayName: 'Credentials',
@@ -11630,7 +13140,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 9427997d073e41f78730c9907dbdeba6',
+                    description: 'The ID of the target. Example: 04a657ed26414121a96acc79db0dd5a3',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11669,7 +13179,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 9427997d073e41f78730c9907dbdeba6',
+                    description: 'The ID of the target. Example: 04a657ed26414121a96acc79db0dd5a3',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -11853,7 +13363,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 12',
+                            description: 'The type of target. Must be a valid target type. Example: 2',
                         },
                         {
                             displayName: 'Business impact',
@@ -11877,7 +13387,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 17',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 14',
                         },
                         {
                             displayName: 'Name',
@@ -11911,7 +13421,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'Any details researchers or clients should know about the target (markdown). Example: possimus',
+                            description: 'Any details researchers or clients should know about the target (markdown). Example: There is ...',
                         },
                         {
                             displayName: 'Credentials',
@@ -12147,7 +13657,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 7baaa88478d049c5b320a90801fa3528',
+                    description: 'The ID of the task. Example: 0027455223844d0484700b47a90955d1',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12186,7 +13696,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 7baaa88478d049c5b320a90801fa3528',
+                    description: 'The ID of the task. Example: 0027455223844d0484700b47a90955d1',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12248,7 +13758,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 3',
+                            description: 'The type of deadline for this task. Must be a valid deadline type. Example: 0',
                         },
                         {
                             displayName: 'Deadline change',
@@ -12287,7 +13797,7 @@ class Reporter {
                             name: 'data',
                             type: 'string',
                             default: '',
-                            description: 'An array consisting of a title and description for the task. Example: { "title": "Task Title", "description": "Task Description"} Properties: { "title": { "type": "string", "description": "Must not...',
+                            description: 'An array consisting of a title and description for the task. Example: { "title": "Task Title", "description": "Task Description" } Properties: { "title": { "type": "string", "description": "Must no...',
                         },
                         {
                             displayName: 'Completed',
@@ -12324,7 +13834,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 98adfa9fc9fd4569872b4643a977c6b0',
+                    description: 'The ID of the assessment. Example: 887dbb59c4884498bedab1a28c9522a5',
                 },
                 {
                     displayName: 'Data',
@@ -12338,7 +13848,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'An array consisting of a title and description for the task. Example: { "title": "Task Title", "description": "Task Description"} Properties: { "title": { "type": "string", "description": "Must not...',
+                    description: 'An array consisting of a title and description for the task. Example: { "title": "Task Title", "description": "Task Description" } Properties: { "title": { "type": "string", "description": "Must no...',
                 },
                 {
                     displayName: 'Deadline type',
@@ -12394,7 +13904,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 3',
+                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
                 },
                 {
                     displayName: 'Weight',
@@ -12718,7 +14228,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 14',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12742,7 +14252,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 1',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 19',
                         },
                         {
                             displayName: 'Tasks',
@@ -12809,7 +14319,7 @@ class Reporter {
                                                 },
                                             ],
                                             default: 0,
-                                            description: 'The deadline type of this task. Must be a valid deadline type. Possible field values:\n\n<table>\n    <thead>\n        <th>Value</th>\n        <th>Description</th>\n    </thead>\n    <tbody>\n            <tr>\n            <td>\n                0\n            </td>\n            <td>\n                Before research starts\n            </td>\n        </tr>\n            <tr>\n            <td>\n                1\n            </td>\n            <td>\n                Research deadline\n            </td>\n        </tr>\n            <tr>\n            <td>\n                2\n            </td>\n            <td>\n                Review deadline\n            </td>\n        </tr>\n            <tr>\n            <td>\n                3\n            </td>\n            <td>\n                Delivery date\n            </td>\n        </tr>\n            <tr>\n            <td>\n                5\n            </td>\n            <td>\n                None\n            </td>\n        </tr>\n        </tbody>\n</table>\n This field is required when <code>deadline_type</code> is <code>6</code>.',
+                                            description: 'The deadline type of this task. Must be a valid deadline type. Possible field values: Value Description 0 Before research starts 1 Research deadline 2 Review deadline 3 Delivery date 5 None This fi...',
                                         },
                                         {
                                             displayName: 'Deadline Change',
@@ -12845,7 +14355,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 8ca4528b0a8647049fae799e4bacc388',
+                    description: 'The ID of the task set. Example: 1dfeebbfe45d4d3885cdfa45aed35876',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12885,7 +14395,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 8ca4528b0a8647049fae799e4bacc388',
+                    description: 'The ID of the task set. Example: 1dfeebbfe45d4d3885cdfa45aed35876',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12944,7 +14454,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 11',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 13',
                         },
                         {
                             displayName: 'Tasks',
@@ -13011,7 +14521,7 @@ class Reporter {
                                                 },
                                             ],
                                             default: 0,
-                                            description: 'The deadline type of this individual task. Must be a valid deadline type. Possible field values:\n\n<table>\n    <thead>\n        <th>Value</th>\n        <th>Description</th>\n    </thead>\n    <tbody>\n            <tr>\n            <td>\n                0\n            </td>\n            <td>\n                Before research starts\n            </td>\n        </tr>\n            <tr>\n            <td>\n                1\n            </td>\n            <td>\n                Research deadline\n            </td>\n        </tr>\n            <tr>\n            <td>\n                2\n            </td>\n            <td>\n                Review deadline\n            </td>\n        </tr>\n            <tr>\n            <td>\n                3\n            </td>\n            <td>\n                Delivery date\n            </td>\n        </tr>\n            <tr>\n            <td>\n                5\n            </td>\n            <td>\n                None\n            </td>\n        </tr>\n        </tbody>\n</table>\n This field is required when <code>deadline_type</code> is <code>6</code>.',
+                                            description: 'The deadline type of this individual task. Must be a valid deadline type. Possible field values: Value Description 0 Before research starts 1 Research deadline 2 Review deadline 3 Delivery date 5 N...',
                                         },
                                         {
                                             displayName: 'Deadline Change',
@@ -13044,10 +14554,16 @@ class Reporter {
                     },
                     options: [
                         {
-                            name: 'Create a team',
-                            value: 'createATeam',
-                            action: 'Create a team',
-                            description: 'Create a new team. Object information.',
+                            name: 'List teams',
+                            value: 'listTeams',
+                            action: 'List teams',
+                            description: 'Retrieve a list of all accessible teams. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a team',
+                            value: 'retrieveATeam',
+                            action: 'Retrieve a team',
+                            description: 'Retrieve all details of the given team. Object information.',
                         },
                         {
                             name: 'Update a team',
@@ -13055,8 +14571,299 @@ class Reporter {
                             action: 'Update a team',
                             description: 'Update an existing team. Object information.',
                         },
+                        {
+                            name: 'Create a team',
+                            value: 'createATeam',
+                            action: 'Create a team',
+                            description: 'Create a new team. Object information.',
+                        },
                     ],
-                    default: 'createATeam',
+                    default: 'listTeams',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['listTeams'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Client id',
+                                                    value: 'client_id',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Type',
+                                                    value: 'type',
+                                                },
+                                                {
+                                                    name: 'Assessment access scope',
+                                                    value: 'assessment_access_scope',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['listTeams'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['listTeams'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['listTeams'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['retrieveATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadTeams',
+                    },
+                    default: undefined,
+                    description: 'The ID of the team. Example: 5f5cd81380054d2586c86108b6b933d9',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['retrieveATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['updateATeam'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadTeams',
+                    },
+                    default: undefined,
+                    description: 'The ID of the team. Example: 5f5cd81380054d2586c86108b6b933d9',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['team'],
+                            operation: ['updateATeam'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Name',
+                            name: 'name',
+                            type: 'string',
+                            default: '',
+                            description: 'The name of the team. Must not be greater than 191 characters. Example: Team 1',
+                        },
+                        {
+                            displayName: 'Color',
+                            name: 'color',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The color used to show the team. (On creation, a random color will be used if none is provided). Example: #0000FF',
+                        },
+                        {
+                            displayName: 'Assessment access scope',
+                            name: 'assessment_access_scope',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The assessment access scope of the team. If set to specific, the team will only have access to selected assessments. If set to all, the team will have access to all assessments of the client. Only ...',
+                        },
+                        {
+                            displayName: 'Assessments',
+                            name: 'assessments',
+                            type: 'options',
+                            typeOptions: {
+                                loadOptionsMethod: 'loadAssessments',
+                                multipleValues: true,
+                            },
+                            default: undefined,
+                            description: 'The assessments that the team has access to. Only applicable when assessment_access_scope is set to specific. Example: ["6144002a2cd84c61b6678593837d95dc"]',
+                        },
+                    ],
                 },
                 {
                     displayName: 'Client id',
@@ -13073,7 +14880,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: d5e3d779ae194882acab8b487bc61ff1',
+                    description: 'The ID of the client. Example: 5f600d251ac141f6902f2c8bf771e0b8',
                 },
                 {
                     displayName: 'Name',
@@ -13156,73 +14963,6 @@ class Reporter {
                         },
                     ],
                 },
-                {
-                    displayName: 'Id',
-                    name: 'id',
-                    type: 'string',
-                    required: true,
-                    displayOptions: {
-                        show: {
-                            resource: ['team'],
-                            operation: ['updateATeam'],
-                        },
-                    },
-                    default: '',
-                    description: 'The ID of the team. Example: e0385eb84f084cf199b58d75e025b053',
-                },
-                {
-                    displayName: 'Additional Fields',
-                    name: 'additionalFields',
-                    type: 'collection',
-                    placeholder: 'Add Field',
-                    default: {},
-                    displayOptions: {
-                        show: {
-                            resource: ['team'],
-                            operation: ['updateATeam'],
-                        },
-                    },
-                    options: [
-                        {
-                            displayName: 'Name',
-                            name: 'name',
-                            type: 'string',
-                            default: '',
-                            description: 'The name of the team. Must not be greater than 191 characters. Example: Team 1',
-                        },
-                        {
-                            displayName: 'Color',
-                            name: 'color',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'The color used to show the team. (On creation, a random color will be used if none is provided). Example: #0000FF',
-                        },
-                        {
-                            displayName: 'Assessment access scope',
-                            name: 'assessment_access_scope',
-                            type: 'string',
-                            typeOptions: {
-                                rows: 4,
-                            },
-                            default: '',
-                            description: 'The assessment access scope of the team. If set to specific, the team will only have access to selected assessments. If set to all, the team will have access to all assessments of the client. Only ...',
-                        },
-                        {
-                            displayName: 'Assessments',
-                            name: 'assessments',
-                            type: 'options',
-                            typeOptions: {
-                                loadOptionsMethod: 'loadAssessments',
-                                multipleValues: true,
-                            },
-                            default: undefined,
-                            description: 'The assessments that the team has access to. Only applicable when assessment_access_scope is set to specific. Example: ["6144002a2cd84c61b6678593837d95dc"]',
-                        },
-                    ],
-                },
                 // Team User - Operations
                 {
                     displayName: 'Operation',
@@ -13269,10 +15009,9 @@ class Reporter {
                     },
                     typeOptions: {
                         loadOptionsMethod: 'loadTeams',
-                        loadOptionsDependsOn: ['user_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: d52574dbcc2d4166a0b87c1c3857b4d0',
+                    description: 'The ID of the team. Example: d95627754c1f4776bc50f51fab61e27c',
                 },
                 {
                     displayName: 'User id',
@@ -13289,7 +15028,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The id of the user that should be added to the team. Example: 6144002a2cd84c61b6678593837d95dc',
+                    description: 'The ID of the user that should be added to the team. Example: 6144002a2cd84c61b6678593837d95dc',
                 },
                 {
                     displayName: 'Type',
@@ -13365,7 +15104,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-07-30',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-01',
                         },
                         {
                             displayName: 'Read only',
@@ -13389,10 +15128,9 @@ class Reporter {
                     },
                     typeOptions: {
                         loadOptionsMethod: 'loadTeams',
-                        loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 2dfaa942899f47c4828dbdb93702cadb',
+                    description: 'The ID of the team. Example: 3feeb73ebdad4872abef147c75cd2dce',
                 },
                 {
                     displayName: 'Id',
@@ -13406,7 +15144,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: e13338d2b600491b88cd6133f4bb5873',
+                    description: 'The ID of the user. Example: d31f5418cc1744669c8a6526d944aefd',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13475,7 +15213,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-07-30',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-01',
                         },
                         {
                             displayName: 'Read only',
@@ -13499,10 +15237,9 @@ class Reporter {
                     },
                     typeOptions: {
                         loadOptionsMethod: 'loadTeams',
-                        loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 2dfaa942899f47c4828dbdb93702cadb',
+                    description: 'The ID of the team. Example: 3feeb73ebdad4872abef147c75cd2dce',
                 },
                 {
                     displayName: 'Id',
@@ -13516,7 +15253,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: e13338d2b600491b88cd6133f4bb5873',
+                    description: 'The ID of the user. Example: d31f5418cc1744669c8a6526d944aefd',
                 },
                 // Test Case - Operations
                 {
@@ -13743,7 +15480,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 9c7d64c0491e4e53ae55a49500cb891a',
+                    description: 'The ID of the test case. Example: cb2842ef923041ed92c566881b7ee268',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13783,7 +15520,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: 9c7d64c0491e4e53ae55a49500cb891a',
+                    description: 'The ID of the test case. Example: cb2842ef923041ed92c566881b7ee268',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14206,7 +15943,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 492b6f77e29a4a71a8977d290eb016f2',
+                    description: 'The ID of the tool finding. Example: 0d03b3e929a24651a0123bde8b731910',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14246,7 +15983,7 @@ class Reporter {
                         loadOptionsDependsOn: ['finding_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 492b6f77e29a4a71a8977d290eb016f2',
+                    description: 'The ID of the tool finding. Example: 0d03b3e929a24651a0123bde8b731910',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14506,7 +16243,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the tool target. Example: 9c5bbb43655147f2a937c131d708ce23',
+                    description: 'The ID of the tool target. Example: 3d5dcdaf39d345e58ab33d0a15fc656e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14526,7 +16263,7 @@ class Reporter {
                             name: 'target_confirmed',
                             type: 'boolean',
                             default: '',
-                            description: 'When a tool target is created, the target id is set if it is matched with a target with an identical or similar URL or IP address. To confirm it was matched correctly this field has to be set to tr...',
+                            description: 'When a tool target is created, the target ID is set if it is matched with a target with an identical or similar URL or IP address. Set this field to confirm it was matched correctly. Must be true. ...',
                         },
                         {
                             displayName: 'In scope',
@@ -14886,7 +16623,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: zvwvtsazigvvghdu',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: jzuyvkkfovcgthi',
                         },
                         {
                             displayName: 'Clients',
@@ -14897,7 +16634,7 @@ class Reporter {
                                 multipleValues: true,
                             },
                             default: undefined,
-                            description: 'Ids of the client companies the user belongs to. Only for client users. Example: ["00358b52e09d40a6bce8960aca4ac853"]',
+                            description: 'IDs of the client companies the user belongs to. Only for client users. Example: ["00358b52e09d40a6bce8960aca4ac853"]',
                         },
                         {
                             displayName: 'Roles',
@@ -14968,7 +16705,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: ccb772bace5744fe9f416bedf932b9ca',
+                    description: 'The ID of the user. Example: c72b2ec89f544ec0be3914549eb87529',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15007,7 +16744,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: ccb772bace5744fe9f416bedf932b9ca',
+                    description: 'The ID of the user. Example: c72b2ec89f544ec0be3914549eb87529',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15112,7 +16849,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: rmxduqzan',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: speskhmnutrzitbajenasmjq',
                         },
                     ],
                 },
@@ -15409,6 +17146,36 @@ class Reporter {
                         return [];
                     }
                 },
+                async loadAssessmentSectionEvents() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-section-events`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.id || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
                 async loadAssessmentSectionTemplates() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
@@ -15679,6 +17446,36 @@ class Reporter {
                         return [];
                     }
                 },
+                async loadNotifications() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/notifications`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.id || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
                 async loadOutputFiles() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
@@ -15799,6 +17596,66 @@ class Reporter {
                         return [];
                     }
                 },
+                async loadSnippets() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/snippets`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadTags() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/tags`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.id || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
                 async loadTargets() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
@@ -15866,6 +17723,36 @@ class Reporter {
                         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/task-sets`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadTeams() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/teams`,
                             headers: {
                                 'Accept': 'application/vnd.api+json',
                             },
@@ -16776,78 +18663,6 @@ class Reporter {
                         return [];
                     }
                 },
-                async loadTeams() {
-                    const credentials = await this.getCredentials('reporterApi');
-                    const baseUrl = credentials.url.replace(/\/$/, '');
-                    try {
-                        let parentId;
-                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
-                        const parentIdField = 'assessment_id';
-                        try {
-                            parentId = this.getCurrentNodeParameter(parentIdField);
-                        }
-                        catch (error) {
-                            // Field doesn't exist, will try alternative approach
-                        }
-                        // If parent ID not found directly, try to get it from the current resource
-                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
-                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
-                            try {
-                                const resourceId = this.getCurrentNodeParameter('id');
-                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
-                                    // Try to determine which resource we're working with
-                                    const resource = this.getNodeParameter('resource');
-                                    // Fetch the current resource to get the parent ID
-                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                                        method: 'GET',
-                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
-                                        headers: {
-                                            'Accept': 'application/vnd.api+json',
-                                        },
-                                        json: true,
-                                    });
-                                    // For show routes, the response is the resource directly (no 'data' wrapper)
-                                    parentId = resourceResponse[parentIdField];
-                                }
-                            }
-                            catch (error) {
-                                // Could not fetch resource, return empty
-                                return [];
-                            }
-                        }
-                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
-                            return [];
-                        }
-                        // Fetch the parent resource with the relation included
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'GET',
-                            url: `${baseUrl}/api/v1/assessments/${parentId}`,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                            },
-                            qs: {
-                                'include': 'teams',
-                            },
-                            json: true,
-                        });
-                        // For show routes, the response is the resource directly (no 'data' wrapper)
-                        const items = response.teams || [];
-                        return items.map((item) => {
-                            const itemData = item;
-                            const name = itemData.name || itemData.title || itemData.id;
-                            return {
-                                name: String(name),
-                                value: String(itemData.id),
-                            };
-                        });
-                    }
-                    catch (error) {
-                        if (error instanceof Error) {
-                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
-                        }
-                        return [];
-                    }
-                },
                 async loadFindinglayouts() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
@@ -17048,6 +18863,222 @@ class Reporter {
                         });
                         // For show routes, the response is the resource directly (no 'data' wrapper)
                         const items = response.replies || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadAssessmentsectionevents() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'assessment_section_event_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-section-events/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'children',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.children || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadAssessmentsectionreviewevents() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'assessment_section_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-sections/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'reviewEvents',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.reviewEvents || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadAssessmentsectionpublishedevents() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'assessment_section_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-sections/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'publishedEvents',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.publishedEvents || [];
                         return items.map((item) => {
                             const itemData = item;
                             const name = itemData.name || itemData.title || itemData.id;
@@ -19094,35 +21125,7 @@ class Reporter {
                         const additionalFields = this.getNodeParameter('additionalFields', i, {});
                         for (const [key, value] of Object.entries(additionalFields)) {
                             if (value !== '' && value !== null && value !== undefined) {
-                                // Handle fixedCollection fields (arrays of objects)
-                                if ([''].includes(key)) {
-                                    // Extract items from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        body[key] = value.items;
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else if (['tags'].includes(key)) {
-                                    // Handle array of strings fields
-                                    // Extract values from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        const valueObj = value;
-                                        body[key] = valueObj.items.map((item) => {
-                                            const itemData = item;
-                                            return itemData.value;
-                                        });
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else {
-                                    body[key] = value;
-                                }
+                                body[key] = value;
                             }
                         }
                         // Add custom fields to body
@@ -19239,7 +21242,7 @@ class Reporter {
                                         body[key] = value;
                                     }
                                 }
-                                else if (['tags', 'client_teams'].includes(key)) {
+                                else if (['client_teams'].includes(key)) {
                                     // Handle array of strings fields
                                     // Extract values from fixedCollection format
                                     // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
@@ -19737,7 +21740,109 @@ class Reporter {
                         responseData = response;
                     }
                 }
-                if (resource === 'assessmentSectionComment') {
+                if (resource === 'assessmentSectionEvent') {
+                    if (operation === 'listAssessmentSectionEvents') {
+                        // List assessment section events
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/assessment-section-events`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
                     if (operation === 'createAnAssessmentSectionComment') {
                         // Create an assessment section comment
                         // Read URL parameters
@@ -19820,6 +21925,66 @@ class Reporter {
                         }
                         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'createAnAssessmentSectionReviewEvent') {
+                        // Create an assessment section review event
+                        // Read URL parameters
+                        const assessmentSectionId = this.getNodeParameter('assessment_section_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/assessment-sections/{assessment_section_id}/assessment-section-review-events`;
+                        url = url.replace('{assessment_section_id}', assessmentSectionId);
+                        // Build request body
+                        const body = {};
+                        const typeValue = this.getNodeParameter('type', i, '');
+                        if (typeValue !== '') {
+                            body['type'] = typeValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['draft_documents'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
                             url,
                             headers: {
                                 'Accept': 'application/vnd.api+json',
@@ -20592,35 +22757,7 @@ class Reporter {
                         const additionalFields = this.getNodeParameter('additionalFields', i, {});
                         for (const [key, value] of Object.entries(additionalFields)) {
                             if (value !== '' && value !== null && value !== undefined) {
-                                // Handle fixedCollection fields (arrays of objects)
-                                if ([''].includes(key)) {
-                                    // Extract items from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        body[key] = value.items;
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else if (['tags'].includes(key)) {
-                                    // Handle array of strings fields
-                                    // Extract values from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        const valueObj = value;
-                                        body[key] = valueObj.items.map((item) => {
-                                            const itemData = item;
-                                            return itemData.value;
-                                        });
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else {
-                                    body[key] = value;
-                                }
+                                body[key] = value;
                             }
                         }
                         // Add custom fields to body
@@ -20726,35 +22863,7 @@ class Reporter {
                         const additionalFields = this.getNodeParameter('additionalFields', i, {});
                         for (const [key, value] of Object.entries(additionalFields)) {
                             if (value !== '' && value !== null && value !== undefined) {
-                                // Handle fixedCollection fields (arrays of objects)
-                                if ([''].includes(key)) {
-                                    // Extract items from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        body[key] = value.items;
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else if (['tags'].includes(key)) {
-                                    // Handle array of strings fields
-                                    // Extract values from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        const valueObj = value;
-                                        body[key] = valueObj.items.map((item) => {
-                                            const itemData = item;
-                                            return itemData.value;
-                                        });
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else {
-                                    body[key] = value;
-                                }
+                                body[key] = value;
                             }
                         }
                         // Add custom fields to body
@@ -21912,6 +24021,214 @@ class Reporter {
                         });
                         responseData = response;
                     }
+                    if (operation === 'createAFindingReviewEvent') {
+                        // Create a finding review event
+                        // Read URL parameters
+                        const findingId = this.getNodeParameter('finding_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/findings/{finding_id}/finding-review-events`;
+                        url = url.replace('{finding_id}', findingId);
+                        // Build request body
+                        const body = {};
+                        const typeValue = this.getNodeParameter('type', i, '');
+                        if (typeValue !== '') {
+                            body['type'] = typeValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['draft_documents'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'createAFindingRetestReviewEvent') {
+                        // Create a finding retest review event
+                        // Read URL parameters
+                        const findingRetestId = this.getNodeParameter('finding_retest_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/finding-retests/{finding_retest_id}/finding-review-events`;
+                        url = url.replace('{finding_retest_id}', findingRetestId);
+                        // Build request body
+                        const body = {};
+                        const typeValue = this.getNodeParameter('type', i, '');
+                        if (typeValue !== '') {
+                            body['type'] = typeValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['draft_documents'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'createARemediationStatusChange') {
+                        // Create a remediation status change
+                        // Read URL parameters
+                        const findingId = this.getNodeParameter('finding_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/findings/{finding_id}/finding-remediation-status-changes`;
+                        url = url.replace('{finding_id}', findingId);
+                        // Build request body
+                        const body = {};
+                        const remediationStatusValue = this.getNodeParameter('remediation_status', i, '');
+                        if (remediationStatusValue !== '') {
+                            body['remediation_status'] = remediationStatusValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['draft_documents'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateARemediationStatusChange') {
+                        // Update a remediation status change
+                        // Read URL parameters
+                        const remediationStatusChangeId = this.getNodeParameter('remediation_status_change_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/finding-remediation-status-changes/{remediation_status_change_id}`;
+                        url = url.replace('{remediation_status_change_id}', remediationStatusChangeId);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
                 }
                 if (resource === 'findingLayout') {
                     if (operation === 'listFindingLayouts') {
@@ -22219,7 +24536,7 @@ class Reporter {
                                         body[key] = value;
                                     }
                                 }
-                                else if (['tags', 'draft_documents'].includes(key)) {
+                                else if (['draft_documents'].includes(key)) {
                                     // Handle array of strings fields
                                     // Extract values from fixedCollection format
                                     // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
@@ -22342,35 +24659,7 @@ class Reporter {
                         const additionalFields = this.getNodeParameter('additionalFields', i, {});
                         for (const [key, value] of Object.entries(additionalFields)) {
                             if (value !== '' && value !== null && value !== undefined) {
-                                // Handle fixedCollection fields (arrays of objects)
-                                if ([''].includes(key)) {
-                                    // Extract items from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        body[key] = value.items;
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else if (['tags'].includes(key)) {
-                                    // Handle array of strings fields
-                                    // Extract values from fixedCollection format
-                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
-                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
-                                        const valueObj = value;
-                                        body[key] = valueObj.items.map((item) => {
-                                            const itemData = item;
-                                            return itemData.value;
-                                        });
-                                    }
-                                    else {
-                                        body[key] = value;
-                                    }
-                                }
-                                else {
-                                    body[key] = value;
-                                }
+                                body[key] = value;
                             }
                         }
                         // Add custom fields to body
@@ -22396,6 +24685,26 @@ class Reporter {
                         });
                         responseData = response;
                     }
+                    if (operation === 'removeATranslationFromAFindingTemplate') {
+                        // Remove a translation from a finding template
+                        // Read URL parameters
+                        const findingTemplateId = this.getNodeParameter('finding_template_id', i);
+                        const languageId = this.getNodeParameter('language_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/finding-templates/{finding_template_id}/languages/{language_id}`;
+                        url = url.replace('{finding_template_id}', findingTemplateId);
+                        url = url.replace('{language_id}', languageId);
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'DELETE',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            json: true,
+                        });
+                        responseData = response;
+                    }
                 }
                 if (resource === 'language') {
                     if (operation === 'listLanguages') {
@@ -22403,6 +24712,110 @@ class Reporter {
                         // Read URL parameters
                         // Build URL with parameters
                         let url = `${baseUrl}/api/v1/languages`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                }
+                if (resource === 'notification') {
+                    if (operation === 'listNotifications') {
+                        // List notifications
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/notifications`;
                         // Build query parameters
                         const qs = {};
                         // Add optional query parameters from Additional Fields
@@ -22793,6 +25206,391 @@ class Reporter {
                         // Read URL parameters
                         // Build URL with parameters
                         let url = `${baseUrl}/api/v1/assessment-roles`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                }
+                if (resource === 'snippet') {
+                    if (operation === 'listSnippets') {
+                        // List snippets
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/snippets`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'createASnippet') {
+                        // Create a snippet
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/snippets`;
+                        // Build request body
+                        const body = {};
+                        const nameValue = this.getNodeParameter('name', i, '');
+                        if (nameValue !== '') {
+                            body['name'] = nameValue;
+                        }
+                        const textValue = this.getNodeParameter('text', i, '');
+                        if (textValue !== '') {
+                            body['text'] = textValue;
+                        }
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Handle fixedCollection fields (arrays of objects)
+                                if ([''].includes(key)) {
+                                    // Extract items from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{...}, {...}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        body[key] = value.items;
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else if (['draft_documents'].includes(key)) {
+                                    // Handle array of strings fields
+                                    // Extract values from fixedCollection format
+                                    // n8n fixedCollection returns: {items: [{value: 'str1'}, {value: 'str2'}]}
+                                    if (value && typeof value === 'object' && 'items' in value && Array.isArray(value.items)) {
+                                        const valueObj = value;
+                                        body[key] = valueObj.items.map((item) => {
+                                            const itemData = item;
+                                            return itemData.value;
+                                        });
+                                    }
+                                    else {
+                                        body[key] = value;
+                                    }
+                                }
+                                else {
+                                    body[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'POST',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'retrieveASnippet') {
+                        // Retrieve a snippet
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/snippets/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateASnippet') {
+                        // Update a snippet
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/snippets/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'removeATranslationFromASnippet') {
+                        // Remove a translation from a snippet
+                        // Read URL parameters
+                        const snippetId = this.getNodeParameter('snippet_id', i);
+                        const languageId = this.getNodeParameter('language_id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/snippets/{snippet_id}/languages/{language_id}`;
+                        url = url.replace('{snippet_id}', snippetId);
+                        url = url.replace('{language_id}', languageId);
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'DELETE',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'tag') {
+                    if (operation === 'listTags') {
+                        // List tags
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/tags`;
                         // Build query parameters
                         const qs = {};
                         // Add optional query parameters from Additional Fields
@@ -23649,6 +26447,203 @@ class Reporter {
                     }
                 }
                 if (resource === 'team') {
+                    if (operation === 'listTeams') {
+                        // List teams
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveATeam') {
+                        // Retrieve a team
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                    if (operation === 'updateATeam') {
+                        // Update a team
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/teams/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build request body
+                        const body = {};
+                        // Add optional body parameters from Additional Fields
+                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFields)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                body[key] = value;
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'PUT',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
                     if (operation === 'createATeam') {
                         // Create a team
                         // Read URL parameters
@@ -23679,34 +26674,6 @@ class Reporter {
                         }
                         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'POST',
-                            url,
-                            headers: {
-                                'Accept': 'application/vnd.api+json',
-                                'Content-Type': 'application/json',
-                            },
-                            body,
-                            json: true,
-                        });
-                        responseData = response;
-                    }
-                    if (operation === 'updateATeam') {
-                        // Update a team
-                        // Read URL parameters
-                        const id = this.getNodeParameter('id', i);
-                        // Build URL with parameters
-                        let url = `${baseUrl}/api/v1/teams/{id}`;
-                        url = url.replace('{id}', id);
-                        // Build request body
-                        const body = {};
-                        // Add optional body parameters from Additional Fields
-                        const additionalFields = this.getNodeParameter('additionalFields', i, {});
-                        for (const [key, value] of Object.entries(additionalFields)) {
-                            if (value !== '' && value !== null && value !== undefined) {
-                                body[key] = value;
-                            }
-                        }
-                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
-                            method: 'PUT',
                             url,
                             headers: {
                                 'Accept': 'application/vnd.api+json',
