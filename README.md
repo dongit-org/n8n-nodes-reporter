@@ -150,6 +150,6 @@ See [CHANGELOG.md](CHANGELOG.md) for version history and changes.
 For issues and questions:
 
 - **n8n node issues**: [GitHub Issues](https://github.com/dongit-org/reporter/issues)
-- **Security Reporter issues**: [Security Reporter Support](https://securityreporter.app/support)
+- **Security Reporter issues**: Please use the support desk as described in **Documentation > General > Get Help**
 - **n8n general help**: [n8n Community Forum](https://community.n8n.io/)
 

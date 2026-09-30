@@ -101,6 +101,56 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing assessment template is updated',
                         },
                         {
+                            name: 'New Assessment Template Checklist',
+                            value: 'assessmentTemplateChecklist_created',
+                            description: 'Triggers when a new assessment template checklist is created',
+                        },
+                        {
+                            name: 'Updated Assessment Template Checklist',
+                            value: 'assessmentTemplateChecklist_updated',
+                            description: 'Triggers when an existing assessment template checklist is updated',
+                        },
+                        {
+                            name: 'New Checklist',
+                            value: 'checklist_created',
+                            description: 'Triggers when a new checklist is created',
+                        },
+                        {
+                            name: 'Updated Checklist',
+                            value: 'checklist_updated',
+                            description: 'Triggers when an existing checklist is updated',
+                        },
+                        {
+                            name: 'New Checklist Category',
+                            value: 'checklistCategory_created',
+                            description: 'Triggers when a new checklist category is created',
+                        },
+                        {
+                            name: 'Updated Checklist Category',
+                            value: 'checklistCategory_updated',
+                            description: 'Triggers when an existing checklist category is updated',
+                        },
+                        {
+                            name: 'New Checklist Template',
+                            value: 'checklistTemplate_created',
+                            description: 'Triggers when a new checklist template is created',
+                        },
+                        {
+                            name: 'Updated Checklist Template',
+                            value: 'checklistTemplate_updated',
+                            description: 'Triggers when an existing checklist template is updated',
+                        },
+                        {
+                            name: 'New Checklist Category Template',
+                            value: 'checklistCategoryTemplate_created',
+                            description: 'Triggers when a new checklist category template is created',
+                        },
+                        {
+                            name: 'Updated Checklist Category Template',
+                            value: 'checklistCategoryTemplate_updated',
+                            description: 'Triggers when an existing checklist category template is updated',
+                        },
+                        {
                             name: 'New Client',
                             value: 'client_created',
                             description: 'Triggers when a new client is created',
@@ -291,6 +341,16 @@ class ReporterPollingTrigger {
                             description: 'Triggers when an existing test case is updated',
                         },
                         {
+                            name: 'New Test Case Template',
+                            value: 'testCaseTemplate_created',
+                            description: 'Triggers when a new test case template is created',
+                        },
+                        {
+                            name: 'Updated Test Case Template',
+                            value: 'testCaseTemplate_updated',
+                            description: 'Triggers when an existing test case template is updated',
+                        },
+                        {
                             name: 'New Theme',
                             value: 'theme_created',
                             description: 'Triggers when a new theme is created',
@@ -410,6 +470,56 @@ class ReporterPollingTrigger {
             },
             'assessmentTemplate_updated': {
                 apiPath: '/api/v1/assessment-templates',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'assessmentTemplateChecklist_created': {
+                apiPath: '/api/v1/assessment-template-checklists',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'assessmentTemplateChecklist_updated': {
+                apiPath: '/api/v1/assessment-template-checklists',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'checklist_created': {
+                apiPath: '/api/v1/checklists',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'checklist_updated': {
+                apiPath: '/api/v1/checklists',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'checklistCategory_created': {
+                apiPath: '/api/v1/checklist-categories',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'checklistCategory_updated': {
+                apiPath: '/api/v1/checklist-categories',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'checklistTemplate_created': {
+                apiPath: '/api/v1/checklist-templates',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'checklistTemplate_updated': {
+                apiPath: '/api/v1/checklist-templates',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'checklistCategoryTemplate_created': {
+                apiPath: '/api/v1/checklist-category-templates',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'checklistCategoryTemplate_updated': {
+                apiPath: '/api/v1/checklist-category-templates',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },
@@ -600,6 +710,16 @@ class ReporterPollingTrigger {
             },
             'testCase_updated': {
                 apiPath: '/api/v1/test-cases',
+                filterField: 'updated_at_after',
+                sortField: '-updated_at',
+            },
+            'testCaseTemplate_created': {
+                apiPath: '/api/v1/test-case-templates',
+                filterField: 'created_at_after',
+                sortField: '-created_at',
+            },
+            'testCaseTemplate_updated': {
+                apiPath: '/api/v1/test-case-templates',
                 filterField: 'updated_at_after',
                 sortField: '-updated_at',
             },

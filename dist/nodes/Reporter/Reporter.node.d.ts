@@ -14,6 +14,11 @@ export declare class Reporter implements INodeType {
             loadAssessmentSectionEvents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentSectionTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmentTemplateChecklists(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklists(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklistCategorys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklistTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklistCategoryTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadClients(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadCustomFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindings(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
@@ -33,6 +38,7 @@ export declare class Reporter implements INodeType {
             loadTaskSets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTeams(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadTestCases(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTestCaseTemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadThemes(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadUsers(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadApitokens(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
@@ -54,8 +60,15 @@ export declare class Reporter implements INodeType {
             loadAssessmentsectionpublishedevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAssessmentsectiontemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindingtemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklisttemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadAssessmenttemplatechecklists(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadNestedassessmentsectiontemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadAutoassignments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklistcategorys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadChecklistcategorytemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadTestcasetemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadNestedchecklistcategorys(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+            loadNestedchecklistcategorytemplates(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindingcomments(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindingevents(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
             loadFindinglayoutfields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;

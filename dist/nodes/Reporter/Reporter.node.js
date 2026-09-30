@@ -71,8 +71,28 @@ class Reporter {
                             value: 'assessmentTemplate',
                         },
                         {
+                            name: 'Assessment Template Checklist',
+                            value: 'assessmentTemplateChecklist',
+                        },
+                        {
                             name: 'Assessment User',
                             value: 'assessmentUser',
+                        },
+                        {
+                            name: 'Checklist',
+                            value: 'checklist',
+                        },
+                        {
+                            name: 'Checklist Category',
+                            value: 'checklistCategory',
+                        },
+                        {
+                            name: 'Checklist Category Template',
+                            value: 'checklistCategoryTemplate',
+                        },
+                        {
+                            name: 'Checklist Template',
+                            value: 'checklistTemplate',
                         },
                         {
                             name: 'Client',
@@ -153,6 +173,10 @@ class Reporter {
                         {
                             name: 'Test Case',
                             value: 'testCase',
+                        },
+                        {
+                            name: 'Test Case Template',
+                            value: 'testCaseTemplate',
                         },
                         {
                             name: 'Theme',
@@ -940,7 +964,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: aedb24112041481faccdb74c67ded457',
+                    description: 'The ID of the client. Example: b91f6cddae8a4de7826ec027b3957d68',
                 },
                 {
                     displayName: 'Assessment template id',
@@ -1143,7 +1167,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 77b3949cd58842b7a43611c5b695a15d',
+                    description: 'The ID of the assessment. Example: 90683522462647cdaaa9047bb2a6bdf9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1182,7 +1206,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 77b3949cd58842b7a43611c5b695a15d',
+                    description: 'The ID of the assessment. Example: 90683522462647cdaaa9047bb2a6bdf9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1328,7 +1352,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current assessment status. Must be a valid assessment status. Example: 19',
+                            description: 'The current assessment status. Must be a valid assessment status. Example: 20',
                         },
                         {
                             displayName: 'On hold',
@@ -1650,7 +1674,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 8',
+                            description: 'Controls which client users can see published findings in an assessment. Must be a valid restrict findings to users. Example: 6',
                         },
                         {
                             displayName: 'Restrict findings to resolvers',
@@ -1764,7 +1788,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 01aca05b452340d09109a45219653e22',
+                    description: 'The ID of the assessment. Example: 83a0fa1734774240a9ea32c1c3fd8556',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1806,7 +1830,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 4e201c64b8f143d1a7f58b37fa45fef9',
+                    description: 'The ID of the assessment. Example: f2d3905028bc466694c9eb55d91b47c9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -1875,7 +1899,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d5eb7142cbb6486bb15cbf63c7887153',
+                    description: 'The ID of the assessment. Example: 56cb3b451ed24b88ad3de69e304b2635',
                 },
                 {
                     displayName: 'Body',
@@ -1944,7 +1968,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment comment. Example: 845d5b9e8f6940069cd7d310c590d5a6',
+                    description: 'The ID of the assessment comment. Example: fbc0b31e6ff142dd86ac35192ab454c5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2015,7 +2039,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment phase. Example: 5cfe8e4d361447fa857eedf673cf3b21',
+                    description: 'The ID of the assessment phase. Example: e0f2e7edb6024813aed328f383b7bab1',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2338,7 +2362,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 793599082f0a46eca3b922b355675e56',
+                    description: 'The ID of the assessment section. Example: 844e9ec2d9fd4a9f84c14f29253ed513',
                 },
                 {
                     displayName: 'Id',
@@ -2356,7 +2380,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 793599082f0a46eca3b922b355675e56',
+                    description: 'The ID of the assessment section. Example: 844e9ec2d9fd4a9f84c14f29253ed513',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -2424,7 +2448,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 13',
+                            description: 'Whether this section will be included in the report. Must be a valid report section visibility. Example: 5',
                         },
                         {
                             displayName: 'Is visible in assessment overview',
@@ -2469,7 +2493,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 18',
+                            description: 'Whether this section will be included in the management report. Must be a valid report section visibility. Example: 1',
                         },
                         {
                             displayName: 'Report heading',
@@ -2508,7 +2532,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 7',
+                            description: 'An optional custom heading size of this section in the report. Must be a valid report heading. Example: 20',
                         },
                         {
                             displayName: 'Review status',
@@ -2537,7 +2561,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 19',
+                            description: 'The current review status of the assessment section. Must be a valid review status. Example: 10',
                         },
                         {
                             displayName: 'Is published',
@@ -2563,7 +2587,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 205a25bb239c4783b0bde61e15373307',
+                    description: 'The ID of the assessment. Example: 91a0035d8764453db52563ec5b911fa7',
                 },
                 {
                     displayName: 'Name',
@@ -2748,7 +2772,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 5',
+                    description: 'The current review status of the assessment section. Must be a valid review status. Example: 15',
                 },
                 {
                     displayName: 'Is published',
@@ -3090,7 +3114,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 2d77ce3e4f454e0495b7702a5268a5d1',
+                    description: 'The ID of the assessment section. Example: a8a934bca14a4f8aa0fb5f123d9e33a2',
                 },
                 {
                     displayName: 'Body',
@@ -3162,7 +3186,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section comment. Example: 30d8bc4000584ba187ceb46646a245cf',
+                    description: 'The ID of the assessment section comment. Example: 3be8efbc263648e9a84b44e0f8e49cd7',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3212,7 +3236,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the assessment section. Example: 61321c4ca77c46b3adabef614073d627',
+                    description: 'The ID of the assessment section. Example: 436725c46bf846afb1e9ff7bb3ce152e',
                 },
                 {
                     displayName: 'Type',
@@ -3488,7 +3512,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 85f0629bdeda42cdb8fc0a95a2bc95a3',
+                    description: 'The ID of the assessment section template. Example: 2160f417682749db97ebd1e324e3cce4',
                 },
                 {
                     displayName: 'Id',
@@ -3502,7 +3526,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment section template. Example: 85f0629bdeda42cdb8fc0a95a2bc95a3',
+                    description: 'The ID of the assessment section template. Example: 2160f417682749db97ebd1e324e3cce4',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -3719,7 +3743,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 7f8c7f66b5b348bba2a599cf52e80f57',
+                    description: 'The ID of the assessment template. Example: e6fdbb15642642d1ae6eee7910db2984',
                 },
                 {
                     displayName: 'Name',
@@ -4057,7 +4081,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: c94b1cce05544ec1958d356470d60175',
+                    description: 'The ID of the assessment. Example: 15719c47009d44ee94755b416755dd8c',
                 },
                 {
                     displayName: 'Task set id',
@@ -4110,7 +4134,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: b3b8555836954745adc54f946576d4cb',
+                    description: 'The ID of the assessment. Example: 9ed9f21f19cc42e4aec74cd5533c85b6',
                 },
                 {
                     displayName: 'Id',
@@ -4124,7 +4148,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the task set. Example: fa61c80f1d194f7cb6e99051a6bfb727',
+                    description: 'The ID of the task set. Example: 08c94d799f604643a31f03c568a8348f',
                 },
                 // Assessment Template - Operations
                 {
@@ -4399,7 +4423,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 40e69ae8f97e4b7b943df50f8eaad337',
+                    description: 'The ID of the assessment template. Example: 998111d8589343e8a37ffdb5b97209ca',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4435,7 +4459,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 40e69ae8f97e4b7b943df50f8eaad337',
+                    description: 'The ID of the assessment template. Example: 998111d8589343e8a37ffdb5b97209ca',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -4495,7 +4519,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: 05bb2ce0c58849eb93e586e6abedac61',
+                    description: 'The ID of the assessment template. Example: ded9f44f63b94fe18cd6dc1e513afe67',
                 },
                 {
                     displayName: 'Language id',
@@ -4548,7 +4572,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the assessment template. Example: e3b9c58ab0dd42178178d5bc7ae3d372',
+                    description: 'The ID of the assessment template. Example: 574f625aa7bd42019dab4e4d5314f80c',
                 },
                 {
                     displayName: 'Language id',
@@ -4563,6 +4587,233 @@ class Reporter {
                     },
                     default: '',
                     description: 'The ID of the language. Example: en_default',
+                },
+                // Assessment Template Checklist - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List assessment template checklists',
+                            value: 'listAssessmentTemplateChecklists',
+                            action: 'List assessment template checklists',
+                            description: 'Retrieve the checklist templates attached to assessment templates. Object information.',
+                        },
+                        {
+                            name: 'Retrieve an assessment template checklist',
+                            value: 'retrieveAnAssessmentTemplateChecklist',
+                            action: 'Retrieve an assessment template checklist',
+                            description: 'Retrieve all details of the given assessment template checklist. Object information.',
+                        },
+                    ],
+                    default: 'listAssessmentTemplateChecklists',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['listAssessmentTemplateChecklists'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['listAssessmentTemplateChecklists'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['listAssessmentTemplateChecklists'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['listAssessmentTemplateChecklists'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['retrieveAnAssessmentTemplateChecklist'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the assessment template checklist. Example: a05a8fef97994ffb9dc0988f42199147',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['assessmentTemplateChecklist'],
+                            operation: ['retrieveAnAssessmentTemplateChecklist'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
                 },
                 // Assessment User - Operations
                 {
@@ -4612,7 +4863,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 5509ea31c1544684998008849ac8704a',
+                    description: 'The ID of the assessment. Example: 071dbff1f5554a4aa100a45e80692b3c',
                 },
                 {
                     displayName: 'User id',
@@ -4802,7 +5053,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [7]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [11]',
                         },
                         {
                             displayName: 'Expires on',
@@ -4812,7 +5063,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-01',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-30',
                         },
                     ],
                 },
@@ -4831,7 +5082,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d627bc04fcc0413daf53c444cfb95f65',
+                    description: 'The ID of the assessment. Example: 918ff0517f7a4bc79f5f5c48a95800ed',
                 },
                 {
                     displayName: 'Id',
@@ -4849,7 +5100,7 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 38b28c7990644fd3a9e6b78ca198dff2',
+                    description: 'The ID of the user. Example: 2add530745b54d5ab1548222dd763907',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5015,7 +5266,7 @@ class Reporter {
                                 },
                             ],
                             default: 1,
-                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [18]',
+                            description: 'Tasks of the selected types will be assigned to this user. This field is only applicable if this user is a researcher or manager. Must be a valid task type. Example: [12]',
                         },
                         {
                             displayName: 'Expires on',
@@ -5025,7 +5276,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-01',
+                            description: 'An optional date after which this user is no longer able to access the assessment. Expired researcher users will still appear on the report. Must be a valid date. Example: 2026-09-30',
                         },
                     ],
                 },
@@ -5044,7 +5295,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: d627bc04fcc0413daf53c444cfb95f65',
+                    description: 'The ID of the assessment. Example: 918ff0517f7a4bc79f5f5c48a95800ed',
                 },
                 {
                     displayName: 'Id',
@@ -5062,7 +5313,942 @@ class Reporter {
                         loadOptionsDependsOn: ['assessment_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: 38b28c7990644fd3a9e6b78ca198dff2',
+                    description: 'The ID of the user. Example: 2add530745b54d5ab1548222dd763907',
+                },
+                // Checklist - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List checklists',
+                            value: 'listChecklists',
+                            action: 'List checklists',
+                            description: 'Retrieve a list of all accessible checklists. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a checklist',
+                            value: 'retrieveAChecklist',
+                            action: 'Retrieve a checklist',
+                            description: 'Retrieve all details of the given checklist. Object information.',
+                        },
+                    ],
+                    default: 'listChecklists',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['listChecklists'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['listChecklists'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['listChecklists'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['listChecklists'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['retrieveAChecklist'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadChecklists',
+                    },
+                    default: undefined,
+                    description: 'The ID of the checklist. Example: 87c5142b492e4cc8aa6d81728f111527',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklist'],
+                            operation: ['retrieveAChecklist'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                // Checklist Category - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List checklist categories',
+                            value: 'listChecklistCategories',
+                            action: 'List checklist categories',
+                            description: 'Retrieve a list of all accessible checklist categories. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a checklist category',
+                            value: 'retrieveAChecklistCategory',
+                            action: 'Retrieve a checklist category',
+                            description: 'Retrieve all details of the given checklist category. Object information.',
+                        },
+                    ],
+                    default: 'listChecklistCategories',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['listChecklistCategories'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Name',
+                                                    value: 'name',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['listChecklistCategories'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['listChecklistCategories'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['listChecklistCategories'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'options',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['retrieveAChecklistCategory'],
+                        },
+                    },
+                    typeOptions: {
+                        loadOptionsMethod: 'loadChecklistcategorys',
+                        loadOptionsDependsOn: ['id'],
+                    },
+                    default: undefined,
+                    description: 'The ID of the checklist category. Example: 5e41641573d34a9babccf01b7c20bab5',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategory'],
+                            operation: ['retrieveAChecklistCategory'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                // Checklist Category Template - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List checklist category templates',
+                            value: 'listChecklistCategoryTemplates',
+                            action: 'List checklist category templates',
+                            description: 'Retrieve a list of all accessible checklist category templates. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a checklist category template',
+                            value: 'retrieveAChecklistCategoryTemplate',
+                            action: 'Retrieve a checklist category template',
+                            description: 'Retrieve all details of the given checklist category template. Object information.',
+                        },
+                    ],
+                    default: 'listChecklistCategoryTemplates',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['listChecklistCategoryTemplates'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['listChecklistCategoryTemplates'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['listChecklistCategoryTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['listChecklistCategoryTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['retrieveAChecklistCategoryTemplate'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the checklist category template. Example: 02fad6e8e33f46bea1fee4d8a2e323bd',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistCategoryTemplate'],
+                            operation: ['retrieveAChecklistCategoryTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                // Checklist Template - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List checklist templates',
+                            value: 'listChecklistTemplates',
+                            action: 'List checklist templates',
+                            description: 'Retrieve a list of all checklist templates. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a checklist template',
+                            value: 'retrieveAChecklistTemplate',
+                            action: 'Retrieve a checklist template',
+                            description: 'Retrieve all details of the given checklist template. Object information.',
+                        },
+                    ],
+                    default: 'listChecklistTemplates',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['listChecklistTemplates'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['listChecklistTemplates'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['listChecklistTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['listChecklistTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['retrieveAChecklistTemplate'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the checklist template. Example: 6c5efde500494e3e88ed79705a9e15f4',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['checklistTemplate'],
+                            operation: ['retrieveAChecklistTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
                 },
                 // Client - Operations
                 {
@@ -5420,7 +6606,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 4bbf638711e24ccf873a1db4fb00b6f4',
+                    description: 'The ID of the client. Example: d8e8584ac9804d2382516f1c4c34384a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5459,7 +6645,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 4bbf638711e24ccf873a1db4fb00b6f4',
+                    description: 'The ID of the client. Example: d8e8584ac9804d2382516f1c4c34384a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5584,7 +6770,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 455b4664fefc4c7cb41e53c8b7799d15',
+                    description: 'The ID of the client. Example: d45483a6629946368b39533b430daa78',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5667,7 +6853,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 818d0e3a444d4583b83cef9e6a76ff08',
+                    description: 'The ID of the client. Example: b93caaaf72bc4cd982004f5ab7e8d461',
                 },
                 {
                     displayName: 'User id',
@@ -5684,7 +6870,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: bd2547711a544a8c8e9c37189312014e',
+                    description: 'The ID of the user. Example: 319a8a590a7c45ce81f5be325c91141e',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -5953,7 +7139,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the document. Example: 8a3d6b0348f947a8a2519e359e2d3f10',
+                    description: 'The ID of the document. Example: 68c185f9136b4bd4992ba864b384c1df',
                 },
                 {
                     displayName: 'Documentable type',
@@ -6387,7 +7573,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 1130c0f8dc5f4e6da8ee6466538064de',
+                    description: 'The ID of the assessment. Example: b966e507795f413d99d183b90ef7c819',
                 },
                 {
                     displayName: 'Title',
@@ -6469,7 +7655,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The current review status of the finding. Must be a valid review status. Example: 14',
+                    description: 'The current review status of the finding. Must be a valid review status. Example: 4',
                 },
                 {
                     displayName: 'Is published',
@@ -6483,7 +7669,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'Whether the finding is published. Example: true',
+                    description: 'Whether the finding is published. Example: false',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6633,7 +7819,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 16',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 15',
                         },
                         {
                             displayName: 'Priority',
@@ -6864,7 +8050,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 6bbfbbccaf8d417b95b77ca5caf3a471',
+                    description: 'The ID of the finding. Example: d48cd88e8fd04b3aa3da0504424a1442',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6903,7 +8089,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 6bbfbbccaf8d417b95b77ca5caf3a471',
+                    description: 'The ID of the finding. Example: d48cd88e8fd04b3aa3da0504424a1442',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -6975,7 +8161,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 4',
+                            description: 'The current status of the finding. Can not be changed to or from Retest Pending. Must be a valid finding status. Example: 14',
                         },
                         {
                             displayName: 'Resolved targets',
@@ -7026,7 +8212,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current review status of the finding. Must be a valid review status. Example: 19',
+                            description: 'The current review status of the finding. Must be a valid review status. Example: 6',
                         },
                         {
                             displayName: 'Is published',
@@ -7114,7 +8300,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 19',
+                            description: 'The current remediation status of the finding. Must be a valid remediation status. Only allowed if the finding is a vulnerability. Example: 13',
                         },
                         {
                             displayName: 'Priority',
@@ -7345,7 +8531,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 3dbd5ce297904ab28b4fac1748e0344d',
+                    description: 'The ID of the assessment. Example: aeb66d5ca9d149beb4675d5eda484e4a',
                 },
                 {
                     displayName: 'Finding template id',
@@ -7747,7 +8933,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: b2d758580e7a42aba30339fc8473b168',
+                    description: 'The ID of the finding. Example: 14e7490e063b489d8406a95b6d12c82f',
                 },
                 {
                     displayName: 'Body',
@@ -7816,7 +9002,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding comment. Example: 8effe77184474dd3a6db7cb2a30c2894',
+                    description: 'The ID of the finding comment. Example: ac58c51b9c674705ba1dd196bb832213',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -7865,7 +9051,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 865b8895fb924e718dfd1bd9b5537973',
+                    description: 'The ID of the finding. Example: cc3ae23d416f4e39b7cecdda90cc1f1f',
                 },
                 {
                     displayName: 'Status',
@@ -8052,7 +9238,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 7a848dd5d2f246758524e9b6e2a5bcd2',
+                    description: 'The ID of the finding retest. Example: 80bd2d4d9d70446c8f9a2a5df5acfbc9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8238,7 +9424,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: e6a5dc3e654243718ca11021d6609794',
+                    description: 'The ID of the finding. Example: 37ba39169c8b45f19bf583e5251c86fe',
                 },
                 {
                     displayName: 'Body',
@@ -8300,7 +9486,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: c303dceb1b4847d093d72018acea82d3',
+                    description: 'The ID of the finding retest inquiry. Example: 6ba14c04ee6c460c953bf92fffe0572a',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8343,7 +9529,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest inquiry. Example: 18b5df00bf624555b7d20094e62dab2c',
+                    description: 'The ID of the finding retest inquiry. Example: 64969be6df774e2f9e518f41f269c8dd',
                 },
                 {
                     displayName: 'Body',
@@ -8405,7 +9591,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest cancelled event. Example: f100d627d5ea46b89f3791f26de711a8',
+                    description: 'The ID of the finding retest cancelled event. Example: 43577795b3b84a0f95aa805e743b2794',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -8447,7 +9633,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 2d8e69cf8a5d4fab893bf4ca6c8de19d',
+                    description: 'The ID of the finding. Example: 5c3944fd3a484ea1b130f333becee792',
                 },
                 {
                     displayName: 'Type',
@@ -8528,7 +9714,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the finding retest. Example: 0c93843747ff4ec4a4ac1bf3c1154549',
+                    description: 'The ID of the finding retest. Example: 319604169d594eb4b17b55685d657b0e',
                 },
                 {
                     displayName: 'Type',
@@ -8608,7 +9794,7 @@ class Reporter {
                         loadOptionsMethod: 'loadFindings',
                     },
                     default: undefined,
-                    description: 'The ID of the finding. Example: 21f7877879ad4663a7f5a97f5b8d0e8d',
+                    description: 'The ID of the finding. Example: a1496a4661d144f791f68298d2283943',
                 },
                 {
                     displayName: 'Remediation status',
@@ -8705,7 +9891,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the remediation status change. Example: b86bfb2d742340d9b71cd69bc356dda2',
+                    description: 'The ID of the remediation status change. Example: 65602e06c3fe4fb1acc88cfdc7895872',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -9313,7 +10499,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 19',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 1',
                         },
                         {
                             displayName: 'Classifications',
@@ -9645,7 +10831,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 10',
+                            description: 'Required if is_vulnerability is false, determined from severity metrics otherwise. Must be a valid severity. This field is required when is_vulnerability is false or 0. Example: 6',
                         },
                         {
                             displayName: 'Classifications',
@@ -10320,7 +11506,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 7c32034dc8404bf1918bb4cf5f1d7153',
+                    description: 'The ID of the assessment. Example: 58cdced3900f4a6ca5065467e00a6b2d',
                 },
                 {
                     displayName: 'Name',
@@ -11424,7 +12610,7 @@ class Reporter {
                         },
                     ],
                     default: 'crunch42',
-                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: unde',
+                    description: 'The tool that created the file. Must be a valid importable tool. Must not be one of api_sonarqube. Example: ipsam',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -12843,7 +14029,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: e5e18889e0f44a94aca2a4a40a0ebe80',
+                    description: 'The ID of the assessment. Example: 4717f53a40e1419d87cdab432597bfb7',
                 },
                 {
                     displayName: 'Target type',
@@ -13004,7 +14190,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of target. Must be a valid target type. Example: 4',
+                    description: 'The type of target. Must be a valid target type. Example: 9',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13065,7 +14251,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 13',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 19',
                         },
                         {
                             displayName: 'Name',
@@ -13140,7 +14326,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 04a657ed26414121a96acc79db0dd5a3',
+                    description: 'The ID of the target. Example: ecd849fb7f3b49b0af6ebbf8d2164d89',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13179,7 +14365,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTargets',
                     },
                     default: undefined,
-                    description: 'The ID of the target. Example: 04a657ed26414121a96acc79db0dd5a3',
+                    description: 'The ID of the target. Example: ecd849fb7f3b49b0af6ebbf8d2164d89',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13363,7 +14549,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The type of target. Must be a valid target type. Example: 2',
+                            description: 'The type of target. Must be a valid target type. Example: 11',
                         },
                         {
                             displayName: 'Business impact',
@@ -13387,7 +14573,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 14',
+                            description: 'The importance of the target to the business. Must be a valid business impact. Example: 2',
                         },
                         {
                             displayName: 'Name',
@@ -13657,7 +14843,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 0027455223844d0484700b47a90955d1',
+                    description: 'The ID of the task. Example: 70e86ff10ca44b068312fbc45455e4a5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13696,7 +14882,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTasks',
                     },
                     default: undefined,
-                    description: 'The ID of the task. Example: 0027455223844d0484700b47a90955d1',
+                    description: 'The ID of the task. Example: 70e86ff10ca44b068312fbc45455e4a5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -13834,7 +15020,7 @@ class Reporter {
                         loadOptionsMethod: 'loadAssessments',
                     },
                     default: undefined,
-                    description: 'The ID of the assessment. Example: 887dbb59c4884498bedab1a28c9522a5',
+                    description: 'The ID of the assessment. Example: a9607ab66bf64e588916338ac71532aa',
                 },
                 {
                     displayName: 'Data',
@@ -13904,7 +15090,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 4',
+                    description: 'The type of deadline for this task. Must be a valid deadline type. Example: 2',
                 },
                 {
                     displayName: 'Weight',
@@ -14228,7 +15414,7 @@ class Reporter {
                         },
                     ],
                     default: 0,
-                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 9',
+                    description: 'The deadline type of this task set. Must be a valid deadline type. Example: 11',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14252,7 +15438,7 @@ class Reporter {
                                 maxValue: 365,
                             },
                             default: '',
-                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 19',
+                            description: 'The number of business day a specific task set deadline is offset with, depending on the deadline type. Must be at least -365. Must not be greater than 365. Example: 22',
                         },
                         {
                             displayName: 'Tasks',
@@ -14355,7 +15541,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 1dfeebbfe45d4d3885cdfa45aed35876',
+                    description: 'The ID of the task set. Example: bf7015432b0d48aa94447208a13f23fc',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14395,7 +15581,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the task set. Example: 1dfeebbfe45d4d3885cdfa45aed35876',
+                    description: 'The ID of the task set. Example: bf7015432b0d48aa94447208a13f23fc',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14454,7 +15640,7 @@ class Reporter {
                                 },
                             ],
                             default: 0,
-                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 13',
+                            description: 'The deadline type of this task set. Must be a valid deadline type. Example: 18',
                         },
                         {
                             displayName: 'Tasks',
@@ -14771,7 +15957,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTeams',
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 5f5cd81380054d2586c86108b6b933d9',
+                    description: 'The ID of the team. Example: 08978e13faac4f1aa8594857cd4c4ec5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14810,7 +15996,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTeams',
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 5f5cd81380054d2586c86108b6b933d9',
+                    description: 'The ID of the team. Example: 08978e13faac4f1aa8594857cd4c4ec5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -14880,7 +16066,7 @@ class Reporter {
                         loadOptionsMethod: 'loadClients',
                     },
                     default: undefined,
-                    description: 'The ID of the client. Example: 5f600d251ac141f6902f2c8bf771e0b8',
+                    description: 'The ID of the client. Example: 653c0a5071ce489badbe32ce7d796d63',
                 },
                 {
                     displayName: 'Name',
@@ -15011,7 +16197,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTeams',
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: d95627754c1f4776bc50f51fab61e27c',
+                    description: 'The ID of the team. Example: 237866b8070e49f3bf6c1f9427a030dd',
                 },
                 {
                     displayName: 'User id',
@@ -15104,7 +16290,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-01',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-30',
                         },
                         {
                             displayName: 'Read only',
@@ -15130,7 +16316,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTeams',
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 3feeb73ebdad4872abef147c75cd2dce',
+                    description: 'The ID of the team. Example: 265105cf30984272952acaae45f20e85',
                 },
                 {
                     displayName: 'Id',
@@ -15144,7 +16330,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: d31f5418cc1744669c8a6526d944aefd',
+                    description: 'The ID of the user. Example: a21f5e04f99b4fe6a9e4a7925ff4bb48',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15213,7 +16399,7 @@ class Reporter {
                                 rows: 4,
                             },
                             default: '',
-                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-01',
+                            description: 'An optional date after which this user is no longer part of the team. Must be a valid date. Example: 2026-09-30',
                         },
                         {
                             displayName: 'Read only',
@@ -15239,7 +16425,7 @@ class Reporter {
                         loadOptionsMethod: 'loadTeams',
                     },
                     default: undefined,
-                    description: 'The ID of the team. Example: 3feeb73ebdad4872abef147c75cd2dce',
+                    description: 'The ID of the team. Example: 265105cf30984272952acaae45f20e85',
                 },
                 {
                     displayName: 'Id',
@@ -15253,7 +16439,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the user. Example: d31f5418cc1744669c8a6526d944aefd',
+                    description: 'The ID of the user. Example: a21f5e04f99b4fe6a9e4a7925ff4bb48',
                 },
                 // Test Case - Operations
                 {
@@ -15480,7 +16666,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: cb2842ef923041ed92c566881b7ee268',
+                    description: 'The ID of the test case. Example: 683e8ebfd46b4a369d1cb5590764a218',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15520,7 +16706,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the test case. Example: cb2842ef923041ed92c566881b7ee268',
+                    description: 'The ID of the test case. Example: 683e8ebfd46b4a369d1cb5590764a218',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15594,6 +16780,237 @@ class Reporter {
                             ],
                             default: 0,
                             description: 'The explicit result of the test case. If not set, the result will be inherited from the findings. Else, the result will be set to the given value, unless if there is a linked finding with a vulnera...',
+                        },
+                    ],
+                },
+                // Test Case Template - Operations
+                {
+                    displayName: 'Operation',
+                    name: 'operation',
+                    type: 'options',
+                    noDataExpression: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            name: 'List test case templates',
+                            value: 'listTestCaseTemplates',
+                            action: 'List test case templates',
+                            description: 'Retrieve a list of all test case templates. Object information.',
+                        },
+                        {
+                            name: 'Retrieve a test case template',
+                            value: 'retrieveATestCaseTemplate',
+                            action: 'Retrieve a test case template',
+                            description: 'Retrieve all details of the given test case template. Object information.',
+                        },
+                    ],
+                    default: 'listTestCaseTemplates',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['listTestCaseTemplates'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Filter fields',
+                            name: 'filter_fields',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Filter',
+                            description: 'Filter parameters as key-value pairs',
+                            options: [
+                                {
+                                    name: 'filters',
+                                    displayName: 'Filter',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter field name',
+                                        },
+                                        {
+                                            displayName: 'Value',
+                                            name: 'value',
+                                            type: 'string',
+                                            default: '',
+                                            description: 'Filter value',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Sort',
+                            name: 'sort',
+                            type: 'fixedCollection',
+                            typeOptions: {
+                                multipleValues: true,
+                            },
+                            default: [],
+                            placeholder: 'Add Sort Field',
+                            description: 'Sort fields and directions',
+                            options: [
+                                {
+                                    name: 'sorts',
+                                    displayName: 'Sort',
+                                    values: [
+                                        {
+                                            displayName: 'Field',
+                                            name: 'field',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Id',
+                                                    value: 'id',
+                                                },
+                                                {
+                                                    name: 'Order',
+                                                    value: 'order',
+                                                },
+                                                {
+                                                    name: 'Code',
+                                                    value: 'code',
+                                                },
+                                                {
+                                                    name: 'Created at',
+                                                    value: 'created_at',
+                                                },
+                                                {
+                                                    name: 'Updated at',
+                                                    value: 'updated_at',
+                                                },
+                                            ],
+                                            default: '',
+                                            description: 'Field name to sort by',
+                                        },
+                                        {
+                                            displayName: 'Direction',
+                                            name: 'direction',
+                                            type: 'options',
+                                            options: [
+                                                {
+                                                    name: 'Ascending',
+                                                    value: 'asc',
+                                                },
+                                                {
+                                                    name: 'Descending',
+                                                    value: 'desc',
+                                                },
+                                            ],
+                                            default: 'asc',
+                                            description: 'Sort direction',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
+                        },
+                    ],
+                },
+                {
+                    displayName: 'Fetch All Pages',
+                    name: 'fetchAllPages',
+                    type: 'boolean',
+                    default: false,
+                    description: 'Whether to automatically fetch all pages of results. Filters and sorting still apply.',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['listTestCaseTemplates'],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Size',
+                    name: 'pageSize',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                        maxValue: 100,
+                    },
+                    default: 30,
+                    description: 'Number of results per page (max 100)',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['listTestCaseTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Page Number',
+                    name: 'pageNumber',
+                    type: 'number',
+                    typeOptions: {
+                        minValue: 1,
+                    },
+                    default: 1,
+                    description: 'Which page to retrieve',
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['listTestCaseTemplates'],
+                            fetchAllPages: [false],
+                        },
+                    },
+                },
+                {
+                    displayName: 'Id',
+                    name: 'id',
+                    type: 'string',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['retrieveATestCaseTemplate'],
+                        },
+                    },
+                    default: '',
+                    description: 'The ID of the test case template. Example: 6ede8943afba4227b4882b77fddc301a',
+                },
+                {
+                    displayName: 'Additional Fields',
+                    name: 'additionalFields',
+                    type: 'collection',
+                    placeholder: 'Add Field',
+                    default: {},
+                    displayOptions: {
+                        show: {
+                            resource: ['testCaseTemplate'],
+                            operation: ['retrieveATestCaseTemplate'],
+                        },
+                    },
+                    options: [
+                        {
+                            displayName: 'Include',
+                            name: 'include',
+                            type: 'string',
+                            default: '',
+                            description: 'Comma-separated list of related resources to include. Supports nested relations (e.g., sections.findings)',
                         },
                     ],
                 },
@@ -15943,7 +17360,7 @@ class Reporter {
                         loadOptionsDependsOn: ['id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 0d03b3e929a24651a0123bde8b731910',
+                    description: 'The ID of the tool finding. Example: 3aee5699d0f24a2980e444953be551d0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -15983,7 +17400,7 @@ class Reporter {
                         loadOptionsDependsOn: ['finding_id'],
                     },
                     default: undefined,
-                    description: 'The ID of the tool finding. Example: 0d03b3e929a24651a0123bde8b731910',
+                    description: 'The ID of the tool finding. Example: 3aee5699d0f24a2980e444953be551d0',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -16243,7 +17660,7 @@ class Reporter {
                         },
                     },
                     default: '',
-                    description: 'The ID of the tool target. Example: 3d5dcdaf39d345e58ab33d0a15fc656e',
+                    description: 'The ID of the tool target. Example: bd164325b693427889bd9f94f524a27c',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -16623,7 +18040,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: jzuyvkkfovcgthi',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: wzgqi',
                         },
                         {
                             displayName: 'Clients',
@@ -16705,7 +18122,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: c72b2ec89f544ec0be3914549eb87529',
+                    description: 'The ID of the user. Example: 64a9acb84afb43ec9523963c4f4751e5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -16744,7 +18161,7 @@ class Reporter {
                         loadOptionsMethod: 'loadUsers',
                     },
                     default: undefined,
-                    description: 'The ID of the user. Example: c72b2ec89f544ec0be3914549eb87529',
+                    description: 'The ID of the user. Example: 64a9acb84afb43ec9523963c4f4751e5',
                 },
                 {
                     displayName: 'Additional Fields',
@@ -16805,13 +18222,28 @@ class Reporter {
                                     description: 'Active',
                                 },
                                 {
+                                    name: 'Suspended',
+                                    value: 3,
+                                    description: 'Suspended',
+                                },
+                                {
                                     name: 'Blocked',
                                     value: 2,
                                     description: 'Blocked',
                                 },
                             ],
                             default: 1,
-                            description: 'The user account status. Must be a valid user status. Example: 13',
+                            description: 'The user account status. Must be a valid user status. Example: 14',
+                        },
+                        {
+                            displayName: 'Suspended until',
+                            name: 'suspended_until',
+                            type: 'string',
+                            typeOptions: {
+                                rows: 4,
+                            },
+                            default: '',
+                            description: 'The day a suspended user is automatically reactivated. Only for suspended users; leave empty to suspend them until you lift it by hand. Must be a date after today. Must be a valid date in the forma...',
                         },
                         {
                             displayName: 'Phone',
@@ -16849,7 +18281,7 @@ class Reporter {
                             name: 'linkedin',
                             type: 'string',
                             default: '',
-                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: speskhmnutrzitbajenasmjq',
+                            description: 'The user\'s LinkedIn page. Must not be greater than 191 characters. Example: qwmhahgiwlqftqhitsyi',
                         },
                     ],
                 },
@@ -17213,6 +18645,156 @@ class Reporter {
                         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/assessment-templates`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadAssessmentTemplateChecklists() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-template-checklists`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadChecklists() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklists`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadChecklistCategorys() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-categories`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadChecklistTemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-templates`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadChecklistCategoryTemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-category-templates`,
                             headers: {
                                 'Accept': 'application/vnd.api+json',
                             },
@@ -17783,6 +19365,36 @@ class Reporter {
                         const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
                             method: 'GET',
                             url: `${baseUrl}/api/v1/test-cases`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'all': '1',
+                            },
+                            json: true,
+                        });
+                        const responseData = response;
+                        const items = Array.isArray(response) ? response : (responseData.data || []);
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.id;
+                            return {
+                                name: (name || itemData.id),
+                                value: itemData.id,
+                            };
+                        });
+                    }
+                    catch (error) {
+                        return [];
+                    }
+                },
+                async loadTestCaseTemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/test-case-templates`,
                             headers: {
                                 'Accept': 'application/vnd.api+json',
                             },
@@ -19239,6 +20851,150 @@ class Reporter {
                         return [];
                     }
                 },
+                async loadChecklisttemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'assessment_template_checklist_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-template-checklists/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'checklistTemplate',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.checklistTemplate || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadAssessmenttemplatechecklists() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'assessment_template_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/assessment-templates/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'assessmentTemplateChecklists',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.assessmentTemplateChecklists || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
                 async loadNestedassessmentsectiontemplates() {
                     const credentials = await this.getCredentials('reporterApi');
                     const baseUrl = credentials.url.replace(/\/$/, '');
@@ -19367,6 +21123,366 @@ class Reporter {
                         });
                         // For show routes, the response is the resource directly (no 'data' wrapper)
                         const items = response.autoAssignments || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadChecklistcategorys() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'checklist_category_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-categories/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'category',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.category || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadChecklistcategorytemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'checklist_category_template_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-category-templates/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'category',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.category || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadTestcasetemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'checklist_category_template_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-category-templates/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'testCases',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.testCases || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadNestedchecklistcategorys() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'checklist_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklists/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'nestedCategories',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.nestedCategories || [];
+                        return items.map((item) => {
+                            const itemData = item;
+                            const name = itemData.name || itemData.title || itemData.id;
+                            return {
+                                name: String(name),
+                                value: String(itemData.id),
+                            };
+                        });
+                    }
+                    catch (error) {
+                        if (error instanceof Error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), `Failed to load options: ${error.message}`);
+                        }
+                        return [];
+                    }
+                },
+                async loadNestedchecklistcategorytemplates() {
+                    const credentials = await this.getCredentials('reporterApi');
+                    const baseUrl = credentials.url.replace(/\/$/, '');
+                    try {
+                        let parentId;
+                        // Try to get the parent ID directly (e.g., assessment_id for "Create A Finding")
+                        const parentIdField = 'checklist_template_id';
+                        try {
+                            parentId = this.getCurrentNodeParameter(parentIdField);
+                        }
+                        catch (error) {
+                            // Field doesn't exist, will try alternative approach
+                        }
+                        // If parent ID not found directly, try to get it from the current resource
+                        // (e.g., for "Update A Finding", get finding by id, then extract assessment_id)
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            try {
+                                const resourceId = this.getCurrentNodeParameter('id');
+                                if (resourceId && resourceId !== '' && resourceId !== undefined && resourceId !== null) {
+                                    // Try to determine which resource we're working with
+                                    const resource = this.getNodeParameter('resource');
+                                    // Fetch the current resource to get the parent ID
+                                    const resourceResponse = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                        method: 'GET',
+                                        url: `${baseUrl}/api/v1/${resource}s/${resourceId}`,
+                                        headers: {
+                                            'Accept': 'application/vnd.api+json',
+                                        },
+                                        json: true,
+                                    });
+                                    // For show routes, the response is the resource directly (no 'data' wrapper)
+                                    parentId = resourceResponse[parentIdField];
+                                }
+                            }
+                            catch (error) {
+                                // Could not fetch resource, return empty
+                                return [];
+                            }
+                        }
+                        if (!parentId || parentId === '' || parentId === undefined || parentId === null) {
+                            return [];
+                        }
+                        // Fetch the parent resource with the relation included
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url: `${baseUrl}/api/v1/checklist-templates/${parentId}`,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                            },
+                            qs: {
+                                'include': 'nestedCategories',
+                            },
+                            json: true,
+                        });
+                        // For show routes, the response is the resource directly (no 'data' wrapper)
+                        const items = response.nestedCategories || [];
                         return items.map((item) => {
                             const itemData = item;
                             const name = itemData.name || itemData.title || itemData.id;
@@ -22547,6 +24663,177 @@ class Reporter {
                         responseData = response;
                     }
                 }
+                if (resource === 'assessmentTemplateChecklist') {
+                    if (operation === 'listAssessmentTemplateChecklists') {
+                        // List assessment template checklists
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/assessment-template-checklists`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveAnAssessmentTemplateChecklist') {
+                        // Retrieve an assessment template checklist
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/assessment-template-checklists/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
                 if (resource === 'assessmentUser') {
                     if (operation === 'createAnAssessmentUser') {
                         // Create an assessment user
@@ -22630,6 +24917,690 @@ class Reporter {
                                 'Accept': 'application/vnd.api+json',
                                 'Content-Type': 'application/json',
                             },
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'checklist') {
+                    if (operation === 'listChecklists') {
+                        // List checklists
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklists`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveAChecklist') {
+                        // Retrieve a checklist
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklists/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'checklistCategory') {
+                    if (operation === 'listChecklistCategories') {
+                        // List checklist categories
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-categories`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveAChecklistCategory') {
+                        // Retrieve a checklist category
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-categories/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'checklistCategoryTemplate') {
+                    if (operation === 'listChecklistCategoryTemplates') {
+                        // List checklist category templates
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-category-templates`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveAChecklistCategoryTemplate') {
+                        // Retrieve a checklist category template
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-category-templates/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'checklistTemplate') {
+                    if (operation === 'listChecklistTemplates') {
+                        // List checklist templates
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-templates`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveAChecklistTemplate') {
+                        // Retrieve a checklist template
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/checklist-templates/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
                             json: true,
                         });
                         responseData = response;
@@ -26967,6 +29938,177 @@ class Reporter {
                                 'Content-Type': 'application/json',
                             },
                             body,
+                            json: true,
+                        });
+                        responseData = response;
+                    }
+                }
+                if (resource === 'testCaseTemplate') {
+                    if (operation === 'listTestCaseTemplates') {
+                        // List test case templates
+                        // Read URL parameters
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/test-case-templates`;
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        // List request with pagination support
+                        const fetchAllPages = this.getNodeParameter('fetchAllPages', i, false);
+                        if (fetchAllPages) {
+                            qs['page[size]'] = 100;
+                        }
+                        else {
+                            const pageSize = this.getNodeParameter('pageSize', i, 30);
+                            const pageNumber = this.getNodeParameter('pageNumber', i, 1);
+                            qs['page[size]'] = pageSize;
+                            qs['page[number]'] = pageNumber;
+                        }
+                        if (fetchAllPages) {
+                            let allData = [];
+                            let nextUrl = url;
+                            while (nextUrl) {
+                                const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                    method: 'GET',
+                                    url: nextUrl,
+                                    headers: {
+                                        'Accept': 'application/vnd.api+json',
+                                        'Content-Type': 'application/json',
+                                    },
+                                    ...(nextUrl === url ? { qs } : {}),
+                                    json: true,
+                                });
+                                const page = response;
+                                const pageData = page.data;
+                                if (pageData) {
+                                    allData = allData.concat(pageData);
+                                }
+                                const links = page.links;
+                                nextUrl = (links === null || links === void 0 ? void 0 : links.next) || null;
+                            }
+                            responseData = { data: allData };
+                        }
+                        else {
+                            const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                                method: 'GET',
+                                url,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/json',
+                                },
+                                qs,
+                                json: true,
+                            });
+                            responseData = response;
+                        }
+                    }
+                    if (operation === 'retrieveATestCaseTemplate') {
+                        // Retrieve a test case template
+                        // Read URL parameters
+                        const id = this.getNodeParameter('id', i);
+                        // Build URL with parameters
+                        let url = `${baseUrl}/api/v1/test-case-templates/{id}`;
+                        url = url.replace('{id}', id);
+                        // Build query parameters
+                        const qs = {};
+                        // Add optional query parameters from Additional Fields
+                        const additionalFieldsForQuery = this.getNodeParameter('additionalFields', i, {});
+                        for (const [key, value] of Object.entries(additionalFieldsForQuery)) {
+                            if (value !== '' && value !== null && value !== undefined) {
+                                // Special handling for filter_fields - convert to Spatie Query Builder format
+                                if (key === 'filter_fields') {
+                                    // Handle fixedCollection format: {filters: [{field: 'severity', value: '10'}]}
+                                    if (value && typeof value === 'object' && 'filters' in value) {
+                                        const filterData = value;
+                                        if (Array.isArray(filterData.filters)) {
+                                            for (const filter of filterData.filters) {
+                                                if (filter.field && filter.value !== '' && filter.value !== null && filter.value !== undefined) {
+                                                    qs[`filter[${filter.field}]`] = filter.value;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'sort') {
+                                    // Handle fixedCollection format: {sorts: [{field: 'created_at', direction: 'desc'}]}
+                                    if (value && typeof value === 'object' && 'sorts' in value) {
+                                        const sortData = value;
+                                        if (Array.isArray(sortData.sorts)) {
+                                            const sortParts = [];
+                                            for (const sort of sortData.sorts) {
+                                                if (sort.field) {
+                                                    const prefix = sort.direction === 'desc' ? '-' : '';
+                                                    sortParts.push(`${prefix}${sort.field}`);
+                                                }
+                                            }
+                                            if (sortParts.length > 0) {
+                                                qs['sort'] = sortParts.join(',');
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (key === 'include') {
+                                    if (value && typeof value === 'string' && value.trim()) {
+                                        qs['include'] = value.trim();
+                                    }
+                                }
+                                else {
+                                    qs[key] = value;
+                                }
+                            }
+                        }
+                        const response = await this.helpers.httpRequestWithAuthentication.call(this, 'reporterApi', {
+                            method: 'GET',
+                            url,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/json',
+                            },
+                            qs,
                             json: true,
                         });
                         responseData = response;

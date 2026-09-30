@@ -122,7 +122,7 @@ export class ReporterTrigger implements INodeType {
         },
         default: "",
         description:
-          "A JmesPath expression that must evaluate to true to trigger the webhook. If left empty, the webhook will always be triggered. For example, a valid condition for the webhook type assessment:updated could be: contains(model.tags, 'Tag 1') && model.client.short_id == 'R-EXMP'.",
+          "A JmesPath expression that must evaluate to true to trigger the webhook. If left empty, the webhook will always be triggered. A condition searches the full model with the related resources listed under Includes, so it can only name a field the API returns for that model, and a related resource only if it is included. For example, a valid condition for the webhook type assessment:updated could be: contains(model.tags, 'Tag 1') && model.client.short_id == 'R-EXMP', with client listed under Includes.",
       },
     ],
   };

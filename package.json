@@ -58,5 +58,5 @@
     "peerDependencies": {
         "n8n-workflow": "*"
     },
-    "version": "2026.9.1"
+    "version": "2026.9.30"
 }
